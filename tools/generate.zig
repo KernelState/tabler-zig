@@ -22,13 +22,11 @@ const Icon = struct {
     file_stem: []const u8,
 };
 
-pub fn main() !void {
-    var gpa_state = std.heap.DebugAllocator(.{}).init;
-    defer _ = gpa_state.deinit();
-    const gpa = gpa_state.allocator();
+pub fn main(init: std.process.Init) !void {
+    const gpa = init.arena.allocator();
+    const io = init.io;
 
-    const args = try std.process.argsAlloc(gpa);
-    defer std.process.argsFree(gpa, args);
+    const args = try init.minimal.args.toSlice(gpa);
     if (args.len != 4) {
         std.debug.print("Usage: generate <outline-svg-dir> <filled-svg-dir> <src-out-dir>\n", .{});
         std.process.exit(2);
@@ -38,11 +36,9 @@ pub fn main() !void {
     const src_out_dir = args[3];
 
     var failed: usize = 0;
-    var outline_count: usize = 0;
-    var filled_count: usize = 0;
 
-    outline_count = try generateVariant(gpa, outline_svg_dir, src_out_dir, "outline", &failed);
-    filled_count = try generateVariant(gpa, filled_svg_dir, src_out_dir, "filled", &failed);
+    const outline_count = try generateVariant(gpa, io, outline_svg_dir, src_out_dir, "outline", &failed);
+    const filled_count = try generateVariant(gpa, io, filled_svg_dir, src_out_dir, "filled", &failed);
 
     std.debug.print("outline: {d} icons, filled: {d} icons, failed: {d}\n", .{ outline_count, filled_count, failed });
     if (failed > 0) std.process.exit(1);
@@ -50,49 +46,38 @@ pub fn main() !void {
 
 fn generateVariant(
     gpa: std.mem.Allocator,
+    io: std.Io,
     svg_dir_path: []const u8,
     src_out_dir: []const u8,
     variant: []const u8,
     failed: *usize,
 ) !usize {
-    var svg_dir = try std.fs.openDirAbsolute(svg_dir_path, .{ .iterate = true });
-    defer svg_dir.close();
+    var svg_dir = try std.Io.Dir.openDirAbsolute(io, svg_dir_path, .{ .iterate = true });
+    defer svg_dir.close(io);
+
+    var src_dir = try std.Io.Dir.openDirAbsolute(io, src_out_dir, .{});
+    defer src_dir.close(io);
+    var tvg_dir = try std.Io.Dir.createDirPathOpen(src_dir, io, variant, .{});
+    defer tvg_dir.close(io);
 
     var icons: std.ArrayList(Icon) = .empty;
-    defer {
-        for (icons.items) |icon| {
-            gpa.free(icon.zig_name);
-            gpa.free(icon.file_stem);
-        }
-        icons.deinit(gpa);
-    }
-
-    // TVG output dir, e.g. <src>/outline.
-    const tvg_dir_path = try std.fs.path.join(gpa, &.{ src_out_dir, variant });
-    defer gpa.free(tvg_dir_path);
-    try std.fs.cwd().makePath(tvg_dir_path);
-    var tvg_dir = try std.fs.openDirAbsolute(tvg_dir_path, .{});
-    defer tvg_dir.close();
 
     var it = svg_dir.iterate();
-    while (try it.next()) |entry| {
+    while (try it.next(io)) |entry| {
         if (entry.kind != .file) continue;
         if (!std.mem.endsWith(u8, entry.name, ".svg")) continue;
         const stem = entry.name[0 .. entry.name.len - ".svg".len];
 
-        const svg_bytes = try svg_dir.readFileAlloc(gpa, entry.name, 4 * 1024 * 1024);
-        defer gpa.free(svg_bytes);
+        const svg_bytes = try readFileAlloc(io, svg_dir, gpa, entry.name);
 
         const tvg_bytes = dvui.svgToTvg(gpa, svg_bytes) catch |err| {
             std.debug.print("FAILED {s}/{s}: {s}\n", .{ variant, entry.name, @errorName(err) });
             failed.* += 1;
             continue;
         };
-        defer gpa.free(tvg_bytes);
 
         const tvg_name = try std.mem.concat(gpa, u8, &.{ stem, ".tvg" });
-        defer gpa.free(tvg_name);
-        try tvg_dir.writeFile(.{ .sub_path = tvg_name, .data = tvg_bytes });
+        try writeFile(io, tvg_dir, tvg_name, tvg_bytes);
 
         try icons.append(gpa, .{
             .zig_name = try zigName(gpa, stem),
@@ -102,9 +87,9 @@ fn generateVariant(
 
     std.mem.sort(Icon, icons.items, {}, iconLessThan);
 
-    var zig = std.ArrayList(u8).empty;
-    defer zig.deinit(gpa);
-    const w = zig.writer(gpa);
+    var aw: std.Io.Writer.Allocating = .init(gpa);
+    defer aw.deinit();
+    const w = &aw.writer;
     try w.print(
         \\/// Tabler {s} icons (https://tabler.io/icons) as compile-time TVG bytes.
         \\///
@@ -119,18 +104,34 @@ fn generateVariant(
     try w.writeAll(
         \\
         \\test {
+        \\    // Thousands of icons exceed the default comptime branch quota.
+        \\    @setEvalBranchQuota(20000);
         \\    @import("std").testing.refAllDecls(@This());
         \\}
         \\
     );
 
     const zig_file_name = try std.mem.concat(gpa, u8, &.{ variant, ".zig" });
-    defer gpa.free(zig_file_name);
-    const zig_path = try std.fs.path.join(gpa, &.{ src_out_dir, zig_file_name });
-    defer gpa.free(zig_path);
-    try std.fs.cwd().writeFile(.{ .sub_path = zig_path, .data = zig.items });
+    try writeFile(io, src_dir, zig_file_name, aw.written());
 
     return icons.items.len;
+}
+
+fn readFileAlloc(io: std.Io, dir: std.Io.Dir, gpa: std.mem.Allocator, name: []const u8) ![]u8 {
+    var file = try dir.openFile(io, name, .{});
+    defer file.close(io);
+    var buf: [8192]u8 = undefined;
+    var reader = file.reader(io, &buf);
+    return reader.interface.allocRemaining(gpa, .limited(4 * 1024 * 1024));
+}
+
+fn writeFile(io: std.Io, dir: std.Io.Dir, name: []const u8, data: []const u8) !void {
+    var file = try dir.createFile(io, name, .{});
+    defer file.close(io);
+    var buf: [8192]u8 = undefined;
+    var writer = file.writer(io, &buf);
+    try writer.interface.writeAll(data);
+    try writer.interface.flush();
 }
 
 fn iconLessThan(_: void, a: Icon, b: Icon) bool {
@@ -140,26 +141,26 @@ fn iconLessThan(_: void, a: Icon, b: Icon) bool {
 /// `arrow-big-right` -> `arrow_big_right`; Zig keywords become `@"..."`.
 fn zigName(gpa: std.mem.Allocator, stem: []const u8) ![]const u8 {
     const snake = try gpa.dupe(u8, stem);
-    for (snake) |*c| if (c.* == '-') c.* = '_';
+    for (snake) |*c| {
+        if (c.* == '-') c.* = '_';
+    }
     if (isZigKeyword(snake)) {
-        const quoted = try std.mem.concat(gpa, u8, &.{ "@\"", snake, "\"" });
-        gpa.free(snake);
-        return quoted;
+        return try std.mem.concat(gpa, u8, &.{ "@\"", snake, "\"" });
     }
     return snake;
 }
 
 fn isZigKeyword(s: []const u8) bool {
     const keywords = [_][]const u8{
-        "addrspace",   "align",     "allowzero", "and",      "anyframe", "anytype",
-        "asm",         "async",     "await",     "break",    "catch",    "comptime",
-        "const",       "continue",  "defer",     "else",     "enum",     "errdefer",
-        "error",       "export",    "extern",    "fn",       "for",      "if",
-        "import",      "in",        "inline",    "linksection", "naked", "noalias",
-        "noinline",    "never",     "none",      "noreturn", "null",     "or",
-        "orelse",      "packed",    "pub",       "resume",   "return",   "struct",
-        "suspend",     "switch",    "test",      "threadlocal", "try",   "undefined",
-        "union",       "unreachable", "usingnamespace", "var", "void",   "volatile",
+        "addrspace", "align",     "allowzero", "and",       "anyframe", "anytype",
+        "asm",       "async",     "await",     "break",     "catch",    "comptime",
+        "const",     "continue",  "defer",     "else",      "enum",     "errdefer",
+        "error",     "export",    "extern",    "fn",        "for",      "if",
+        "import",    "in",        "inline",    "linksection", "naked",  "noalias",
+        "noinline",  "never",     "none",      "noreturn",  "null",     "or",
+        "orelse",    "packed",    "pub",       "resume",    "return",   "struct",
+        "suspend",   "switch",    "test",      "threadlocal", "try",    "undefined",
+        "union",     "unreachable", "usingnamespace", "var", "void",    "volatile",
         "while",
     };
     for (keywords) |kw| if (std.mem.eql(u8, s, kw)) return true;

@@ -12,9 +12,27 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
+    // The codegen tool links libc (via dvui). On glibc Linux, build it for
+    // a glibc version Zig bundles (2.38) instead of the host default: the
+    // CRT files newer system toolchains ship (.sframe relocations) break
+    // Zig's self-hosted linker. Everywhere else, build for the host.
+    const tool_target = if (@import("builtin").os.tag == .linux and @import("builtin").abi == .gnu)
+        b.resolveTargetQuery(.{
+            .cpu_arch = @import("builtin").cpu.arch,
+            .os_tag = .linux,
+            .abi = .gnu,
+            .glibc_version = .{ .major = 2, .minor = 38, .patch = 0 },
+        })
+    else
+        b.graph.host;
+
+    // Backend-less core module only (no windowing/backend deps needed for
+    // SVG -> TVG conversion); dvui wires its own svg2tvg dependency itself.
     const dvui_dep = b.dependency("dvui", .{
-        .target = target,
+        .target = tool_target,
         .optimize = optimize,
+        .backend = .custom,
+        .libc = true,
     });
 
     // Regenerate the committed TVG assets + Zig bindings from the
@@ -23,7 +41,7 @@ pub fn build(b: *std.Build) void {
         .name = "generate",
         .root_module = b.createModule(.{
             .root_source_file = b.path("tools/generate.zig"),
-            .target = b.graph.host,
+            .target = tool_target,
             .optimize = optimize,
             .imports = &.{
                 .{ .name = "dvui", .module = dvui_dep.module("dvui") },
