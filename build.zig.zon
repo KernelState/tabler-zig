@@ -1,0 +1,13 @@
+.{
+    .name = .tabler_zig,
+    .version = "0.0.1",
+    .dependencies = .{
+        .dvui = .{
+            .url = "git+https://github.com/david-vanderson/dvui#468febcc47525ed6d6cc1eee295682fec22c78c0",
+            .hash = "dvui-0.5.0-dev-AQFJma9lAwGBrGyIJFGdTt0olvddZwVEfAm7H8zq7Ufe",
+        },
+    },
+    .minimum_zig_version = "0.16.0",
+    .paths = .{""},
+    .fingerprint = 0xff22a2056b01cfab,
+}
