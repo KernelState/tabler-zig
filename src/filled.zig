@@ -1,1065 +1,2172 @@
-/// Tabler filled icons (https://tabler.io/icons) as compile-time TVG bytes.
+/// Tabler filled icons (https://tabler.io/icons) for dvui.
 ///
 /// Generated from the tabler-icons submodule via `zig build generate`.
-/// Do not edit by hand. Only icons you reference end up in your binary.
+/// Do not edit by hand.
+const std = @import("std");
+const dvui = @import("dvui");
+///
+/// Every icon, as an enum variant (`arrow-big-right` -> `arrow_big_right`).
+pub const Filled = enum {
+    accessible,
+    ad,
+    ad_circle,
+    adjustments,
+    adjustments_horizontal,
+    aerial_lift,
+    affiliate,
+    air_balloon,
+    alarm,
+    alarm_minus,
+    alarm_plus,
+    alarm_snooze,
+    alert_circle,
+    alert_hexagon,
+    alert_octagon,
+    alert_square,
+    alert_square_rounded,
+    alert_triangle,
+    alien,
+    align_box_bottom_center,
+    align_box_bottom_left,
+    align_box_bottom_right,
+    align_box_center_middle,
+    align_box_left_bottom,
+    align_box_left_middle,
+    align_box_left_top,
+    align_box_right_bottom,
+    align_box_right_middle,
+    align_box_right_top,
+    align_box_top_center,
+    align_box_top_left,
+    align_box_top_right,
+    analyze,
+    app_window,
+    apple,
+    apps,
+    archive,
+    arrow_autofit_content,
+    arrow_autofit_down,
+    arrow_autofit_height,
+    arrow_autofit_left,
+    arrow_autofit_right,
+    arrow_autofit_up,
+    arrow_autofit_width,
+    arrow_badge_down,
+    arrow_badge_left,
+    arrow_badge_right,
+    arrow_badge_up,
+    arrow_big_down,
+    arrow_big_down_line,
+    arrow_big_down_lines,
+    arrow_big_left,
+    arrow_big_left_line,
+    arrow_big_left_lines,
+    arrow_big_right,
+    arrow_big_right_line,
+    arrow_big_right_lines,
+    arrow_big_up,
+    arrow_big_up_line,
+    arrow_big_up_lines,
+    arrow_down_circle,
+    arrow_down_rhombus,
+    arrow_down_square,
+    arrow_guide,
+    arrow_left_circle,
+    arrow_left_rhombus,
+    arrow_left_square,
+    arrow_move_down,
+    arrow_move_left,
+    arrow_move_right,
+    arrow_move_up,
+    arrow_right_circle,
+    arrow_right_rhombus,
+    arrow_right_square,
+    arrow_up_circle,
+    arrow_up_rhombus,
+    arrow_up_square,
+    artboard,
+    article,
+    aspect_ratio,
+    assembly,
+    asset,
+    atom_2,
+    automatic_gearbox,
+    award,
+    baby_carriage,
+    backspace,
+    badge,
+    badge_3d,
+    badge_4k,
+    badge_8k,
+    badge_ad,
+    badge_ar,
+    badge_cc,
+    badge_hd,
+    badge_sd,
+    badge_tm,
+    badge_vo,
+    badge_vr,
+    badge_wc,
+    badges,
+    ball_bowling,
+    balloon,
+    ballpen,
+    bandage,
+    barbell,
+    barrier_block,
+    basket,
+    bath,
+    battery,
+    battery_1,
+    battery_2,
+    battery_3,
+    battery_4,
+    battery_automotive,
+    battery_vertical,
+    battery_vertical_1,
+    battery_vertical_2,
+    battery_vertical_3,
+    battery_vertical_4,
+    bed,
+    bed_flat,
+    beer,
+    bell,
+    bell_minus,
+    bell_plus,
+    bell_ringing,
+    bell_ringing_2,
+    bell_x,
+    bell_z,
+    bike,
+    binary_tree,
+    binary_tree_2,
+    binoculars,
+    biohazard,
+    blade,
+    blender,
+    blob,
+    bolt,
+    bomb,
+    bone,
+    bong,
+    book,
+    bookmark,
+    bookmarks,
+    boom,
+    bottle,
+    bounce_left,
+    bounce_right,
+    bow,
+    bowl,
+    bowl_chopsticks,
+    bowl_spoon,
+    box_align_bottom,
+    box_align_bottom_left,
+    box_align_bottom_right,
+    box_align_left,
+    box_align_right,
+    box_align_top,
+    box_align_top_left,
+    box_align_top_right,
+    box_multiple,
+    brand_angular,
+    brand_apple,
+    brand_bitbucket,
+    brand_discord,
+    brand_dribbble,
+    brand_facebook,
+    brand_github,
+    brand_google,
+    brand_instagram,
+    brand_kick,
+    brand_linkedin,
+    brand_messenger,
+    brand_open_source,
+    brand_opera,
+    brand_patreon,
+    brand_paypal,
+    brand_pinterest,
+    brand_signal,
+    brand_sketch,
+    brand_snapchat,
+    brand_spotify,
+    brand_steam,
+    brand_stripe,
+    brand_tabler,
+    brand_tiktok,
+    brand_tinder,
+    brand_tumblr,
+    brand_twitter,
+    brand_vercel,
+    brand_vimeo,
+    brand_weibo,
+    brand_whatsapp,
+    brand_windows,
+    brand_x,
+    brand_youtube,
+    bread,
+    briefcase,
+    briefcase_2,
+    brightness,
+    brightness_auto,
+    brightness_down,
+    brightness_up,
+    bubble,
+    bubble_text,
+    bug,
+    building_bridge_2,
+    building_broadcast_tower,
+    bulb,
+    bus,
+    butterfly,
+    cactus,
+    calculator,
+    calendar,
+    calendar_event,
+    calendar_month,
+    calendar_week,
+    camera,
+    campfire,
+    candle,
+    cannabis,
+    capsule,
+    capsule_horizontal,
+    capture,
+    car,
+    car_4wd,
+    car_crane,
+    car_fan,
+    car_suv,
+    carambola,
+    caravan,
+    cardboards,
+    cards,
+    caret_down,
+    caret_left,
+    caret_left_right,
+    caret_right,
+    caret_up,
+    caret_up_down,
+    carousel_horizontal,
+    carousel_vertical,
+    cash_banknote,
+    category,
+    charging_pile,
+    chart_area,
+    chart_area_line,
+    chart_bubble,
+    chart_candle,
+    chart_donut,
+    chart_dots,
+    chart_dots_2,
+    chart_dots_3,
+    chart_funnel,
+    chart_grid_dots,
+    chart_pie,
+    chart_pie_2,
+    chart_pie_3,
+    chart_pie_4,
+    check,
+    chef_hat,
+    cherry,
+    chess,
+    chess_bishop,
+    chess_king,
+    chess_knight,
+    chess_queen,
+    chess_rook,
+    chevron_down,
+    chevron_right,
+    christmas_tree,
+    circle,
+    circle_arrow_down,
+    circle_arrow_down_left,
+    circle_arrow_down_right,
+    circle_arrow_left,
+    circle_arrow_right,
+    circle_arrow_up,
+    circle_arrow_up_left,
+    circle_arrow_up_right,
+    circle_caret_down,
+    circle_caret_left,
+    circle_caret_right,
+    circle_caret_up,
+    circle_check,
+    circle_chevron_down,
+    circle_chevron_left,
+    circle_chevron_right,
+    circle_chevron_up,
+    circle_chevrons_down,
+    circle_chevrons_left,
+    circle_chevrons_right,
+    circle_chevrons_up,
+    circle_dot,
+    circle_key,
+    circle_letter_a,
+    circle_letter_b,
+    circle_letter_c,
+    circle_letter_d,
+    circle_letter_e,
+    circle_letter_f,
+    circle_letter_g,
+    circle_letter_h,
+    circle_letter_i,
+    circle_letter_j,
+    circle_letter_k,
+    circle_letter_l,
+    circle_letter_m,
+    circle_letter_n,
+    circle_letter_o,
+    circle_letter_p,
+    circle_letter_q,
+    circle_letter_r,
+    circle_letter_s,
+    circle_letter_t,
+    circle_letter_u,
+    circle_letter_v,
+    circle_letter_w,
+    circle_letter_x,
+    circle_letter_y,
+    circle_letter_z,
+    circle_number_0,
+    circle_number_1,
+    circle_number_2,
+    circle_number_3,
+    circle_number_4,
+    circle_number_5,
+    circle_number_6,
+    circle_number_7,
+    circle_number_8,
+    circle_number_9,
+    circle_percentage,
+    circle_plus,
+    circle_rectangle,
+    circle_x,
+    circles,
+    click,
+    clipboard,
+    clipboard_check,
+    clipboard_data,
+    clipboard_list,
+    clipboard_plus,
+    clipboard_smile,
+    clipboard_text,
+    clipboard_typography,
+    clipboard_x,
+    clock,
+    clock_hour_1,
+    clock_hour_10,
+    clock_hour_11,
+    clock_hour_12,
+    clock_hour_2,
+    clock_hour_3,
+    clock_hour_4,
+    clock_hour_5,
+    clock_hour_6,
+    clock_hour_7,
+    clock_hour_8,
+    clock_hour_9,
+    cloud,
+    cloud_computing,
+    cloud_data_connection,
+    clover,
+    clubs,
+    code_circle,
+    code_circle_2,
+    coin,
+    coin_bitcoin,
+    coin_euro,
+    coin_monero,
+    coin_pound,
+    coin_rupee,
+    coin_taka,
+    coin_yen,
+    coin_yuan,
+    columns_1,
+    columns_2,
+    columns_3,
+    compass,
+    cone,
+    cone_2,
+    confetti,
+    container,
+    contrast,
+    contrast_2,
+    cookie,
+    cookie_man,
+    copy,
+    copy_check,
+    copy_minus,
+    copy_plus,
+    copy_x,
+    copyleft,
+    copyright,
+    credit_card,
+    crop_16_9,
+    crop_1_1,
+    crop_3_2,
+    crop_5_4,
+    crop_7_5,
+    crop_landscape,
+    crop_portrait,
+    cross,
+    crown,
+    current_location,
+    dashboard,
+    database,
+    device_cctv,
+    device_desktop,
+    device_floppy,
+    device_gamepad,
+    device_gamepad_2,
+    device_gamepad_3,
+    device_heart_monitor,
+    device_imac,
+    device_ipad,
+    device_mobile,
+    device_remote,
+    device_speaker,
+    device_tablet,
+    device_tv,
+    device_tv_old,
+    device_unknown,
+    device_usb,
+    device_vision_pro,
+    device_watch,
+    dialpad,
+    diamond,
+    diamonds,
+    dice,
+    dice_1,
+    dice_2,
+    dice_3,
+    dice_4,
+    dice_5,
+    dice_6,
+    direction_arrows,
+    direction_sign,
+    directions,
+    disc,
+    discount,
+    dots,
+    dots_vertical,
+    download,
+    drop_circle,
+    droplet,
+    droplet_half,
+    droplet_half_2,
+    droplets,
+    dual_screen,
+    dumpling,
+    ease_in_control_point,
+    ease_in_out_control_points,
+    ease_out_control_point,
+    edit,
+    egg,
+    egg_cracked,
+    egg_fried,
+    elevator,
+    engine,
+    escalator,
+    escalator_down,
+    escalator_up,
+    exchange,
+    exclamation_circle,
+    explicit,
+    exposure,
+    external_link,
+    eye,
+    eye_table,
+    eyeglass,
+    eyeglass_2,
+    face_mask,
+    favicon,
+    feather,
+    fence,
+    ferry,
+    fidget_spinner,
+    file,
+    file_analytics,
+    file_check,
+    file_code,
+    file_code_2,
+    file_cv,
+    file_delta,
+    file_description,
+    file_diff,
+    file_digit,
+    file_dollar,
+    file_dots,
+    file_download,
+    file_euro,
+    file_function,
+    file_horizontal,
+    file_info,
+    file_invoice,
+    file_lambda,
+    file_minus,
+    file_music,
+    file_neutral,
+    file_pencil,
+    file_percent,
+    file_phone,
+    file_power,
+    file_rss,
+    file_sad,
+    file_scissors,
+    file_settings,
+    file_signal,
+    file_smile,
+    file_star,
+    file_text,
+    file_time,
+    file_typography,
+    file_unknown,
+    file_upload,
+    file_vector,
+    file_x,
+    files,
+    filter,
+    filters,
+    fish_bone,
+    flag,
+    flag_2,
+    flag_3,
+    flame,
+    flare,
+    flask,
+    flask_2,
+    flower,
+    folder,
+    folder_open,
+    folders,
+    forbid,
+    forbid_2,
+    fountain,
+    function,
+    garden_cart,
+    gas_station,
+    gauge,
+    ghost,
+    ghost_2,
+    ghost_3,
+    gift,
+    gift_card,
+    glass,
+    glass_full,
+    globe,
+    golf,
+    gps,
+    graph,
+    grid_pattern,
+    guitar_pick,
+    hanger_2,
+    headphones,
+    headset,
+    heart,
+    heart_broken,
+    helicopter,
+    helicopter_landing,
+    help,
+    help_circle,
+    help_hexagon,
+    help_octagon,
+    help_square,
+    help_square_rounded,
+    help_triangle,
+    hexagon,
+    hexagon_letter_a,
+    hexagon_letter_b,
+    hexagon_letter_c,
+    hexagon_letter_d,
+    hexagon_letter_e,
+    hexagon_letter_f,
+    hexagon_letter_g,
+    hexagon_letter_h,
+    hexagon_letter_i,
+    hexagon_letter_j,
+    hexagon_letter_k,
+    hexagon_letter_l,
+    hexagon_letter_m,
+    hexagon_letter_n,
+    hexagon_letter_o,
+    hexagon_letter_p,
+    hexagon_letter_q,
+    hexagon_letter_r,
+    hexagon_letter_s,
+    hexagon_letter_t,
+    hexagon_letter_u,
+    hexagon_letter_v,
+    hexagon_letter_w,
+    hexagon_letter_x,
+    hexagon_letter_y,
+    hexagon_letter_z,
+    hexagon_minus,
+    hexagon_number_0,
+    hexagon_number_1,
+    hexagon_number_2,
+    hexagon_number_3,
+    hexagon_number_4,
+    hexagon_number_5,
+    hexagon_number_6,
+    hexagon_number_7,
+    hexagon_number_8,
+    hexagon_number_9,
+    hexagon_plus,
+    home,
+    home_2,
+    hospital_circle,
+    hourglass,
+    icons,
+    id,
+    info_circle,
+    info_hexagon,
+    info_octagon,
+    info_square,
+    info_square_rounded,
+    info_triangle,
+    inner_shadow_bottom,
+    inner_shadow_bottom_left,
+    inner_shadow_bottom_right,
+    inner_shadow_left,
+    inner_shadow_right,
+    inner_shadow_top,
+    inner_shadow_top_left,
+    inner_shadow_top_right,
+    ironing,
+    ironing_1,
+    ironing_2,
+    ironing_3,
+    ironing_steam,
+    jetpack,
+    jewish_star,
+    key,
+    keyboard,
+    keyframe,
+    keyframe_align_center,
+    keyframe_align_horizontal,
+    keyframe_align_vertical,
+    keyframes,
+    label,
+    label_important,
+    lasso_polygon,
+    laurel_wreath,
+    laurel_wreath_1,
+    laurel_wreath_2,
+    laurel_wreath_3,
+    layout,
+    layout_2,
+    layout_align_bottom,
+    layout_align_center,
+    layout_align_left,
+    layout_align_middle,
+    layout_align_right,
+    layout_align_top,
+    layout_board,
+    layout_board_split,
+    layout_bottombar,
+    layout_bottombar_collapse,
+    layout_bottombar_expand,
+    layout_cards,
+    layout_dashboard,
+    layout_distribute_horizontal,
+    layout_distribute_vertical,
+    layout_grid,
+    layout_kanban,
+    layout_list,
+    layout_navbar,
+    layout_navbar_collapse,
+    layout_navbar_expand,
+    layout_sidebar,
+    layout_sidebar_left_collapse,
+    layout_sidebar_left_expand,
+    layout_sidebar_right,
+    layout_sidebar_right_collapse,
+    layout_sidebar_right_expand,
+    leaf,
+    lego,
+    lemon_2,
+    library,
+    library_plus,
+    lifebuoy,
+    link,
+    list,
+    list_check,
+    list_details,
+    live_photo,
+    live_view,
+    location,
+    lock,
+    lock_square_rounded,
+    lungs,
+    macro,
+    magnet,
+    mail,
+    mail_opened,
+    man,
+    manual_gearbox,
+    map_pin,
+    medical_cross,
+    meeple,
+    melon,
+    menu_2,
+    message,
+    message_2,
+    message_chatbot,
+    message_circle,
+    message_report,
+    messages,
+    meteor,
+    michelin_star,
+    mickey,
+    microphone,
+    microscope,
+    microwave,
+    military_rank,
+    milk,
+    mood_angry,
+    mood_confused,
+    mood_crazy_happy,
+    mood_empty,
+    mood_happy,
+    mood_kid,
+    mood_neutral,
+    mood_sad,
+    mood_smile,
+    mood_wrrr,
+    moon,
+    motorbike,
+    mountain,
+    mouse,
+    mug,
+    mushroom,
+    navigation,
+    nurse,
+    octagon,
+    octagon_minus,
+    octagon_plus,
+    oval,
+    oval_vertical,
+    pacman,
+    paint,
+    palette,
+    panorama_horizontal,
+    panorama_vertical,
+    parking_circle,
+    paw,
+    pencil,
+    pennant,
+    pennant_2,
+    pentagon,
+    phone,
+    phone_call,
+    phone_calling,
+    phone_check,
+    phone_x,
+    photo,
+    picture_in_picture,
+    picture_in_picture_top,
+    pig,
+    pill,
+    pin,
+    pinned,
+    pizza,
+    plane,
+    plane_arrival,
+    plane_departure,
+    plane_tilt,
+    play_card,
+    play_card_1,
+    play_card_10,
+    play_card_2,
+    play_card_3,
+    play_card_4,
+    play_card_5,
+    play_card_6,
+    play_card_7,
+    play_card_8,
+    play_card_9,
+    play_card_a,
+    play_card_j,
+    play_card_k,
+    play_card_q,
+    play_card_star,
+    player_eject,
+    player_pause,
+    player_play,
+    player_record,
+    player_skip_back,
+    player_skip_forward,
+    player_stop,
+    player_track_next,
+    player_track_prev,
+    playlist,
+    plus,
+    point,
+    pointer,
+    polaroid,
+    poo,
+    presentation,
+    presentation_analytics,
+    puzzle,
+    quote,
+    radar,
+    radioactive,
+    receipt,
+    receipt_dollar,
+    receipt_euro,
+    receipt_pound,
+    receipt_rupee,
+    receipt_yen,
+    receipt_yuan,
+    rectangle,
+    rectangle_vertical,
+    registered,
+    relation_many_to_many,
+    relation_one_to_many,
+    relation_one_to_one,
+    replace,
+    report_analytics,
+    report_money,
+    rollercoaster,
+    rosette,
+    rosette_discount,
+    rosette_discount_check,
+    salad,
+    satellite,
+    scale,
+    school,
+    scuba_diving_tank,
+    search,
+    section,
+    seedling,
+    send,
+    settings,
+    shield,
+    shield_check,
+    shield_checkered,
+    shield_half,
+    shield_lock,
+    shirt,
+    shopping_cart,
+    sign_left,
+    sign_right,
+    sitemap,
+    sort_ascending_2,
+    sort_ascending_shapes,
+    sort_descending_2,
+    sort_descending_shapes,
+    soup,
+    spade,
+    sparkles,
+    sparkles_2,
+    speedboat,
+    spider,
+    square,
+    square_arrow_down,
+    square_arrow_left,
+    square_arrow_right,
+    square_arrow_up,
+    square_asterisk,
+    square_check,
+    square_chevron_down,
+    square_chevron_left,
+    square_chevron_right,
+    square_chevron_up,
+    square_chevrons_down,
+    square_chevrons_left,
+    square_chevrons_right,
+    square_chevrons_up,
+    square_dot,
+    square_f0,
+    square_f1,
+    square_f2,
+    square_f3,
+    square_f4,
+    square_f5,
+    square_f6,
+    square_f7,
+    square_f8,
+    square_f9,
+    square_letter_a,
+    square_letter_b,
+    square_letter_c,
+    square_letter_d,
+    square_letter_e,
+    square_letter_f,
+    square_letter_g,
+    square_letter_h,
+    square_letter_i,
+    square_letter_j,
+    square_letter_k,
+    square_letter_l,
+    square_letter_m,
+    square_letter_n,
+    square_letter_o,
+    square_letter_p,
+    square_letter_q,
+    square_letter_r,
+    square_letter_s,
+    square_letter_t,
+    square_letter_u,
+    square_letter_v,
+    square_letter_w,
+    square_letter_x,
+    square_letter_y,
+    square_letter_z,
+    square_minus,
+    square_number_0,
+    square_number_1,
+    square_number_2,
+    square_number_3,
+    square_number_4,
+    square_number_5,
+    square_number_6,
+    square_number_7,
+    square_number_8,
+    square_number_9,
+    square_rotated,
+    square_rounded,
+    square_rounded_arrow_down,
+    square_rounded_arrow_left,
+    square_rounded_arrow_right,
+    square_rounded_arrow_up,
+    square_rounded_check,
+    square_rounded_chevron_down,
+    square_rounded_chevron_left,
+    square_rounded_chevron_right,
+    square_rounded_chevron_up,
+    square_rounded_chevrons_down,
+    square_rounded_chevrons_left,
+    square_rounded_chevrons_right,
+    square_rounded_chevrons_up,
+    square_rounded_letter_a,
+    square_rounded_letter_b,
+    square_rounded_letter_c,
+    square_rounded_letter_d,
+    square_rounded_letter_e,
+    square_rounded_letter_f,
+    square_rounded_letter_g,
+    square_rounded_letter_h,
+    square_rounded_letter_i,
+    square_rounded_letter_j,
+    square_rounded_letter_k,
+    square_rounded_letter_l,
+    square_rounded_letter_m,
+    square_rounded_letter_n,
+    square_rounded_letter_o,
+    square_rounded_letter_p,
+    square_rounded_letter_q,
+    square_rounded_letter_r,
+    square_rounded_letter_s,
+    square_rounded_letter_t,
+    square_rounded_letter_u,
+    square_rounded_letter_v,
+    square_rounded_letter_w,
+    square_rounded_letter_x,
+    square_rounded_letter_y,
+    square_rounded_letter_z,
+    square_rounded_minus,
+    square_rounded_number_0,
+    square_rounded_number_1,
+    square_rounded_number_2,
+    square_rounded_number_3,
+    square_rounded_number_4,
+    square_rounded_number_5,
+    square_rounded_number_6,
+    square_rounded_number_7,
+    square_rounded_number_8,
+    square_rounded_number_9,
+    square_rounded_plus,
+    square_rounded_x,
+    square_x,
+    squares,
+    stack,
+    stack_2,
+    stack_3,
+    star,
+    star_half,
+    stars,
+    steering_wheel,
+    sun,
+    sun_high,
+    sun_low,
+    sunglasses,
+    sunrise,
+    sunset,
+    sunset_2,
+    swipe_down,
+    swipe_left,
+    swipe_right,
+    swipe_up,
+    table,
+    tag,
+    tags,
+    temperature_minus,
+    temperature_plus,
+    template,
+    test_pipe_2,
+    thumb_down,
+    thumb_up,
+    ticket,
+    tilt_shift,
+    timeline_event,
+    toggle_left,
+    toggle_right,
+    tools_kitchen_2,
+    train,
+    transform,
+    transition_bottom,
+    transition_left,
+    transition_right,
+    transition_top,
+    trash,
+    trash_x,
+    triangle,
+    triangle_inverted,
+    triangle_square_circle,
+    trolley,
+    trophy,
+    truck,
+    ufo,
+    umbrella,
+    user,
+    versions,
+    video,
+    video_minus,
+    video_plus,
+    windmill,
+    windsock,
+    woman,
+    world,
+    writing,
+    writing_sign,
+    x,
+    xbox_a,
+    xbox_b,
+    xbox_x,
+    xbox_y,
+    yin_yang,
+    zeppelin,
+    zoom,
+    zoom_cancel,
+    zoom_check,
+    zoom_code,
+    zoom_exclamation,
+    zoom_in,
+    zoom_in_area,
+    zoom_money,
+    zoom_out,
+    zoom_out_area,
+    zoom_pan,
+    zoom_question,
+    zoom_scan,
+};
 
-pub const accessible = @embedFile("filled/accessible.tvg");
-pub const ad = @embedFile("filled/ad.tvg");
-pub const ad_circle = @embedFile("filled/ad-circle.tvg");
-pub const adjustments = @embedFile("filled/adjustments.tvg");
-pub const adjustments_horizontal = @embedFile("filled/adjustments-horizontal.tvg");
-pub const aerial_lift = @embedFile("filled/aerial-lift.tvg");
-pub const affiliate = @embedFile("filled/affiliate.tvg");
-pub const air_balloon = @embedFile("filled/air-balloon.tvg");
-pub const alarm = @embedFile("filled/alarm.tvg");
-pub const alarm_minus = @embedFile("filled/alarm-minus.tvg");
-pub const alarm_plus = @embedFile("filled/alarm-plus.tvg");
-pub const alarm_snooze = @embedFile("filled/alarm-snooze.tvg");
-pub const alert_circle = @embedFile("filled/alert-circle.tvg");
-pub const alert_hexagon = @embedFile("filled/alert-hexagon.tvg");
-pub const alert_octagon = @embedFile("filled/alert-octagon.tvg");
-pub const alert_square = @embedFile("filled/alert-square.tvg");
-pub const alert_square_rounded = @embedFile("filled/alert-square-rounded.tvg");
-pub const alert_triangle = @embedFile("filled/alert-triangle.tvg");
-pub const alien = @embedFile("filled/alien.tvg");
-pub const align_box_bottom_center = @embedFile("filled/align-box-bottom-center.tvg");
-pub const align_box_bottom_left = @embedFile("filled/align-box-bottom-left.tvg");
-pub const align_box_bottom_right = @embedFile("filled/align-box-bottom-right.tvg");
-pub const align_box_center_middle = @embedFile("filled/align-box-center-middle.tvg");
-pub const align_box_left_bottom = @embedFile("filled/align-box-left-bottom.tvg");
-pub const align_box_left_middle = @embedFile("filled/align-box-left-middle.tvg");
-pub const align_box_left_top = @embedFile("filled/align-box-left-top.tvg");
-pub const align_box_right_bottom = @embedFile("filled/align-box-right-bottom.tvg");
-pub const align_box_right_middle = @embedFile("filled/align-box-right-middle.tvg");
-pub const align_box_right_top = @embedFile("filled/align-box-right-top.tvg");
-pub const align_box_top_center = @embedFile("filled/align-box-top-center.tvg");
-pub const align_box_top_left = @embedFile("filled/align-box-top-left.tvg");
-pub const align_box_top_right = @embedFile("filled/align-box-top-right.tvg");
-pub const analyze = @embedFile("filled/analyze.tvg");
-pub const app_window = @embedFile("filled/app-window.tvg");
-pub const apple = @embedFile("filled/apple.tvg");
-pub const apps = @embedFile("filled/apps.tvg");
-pub const archive = @embedFile("filled/archive.tvg");
-pub const arrow_autofit_content = @embedFile("filled/arrow-autofit-content.tvg");
-pub const arrow_autofit_down = @embedFile("filled/arrow-autofit-down.tvg");
-pub const arrow_autofit_height = @embedFile("filled/arrow-autofit-height.tvg");
-pub const arrow_autofit_left = @embedFile("filled/arrow-autofit-left.tvg");
-pub const arrow_autofit_right = @embedFile("filled/arrow-autofit-right.tvg");
-pub const arrow_autofit_up = @embedFile("filled/arrow-autofit-up.tvg");
-pub const arrow_autofit_width = @embedFile("filled/arrow-autofit-width.tvg");
-pub const arrow_badge_down = @embedFile("filled/arrow-badge-down.tvg");
-pub const arrow_badge_left = @embedFile("filled/arrow-badge-left.tvg");
-pub const arrow_badge_right = @embedFile("filled/arrow-badge-right.tvg");
-pub const arrow_badge_up = @embedFile("filled/arrow-badge-up.tvg");
-pub const arrow_big_down = @embedFile("filled/arrow-big-down.tvg");
-pub const arrow_big_down_line = @embedFile("filled/arrow-big-down-line.tvg");
-pub const arrow_big_down_lines = @embedFile("filled/arrow-big-down-lines.tvg");
-pub const arrow_big_left = @embedFile("filled/arrow-big-left.tvg");
-pub const arrow_big_left_line = @embedFile("filled/arrow-big-left-line.tvg");
-pub const arrow_big_left_lines = @embedFile("filled/arrow-big-left-lines.tvg");
-pub const arrow_big_right = @embedFile("filled/arrow-big-right.tvg");
-pub const arrow_big_right_line = @embedFile("filled/arrow-big-right-line.tvg");
-pub const arrow_big_right_lines = @embedFile("filled/arrow-big-right-lines.tvg");
-pub const arrow_big_up = @embedFile("filled/arrow-big-up.tvg");
-pub const arrow_big_up_line = @embedFile("filled/arrow-big-up-line.tvg");
-pub const arrow_big_up_lines = @embedFile("filled/arrow-big-up-lines.tvg");
-pub const arrow_down_circle = @embedFile("filled/arrow-down-circle.tvg");
-pub const arrow_down_rhombus = @embedFile("filled/arrow-down-rhombus.tvg");
-pub const arrow_down_square = @embedFile("filled/arrow-down-square.tvg");
-pub const arrow_guide = @embedFile("filled/arrow-guide.tvg");
-pub const arrow_left_circle = @embedFile("filled/arrow-left-circle.tvg");
-pub const arrow_left_rhombus = @embedFile("filled/arrow-left-rhombus.tvg");
-pub const arrow_left_square = @embedFile("filled/arrow-left-square.tvg");
-pub const arrow_move_down = @embedFile("filled/arrow-move-down.tvg");
-pub const arrow_move_left = @embedFile("filled/arrow-move-left.tvg");
-pub const arrow_move_right = @embedFile("filled/arrow-move-right.tvg");
-pub const arrow_move_up = @embedFile("filled/arrow-move-up.tvg");
-pub const arrow_right_circle = @embedFile("filled/arrow-right-circle.tvg");
-pub const arrow_right_rhombus = @embedFile("filled/arrow-right-rhombus.tvg");
-pub const arrow_right_square = @embedFile("filled/arrow-right-square.tvg");
-pub const arrow_up_circle = @embedFile("filled/arrow-up-circle.tvg");
-pub const arrow_up_rhombus = @embedFile("filled/arrow-up-rhombus.tvg");
-pub const arrow_up_square = @embedFile("filled/arrow-up-square.tvg");
-pub const artboard = @embedFile("filled/artboard.tvg");
-pub const article = @embedFile("filled/article.tvg");
-pub const aspect_ratio = @embedFile("filled/aspect-ratio.tvg");
-pub const assembly = @embedFile("filled/assembly.tvg");
-pub const asset = @embedFile("filled/asset.tvg");
-pub const atom_2 = @embedFile("filled/atom-2.tvg");
-pub const automatic_gearbox = @embedFile("filled/automatic-gearbox.tvg");
-pub const award = @embedFile("filled/award.tvg");
-pub const baby_carriage = @embedFile("filled/baby-carriage.tvg");
-pub const backspace = @embedFile("filled/backspace.tvg");
-pub const badge = @embedFile("filled/badge.tvg");
-pub const badge_3d = @embedFile("filled/badge-3d.tvg");
-pub const badge_4k = @embedFile("filled/badge-4k.tvg");
-pub const badge_8k = @embedFile("filled/badge-8k.tvg");
-pub const badge_ad = @embedFile("filled/badge-ad.tvg");
-pub const badge_ar = @embedFile("filled/badge-ar.tvg");
-pub const badge_cc = @embedFile("filled/badge-cc.tvg");
-pub const badge_hd = @embedFile("filled/badge-hd.tvg");
-pub const badge_sd = @embedFile("filled/badge-sd.tvg");
-pub const badge_tm = @embedFile("filled/badge-tm.tvg");
-pub const badge_vo = @embedFile("filled/badge-vo.tvg");
-pub const badge_vr = @embedFile("filled/badge-vr.tvg");
-pub const badge_wc = @embedFile("filled/badge-wc.tvg");
-pub const badges = @embedFile("filled/badges.tvg");
-pub const ball_bowling = @embedFile("filled/ball-bowling.tvg");
-pub const balloon = @embedFile("filled/balloon.tvg");
-pub const ballpen = @embedFile("filled/ballpen.tvg");
-pub const bandage = @embedFile("filled/bandage.tvg");
-pub const barbell = @embedFile("filled/barbell.tvg");
-pub const barrier_block = @embedFile("filled/barrier-block.tvg");
-pub const basket = @embedFile("filled/basket.tvg");
-pub const bath = @embedFile("filled/bath.tvg");
-pub const battery = @embedFile("filled/battery.tvg");
-pub const battery_1 = @embedFile("filled/battery-1.tvg");
-pub const battery_2 = @embedFile("filled/battery-2.tvg");
-pub const battery_3 = @embedFile("filled/battery-3.tvg");
-pub const battery_4 = @embedFile("filled/battery-4.tvg");
-pub const battery_automotive = @embedFile("filled/battery-automotive.tvg");
-pub const battery_vertical = @embedFile("filled/battery-vertical.tvg");
-pub const battery_vertical_1 = @embedFile("filled/battery-vertical-1.tvg");
-pub const battery_vertical_2 = @embedFile("filled/battery-vertical-2.tvg");
-pub const battery_vertical_3 = @embedFile("filled/battery-vertical-3.tvg");
-pub const battery_vertical_4 = @embedFile("filled/battery-vertical-4.tvg");
-pub const bed = @embedFile("filled/bed.tvg");
-pub const bed_flat = @embedFile("filled/bed-flat.tvg");
-pub const beer = @embedFile("filled/beer.tvg");
-pub const bell = @embedFile("filled/bell.tvg");
-pub const bell_minus = @embedFile("filled/bell-minus.tvg");
-pub const bell_plus = @embedFile("filled/bell-plus.tvg");
-pub const bell_ringing = @embedFile("filled/bell-ringing.tvg");
-pub const bell_ringing_2 = @embedFile("filled/bell-ringing-2.tvg");
-pub const bell_x = @embedFile("filled/bell-x.tvg");
-pub const bell_z = @embedFile("filled/bell-z.tvg");
-pub const bike = @embedFile("filled/bike.tvg");
-pub const binary_tree = @embedFile("filled/binary-tree.tvg");
-pub const binary_tree_2 = @embedFile("filled/binary-tree-2.tvg");
-pub const binoculars = @embedFile("filled/binoculars.tvg");
-pub const biohazard = @embedFile("filled/biohazard.tvg");
-pub const blade = @embedFile("filled/blade.tvg");
-pub const blender = @embedFile("filled/blender.tvg");
-pub const blob = @embedFile("filled/blob.tvg");
-pub const bolt = @embedFile("filled/bolt.tvg");
-pub const bomb = @embedFile("filled/bomb.tvg");
-pub const bone = @embedFile("filled/bone.tvg");
-pub const bong = @embedFile("filled/bong.tvg");
-pub const book = @embedFile("filled/book.tvg");
-pub const bookmark = @embedFile("filled/bookmark.tvg");
-pub const bookmarks = @embedFile("filled/bookmarks.tvg");
-pub const boom = @embedFile("filled/boom.tvg");
-pub const bottle = @embedFile("filled/bottle.tvg");
-pub const bounce_left = @embedFile("filled/bounce-left.tvg");
-pub const bounce_right = @embedFile("filled/bounce-right.tvg");
-pub const bow = @embedFile("filled/bow.tvg");
-pub const bowl = @embedFile("filled/bowl.tvg");
-pub const bowl_chopsticks = @embedFile("filled/bowl-chopsticks.tvg");
-pub const bowl_spoon = @embedFile("filled/bowl-spoon.tvg");
-pub const box_align_bottom = @embedFile("filled/box-align-bottom.tvg");
-pub const box_align_bottom_left = @embedFile("filled/box-align-bottom-left.tvg");
-pub const box_align_bottom_right = @embedFile("filled/box-align-bottom-right.tvg");
-pub const box_align_left = @embedFile("filled/box-align-left.tvg");
-pub const box_align_right = @embedFile("filled/box-align-right.tvg");
-pub const box_align_top = @embedFile("filled/box-align-top.tvg");
-pub const box_align_top_left = @embedFile("filled/box-align-top-left.tvg");
-pub const box_align_top_right = @embedFile("filled/box-align-top-right.tvg");
-pub const box_multiple = @embedFile("filled/box-multiple.tvg");
-pub const brand_angular = @embedFile("filled/brand-angular.tvg");
-pub const brand_apple = @embedFile("filled/brand-apple.tvg");
-pub const brand_bitbucket = @embedFile("filled/brand-bitbucket.tvg");
-pub const brand_discord = @embedFile("filled/brand-discord.tvg");
-pub const brand_dribbble = @embedFile("filled/brand-dribbble.tvg");
-pub const brand_facebook = @embedFile("filled/brand-facebook.tvg");
-pub const brand_github = @embedFile("filled/brand-github.tvg");
-pub const brand_google = @embedFile("filled/brand-google.tvg");
-pub const brand_instagram = @embedFile("filled/brand-instagram.tvg");
-pub const brand_kick = @embedFile("filled/brand-kick.tvg");
-pub const brand_linkedin = @embedFile("filled/brand-linkedin.tvg");
-pub const brand_messenger = @embedFile("filled/brand-messenger.tvg");
-pub const brand_open_source = @embedFile("filled/brand-open-source.tvg");
-pub const brand_opera = @embedFile("filled/brand-opera.tvg");
-pub const brand_patreon = @embedFile("filled/brand-patreon.tvg");
-pub const brand_paypal = @embedFile("filled/brand-paypal.tvg");
-pub const brand_pinterest = @embedFile("filled/brand-pinterest.tvg");
-pub const brand_signal = @embedFile("filled/brand-signal.tvg");
-pub const brand_sketch = @embedFile("filled/brand-sketch.tvg");
-pub const brand_snapchat = @embedFile("filled/brand-snapchat.tvg");
-pub const brand_spotify = @embedFile("filled/brand-spotify.tvg");
-pub const brand_steam = @embedFile("filled/brand-steam.tvg");
-pub const brand_stripe = @embedFile("filled/brand-stripe.tvg");
-pub const brand_tabler = @embedFile("filled/brand-tabler.tvg");
-pub const brand_tiktok = @embedFile("filled/brand-tiktok.tvg");
-pub const brand_tinder = @embedFile("filled/brand-tinder.tvg");
-pub const brand_tumblr = @embedFile("filled/brand-tumblr.tvg");
-pub const brand_twitter = @embedFile("filled/brand-twitter.tvg");
-pub const brand_vercel = @embedFile("filled/brand-vercel.tvg");
-pub const brand_vimeo = @embedFile("filled/brand-vimeo.tvg");
-pub const brand_weibo = @embedFile("filled/brand-weibo.tvg");
-pub const brand_whatsapp = @embedFile("filled/brand-whatsapp.tvg");
-pub const brand_windows = @embedFile("filled/brand-windows.tvg");
-pub const brand_x = @embedFile("filled/brand-x.tvg");
-pub const brand_youtube = @embedFile("filled/brand-youtube.tvg");
-pub const bread = @embedFile("filled/bread.tvg");
-pub const briefcase = @embedFile("filled/briefcase.tvg");
-pub const briefcase_2 = @embedFile("filled/briefcase-2.tvg");
-pub const brightness = @embedFile("filled/brightness.tvg");
-pub const brightness_auto = @embedFile("filled/brightness-auto.tvg");
-pub const brightness_down = @embedFile("filled/brightness-down.tvg");
-pub const brightness_up = @embedFile("filled/brightness-up.tvg");
-pub const bubble = @embedFile("filled/bubble.tvg");
-pub const bubble_text = @embedFile("filled/bubble-text.tvg");
-pub const bug = @embedFile("filled/bug.tvg");
-pub const building_bridge_2 = @embedFile("filled/building-bridge-2.tvg");
-pub const building_broadcast_tower = @embedFile("filled/building-broadcast-tower.tvg");
-pub const bulb = @embedFile("filled/bulb.tvg");
-pub const bus = @embedFile("filled/bus.tvg");
-pub const butterfly = @embedFile("filled/butterfly.tvg");
-pub const cactus = @embedFile("filled/cactus.tvg");
-pub const calculator = @embedFile("filled/calculator.tvg");
-pub const calendar = @embedFile("filled/calendar.tvg");
-pub const calendar_event = @embedFile("filled/calendar-event.tvg");
-pub const calendar_month = @embedFile("filled/calendar-month.tvg");
-pub const calendar_week = @embedFile("filled/calendar-week.tvg");
-pub const camera = @embedFile("filled/camera.tvg");
-pub const campfire = @embedFile("filled/campfire.tvg");
-pub const candle = @embedFile("filled/candle.tvg");
-pub const cannabis = @embedFile("filled/cannabis.tvg");
-pub const capsule = @embedFile("filled/capsule.tvg");
-pub const capsule_horizontal = @embedFile("filled/capsule-horizontal.tvg");
-pub const capture = @embedFile("filled/capture.tvg");
-pub const car = @embedFile("filled/car.tvg");
-pub const car_4wd = @embedFile("filled/car-4wd.tvg");
-pub const car_crane = @embedFile("filled/car-crane.tvg");
-pub const car_fan = @embedFile("filled/car-fan.tvg");
-pub const car_suv = @embedFile("filled/car-suv.tvg");
-pub const carambola = @embedFile("filled/carambola.tvg");
-pub const caravan = @embedFile("filled/caravan.tvg");
-pub const cardboards = @embedFile("filled/cardboards.tvg");
-pub const cards = @embedFile("filled/cards.tvg");
-pub const caret_down = @embedFile("filled/caret-down.tvg");
-pub const caret_left = @embedFile("filled/caret-left.tvg");
-pub const caret_left_right = @embedFile("filled/caret-left-right.tvg");
-pub const caret_right = @embedFile("filled/caret-right.tvg");
-pub const caret_up = @embedFile("filled/caret-up.tvg");
-pub const caret_up_down = @embedFile("filled/caret-up-down.tvg");
-pub const carousel_horizontal = @embedFile("filled/carousel-horizontal.tvg");
-pub const carousel_vertical = @embedFile("filled/carousel-vertical.tvg");
-pub const cash_banknote = @embedFile("filled/cash-banknote.tvg");
-pub const category = @embedFile("filled/category.tvg");
-pub const charging_pile = @embedFile("filled/charging-pile.tvg");
-pub const chart_area = @embedFile("filled/chart-area.tvg");
-pub const chart_area_line = @embedFile("filled/chart-area-line.tvg");
-pub const chart_bubble = @embedFile("filled/chart-bubble.tvg");
-pub const chart_candle = @embedFile("filled/chart-candle.tvg");
-pub const chart_donut = @embedFile("filled/chart-donut.tvg");
-pub const chart_dots = @embedFile("filled/chart-dots.tvg");
-pub const chart_dots_2 = @embedFile("filled/chart-dots-2.tvg");
-pub const chart_dots_3 = @embedFile("filled/chart-dots-3.tvg");
-pub const chart_funnel = @embedFile("filled/chart-funnel.tvg");
-pub const chart_grid_dots = @embedFile("filled/chart-grid-dots.tvg");
-pub const chart_pie = @embedFile("filled/chart-pie.tvg");
-pub const chart_pie_2 = @embedFile("filled/chart-pie-2.tvg");
-pub const chart_pie_3 = @embedFile("filled/chart-pie-3.tvg");
-pub const chart_pie_4 = @embedFile("filled/chart-pie-4.tvg");
-pub const check = @embedFile("filled/check.tvg");
-pub const chef_hat = @embedFile("filled/chef-hat.tvg");
-pub const cherry = @embedFile("filled/cherry.tvg");
-pub const chess = @embedFile("filled/chess.tvg");
-pub const chess_bishop = @embedFile("filled/chess-bishop.tvg");
-pub const chess_king = @embedFile("filled/chess-king.tvg");
-pub const chess_knight = @embedFile("filled/chess-knight.tvg");
-pub const chess_queen = @embedFile("filled/chess-queen.tvg");
-pub const chess_rook = @embedFile("filled/chess-rook.tvg");
-pub const chevron_down = @embedFile("filled/chevron-down.tvg");
-pub const chevron_right = @embedFile("filled/chevron-right.tvg");
-pub const christmas_tree = @embedFile("filled/christmas-tree.tvg");
-pub const circle = @embedFile("filled/circle.tvg");
-pub const circle_arrow_down = @embedFile("filled/circle-arrow-down.tvg");
-pub const circle_arrow_down_left = @embedFile("filled/circle-arrow-down-left.tvg");
-pub const circle_arrow_down_right = @embedFile("filled/circle-arrow-down-right.tvg");
-pub const circle_arrow_left = @embedFile("filled/circle-arrow-left.tvg");
-pub const circle_arrow_right = @embedFile("filled/circle-arrow-right.tvg");
-pub const circle_arrow_up = @embedFile("filled/circle-arrow-up.tvg");
-pub const circle_arrow_up_left = @embedFile("filled/circle-arrow-up-left.tvg");
-pub const circle_arrow_up_right = @embedFile("filled/circle-arrow-up-right.tvg");
-pub const circle_caret_down = @embedFile("filled/circle-caret-down.tvg");
-pub const circle_caret_left = @embedFile("filled/circle-caret-left.tvg");
-pub const circle_caret_right = @embedFile("filled/circle-caret-right.tvg");
-pub const circle_caret_up = @embedFile("filled/circle-caret-up.tvg");
-pub const circle_check = @embedFile("filled/circle-check.tvg");
-pub const circle_chevron_down = @embedFile("filled/circle-chevron-down.tvg");
-pub const circle_chevron_left = @embedFile("filled/circle-chevron-left.tvg");
-pub const circle_chevron_right = @embedFile("filled/circle-chevron-right.tvg");
-pub const circle_chevron_up = @embedFile("filled/circle-chevron-up.tvg");
-pub const circle_chevrons_down = @embedFile("filled/circle-chevrons-down.tvg");
-pub const circle_chevrons_left = @embedFile("filled/circle-chevrons-left.tvg");
-pub const circle_chevrons_right = @embedFile("filled/circle-chevrons-right.tvg");
-pub const circle_chevrons_up = @embedFile("filled/circle-chevrons-up.tvg");
-pub const circle_dot = @embedFile("filled/circle-dot.tvg");
-pub const circle_key = @embedFile("filled/circle-key.tvg");
-pub const circle_letter_a = @embedFile("filled/circle-letter-a.tvg");
-pub const circle_letter_b = @embedFile("filled/circle-letter-b.tvg");
-pub const circle_letter_c = @embedFile("filled/circle-letter-c.tvg");
-pub const circle_letter_d = @embedFile("filled/circle-letter-d.tvg");
-pub const circle_letter_e = @embedFile("filled/circle-letter-e.tvg");
-pub const circle_letter_f = @embedFile("filled/circle-letter-f.tvg");
-pub const circle_letter_g = @embedFile("filled/circle-letter-g.tvg");
-pub const circle_letter_h = @embedFile("filled/circle-letter-h.tvg");
-pub const circle_letter_i = @embedFile("filled/circle-letter-i.tvg");
-pub const circle_letter_j = @embedFile("filled/circle-letter-j.tvg");
-pub const circle_letter_k = @embedFile("filled/circle-letter-k.tvg");
-pub const circle_letter_l = @embedFile("filled/circle-letter-l.tvg");
-pub const circle_letter_m = @embedFile("filled/circle-letter-m.tvg");
-pub const circle_letter_n = @embedFile("filled/circle-letter-n.tvg");
-pub const circle_letter_o = @embedFile("filled/circle-letter-o.tvg");
-pub const circle_letter_p = @embedFile("filled/circle-letter-p.tvg");
-pub const circle_letter_q = @embedFile("filled/circle-letter-q.tvg");
-pub const circle_letter_r = @embedFile("filled/circle-letter-r.tvg");
-pub const circle_letter_s = @embedFile("filled/circle-letter-s.tvg");
-pub const circle_letter_t = @embedFile("filled/circle-letter-t.tvg");
-pub const circle_letter_u = @embedFile("filled/circle-letter-u.tvg");
-pub const circle_letter_v = @embedFile("filled/circle-letter-v.tvg");
-pub const circle_letter_w = @embedFile("filled/circle-letter-w.tvg");
-pub const circle_letter_x = @embedFile("filled/circle-letter-x.tvg");
-pub const circle_letter_y = @embedFile("filled/circle-letter-y.tvg");
-pub const circle_letter_z = @embedFile("filled/circle-letter-z.tvg");
-pub const circle_number_0 = @embedFile("filled/circle-number-0.tvg");
-pub const circle_number_1 = @embedFile("filled/circle-number-1.tvg");
-pub const circle_number_2 = @embedFile("filled/circle-number-2.tvg");
-pub const circle_number_3 = @embedFile("filled/circle-number-3.tvg");
-pub const circle_number_4 = @embedFile("filled/circle-number-4.tvg");
-pub const circle_number_5 = @embedFile("filled/circle-number-5.tvg");
-pub const circle_number_6 = @embedFile("filled/circle-number-6.tvg");
-pub const circle_number_7 = @embedFile("filled/circle-number-7.tvg");
-pub const circle_number_8 = @embedFile("filled/circle-number-8.tvg");
-pub const circle_number_9 = @embedFile("filled/circle-number-9.tvg");
-pub const circle_percentage = @embedFile("filled/circle-percentage.tvg");
-pub const circle_plus = @embedFile("filled/circle-plus.tvg");
-pub const circle_rectangle = @embedFile("filled/circle-rectangle.tvg");
-pub const circle_x = @embedFile("filled/circle-x.tvg");
-pub const circles = @embedFile("filled/circles.tvg");
-pub const click = @embedFile("filled/click.tvg");
-pub const clipboard = @embedFile("filled/clipboard.tvg");
-pub const clipboard_check = @embedFile("filled/clipboard-check.tvg");
-pub const clipboard_data = @embedFile("filled/clipboard-data.tvg");
-pub const clipboard_list = @embedFile("filled/clipboard-list.tvg");
-pub const clipboard_plus = @embedFile("filled/clipboard-plus.tvg");
-pub const clipboard_smile = @embedFile("filled/clipboard-smile.tvg");
-pub const clipboard_text = @embedFile("filled/clipboard-text.tvg");
-pub const clipboard_typography = @embedFile("filled/clipboard-typography.tvg");
-pub const clipboard_x = @embedFile("filled/clipboard-x.tvg");
-pub const clock = @embedFile("filled/clock.tvg");
-pub const clock_hour_1 = @embedFile("filled/clock-hour-1.tvg");
-pub const clock_hour_10 = @embedFile("filled/clock-hour-10.tvg");
-pub const clock_hour_11 = @embedFile("filled/clock-hour-11.tvg");
-pub const clock_hour_12 = @embedFile("filled/clock-hour-12.tvg");
-pub const clock_hour_2 = @embedFile("filled/clock-hour-2.tvg");
-pub const clock_hour_3 = @embedFile("filled/clock-hour-3.tvg");
-pub const clock_hour_4 = @embedFile("filled/clock-hour-4.tvg");
-pub const clock_hour_5 = @embedFile("filled/clock-hour-5.tvg");
-pub const clock_hour_6 = @embedFile("filled/clock-hour-6.tvg");
-pub const clock_hour_7 = @embedFile("filled/clock-hour-7.tvg");
-pub const clock_hour_8 = @embedFile("filled/clock-hour-8.tvg");
-pub const clock_hour_9 = @embedFile("filled/clock-hour-9.tvg");
-pub const cloud = @embedFile("filled/cloud.tvg");
-pub const cloud_computing = @embedFile("filled/cloud-computing.tvg");
-pub const cloud_data_connection = @embedFile("filled/cloud-data-connection.tvg");
-pub const clover = @embedFile("filled/clover.tvg");
-pub const clubs = @embedFile("filled/clubs.tvg");
-pub const code_circle = @embedFile("filled/code-circle.tvg");
-pub const code_circle_2 = @embedFile("filled/code-circle-2.tvg");
-pub const coin = @embedFile("filled/coin.tvg");
-pub const coin_bitcoin = @embedFile("filled/coin-bitcoin.tvg");
-pub const coin_euro = @embedFile("filled/coin-euro.tvg");
-pub const coin_monero = @embedFile("filled/coin-monero.tvg");
-pub const coin_pound = @embedFile("filled/coin-pound.tvg");
-pub const coin_rupee = @embedFile("filled/coin-rupee.tvg");
-pub const coin_taka = @embedFile("filled/coin-taka.tvg");
-pub const coin_yen = @embedFile("filled/coin-yen.tvg");
-pub const coin_yuan = @embedFile("filled/coin-yuan.tvg");
-pub const columns_1 = @embedFile("filled/columns-1.tvg");
-pub const columns_2 = @embedFile("filled/columns-2.tvg");
-pub const columns_3 = @embedFile("filled/columns-3.tvg");
-pub const compass = @embedFile("filled/compass.tvg");
-pub const cone = @embedFile("filled/cone.tvg");
-pub const cone_2 = @embedFile("filled/cone-2.tvg");
-pub const confetti = @embedFile("filled/confetti.tvg");
-pub const container = @embedFile("filled/container.tvg");
-pub const contrast = @embedFile("filled/contrast.tvg");
-pub const contrast_2 = @embedFile("filled/contrast-2.tvg");
-pub const cookie = @embedFile("filled/cookie.tvg");
-pub const cookie_man = @embedFile("filled/cookie-man.tvg");
-pub const copy = @embedFile("filled/copy.tvg");
-pub const copy_check = @embedFile("filled/copy-check.tvg");
-pub const copy_minus = @embedFile("filled/copy-minus.tvg");
-pub const copy_plus = @embedFile("filled/copy-plus.tvg");
-pub const copy_x = @embedFile("filled/copy-x.tvg");
-pub const copyleft = @embedFile("filled/copyleft.tvg");
-pub const copyright = @embedFile("filled/copyright.tvg");
-pub const credit_card = @embedFile("filled/credit-card.tvg");
-pub const crop_16_9 = @embedFile("filled/crop-16-9.tvg");
-pub const crop_1_1 = @embedFile("filled/crop-1-1.tvg");
-pub const crop_3_2 = @embedFile("filled/crop-3-2.tvg");
-pub const crop_5_4 = @embedFile("filled/crop-5-4.tvg");
-pub const crop_7_5 = @embedFile("filled/crop-7-5.tvg");
-pub const crop_landscape = @embedFile("filled/crop-landscape.tvg");
-pub const crop_portrait = @embedFile("filled/crop-portrait.tvg");
-pub const cross = @embedFile("filled/cross.tvg");
-pub const crown = @embedFile("filled/crown.tvg");
-pub const current_location = @embedFile("filled/current-location.tvg");
-pub const dashboard = @embedFile("filled/dashboard.tvg");
-pub const database = @embedFile("filled/database.tvg");
-pub const device_cctv = @embedFile("filled/device-cctv.tvg");
-pub const device_desktop = @embedFile("filled/device-desktop.tvg");
-pub const device_floppy = @embedFile("filled/device-floppy.tvg");
-pub const device_gamepad = @embedFile("filled/device-gamepad.tvg");
-pub const device_gamepad_2 = @embedFile("filled/device-gamepad-2.tvg");
-pub const device_gamepad_3 = @embedFile("filled/device-gamepad-3.tvg");
-pub const device_heart_monitor = @embedFile("filled/device-heart-monitor.tvg");
-pub const device_imac = @embedFile("filled/device-imac.tvg");
-pub const device_ipad = @embedFile("filled/device-ipad.tvg");
-pub const device_mobile = @embedFile("filled/device-mobile.tvg");
-pub const device_remote = @embedFile("filled/device-remote.tvg");
-pub const device_speaker = @embedFile("filled/device-speaker.tvg");
-pub const device_tablet = @embedFile("filled/device-tablet.tvg");
-pub const device_tv = @embedFile("filled/device-tv.tvg");
-pub const device_tv_old = @embedFile("filled/device-tv-old.tvg");
-pub const device_unknown = @embedFile("filled/device-unknown.tvg");
-pub const device_usb = @embedFile("filled/device-usb.tvg");
-pub const device_vision_pro = @embedFile("filled/device-vision-pro.tvg");
-pub const device_watch = @embedFile("filled/device-watch.tvg");
-pub const dialpad = @embedFile("filled/dialpad.tvg");
-pub const diamond = @embedFile("filled/diamond.tvg");
-pub const diamonds = @embedFile("filled/diamonds.tvg");
-pub const dice = @embedFile("filled/dice.tvg");
-pub const dice_1 = @embedFile("filled/dice-1.tvg");
-pub const dice_2 = @embedFile("filled/dice-2.tvg");
-pub const dice_3 = @embedFile("filled/dice-3.tvg");
-pub const dice_4 = @embedFile("filled/dice-4.tvg");
-pub const dice_5 = @embedFile("filled/dice-5.tvg");
-pub const dice_6 = @embedFile("filled/dice-6.tvg");
-pub const direction_arrows = @embedFile("filled/direction-arrows.tvg");
-pub const direction_sign = @embedFile("filled/direction-sign.tvg");
-pub const directions = @embedFile("filled/directions.tvg");
-pub const disc = @embedFile("filled/disc.tvg");
-pub const discount = @embedFile("filled/discount.tvg");
-pub const dots = @embedFile("filled/dots.tvg");
-pub const dots_vertical = @embedFile("filled/dots-vertical.tvg");
-pub const download = @embedFile("filled/download.tvg");
-pub const drop_circle = @embedFile("filled/drop-circle.tvg");
-pub const droplet = @embedFile("filled/droplet.tvg");
-pub const droplet_half = @embedFile("filled/droplet-half.tvg");
-pub const droplet_half_2 = @embedFile("filled/droplet-half-2.tvg");
-pub const droplets = @embedFile("filled/droplets.tvg");
-pub const dual_screen = @embedFile("filled/dual-screen.tvg");
-pub const dumpling = @embedFile("filled/dumpling.tvg");
-pub const ease_in_control_point = @embedFile("filled/ease-in-control-point.tvg");
-pub const ease_in_out_control_points = @embedFile("filled/ease-in-out-control-points.tvg");
-pub const ease_out_control_point = @embedFile("filled/ease-out-control-point.tvg");
-pub const edit = @embedFile("filled/edit.tvg");
-pub const egg = @embedFile("filled/egg.tvg");
-pub const egg_cracked = @embedFile("filled/egg-cracked.tvg");
-pub const egg_fried = @embedFile("filled/egg-fried.tvg");
-pub const elevator = @embedFile("filled/elevator.tvg");
-pub const engine = @embedFile("filled/engine.tvg");
-pub const escalator = @embedFile("filled/escalator.tvg");
-pub const escalator_down = @embedFile("filled/escalator-down.tvg");
-pub const escalator_up = @embedFile("filled/escalator-up.tvg");
-pub const exchange = @embedFile("filled/exchange.tvg");
-pub const exclamation_circle = @embedFile("filled/exclamation-circle.tvg");
-pub const explicit = @embedFile("filled/explicit.tvg");
-pub const exposure = @embedFile("filled/exposure.tvg");
-pub const external_link = @embedFile("filled/external-link.tvg");
-pub const eye = @embedFile("filled/eye.tvg");
-pub const eye_table = @embedFile("filled/eye-table.tvg");
-pub const eyeglass = @embedFile("filled/eyeglass.tvg");
-pub const eyeglass_2 = @embedFile("filled/eyeglass-2.tvg");
-pub const face_mask = @embedFile("filled/face-mask.tvg");
-pub const favicon = @embedFile("filled/favicon.tvg");
-pub const feather = @embedFile("filled/feather.tvg");
-pub const fence = @embedFile("filled/fence.tvg");
-pub const ferry = @embedFile("filled/ferry.tvg");
-pub const fidget_spinner = @embedFile("filled/fidget-spinner.tvg");
-pub const file = @embedFile("filled/file.tvg");
-pub const file_analytics = @embedFile("filled/file-analytics.tvg");
-pub const file_check = @embedFile("filled/file-check.tvg");
-pub const file_code = @embedFile("filled/file-code.tvg");
-pub const file_code_2 = @embedFile("filled/file-code-2.tvg");
-pub const file_cv = @embedFile("filled/file-cv.tvg");
-pub const file_delta = @embedFile("filled/file-delta.tvg");
-pub const file_description = @embedFile("filled/file-description.tvg");
-pub const file_diff = @embedFile("filled/file-diff.tvg");
-pub const file_digit = @embedFile("filled/file-digit.tvg");
-pub const file_dollar = @embedFile("filled/file-dollar.tvg");
-pub const file_dots = @embedFile("filled/file-dots.tvg");
-pub const file_download = @embedFile("filled/file-download.tvg");
-pub const file_euro = @embedFile("filled/file-euro.tvg");
-pub const file_function = @embedFile("filled/file-function.tvg");
-pub const file_horizontal = @embedFile("filled/file-horizontal.tvg");
-pub const file_info = @embedFile("filled/file-info.tvg");
-pub const file_invoice = @embedFile("filled/file-invoice.tvg");
-pub const file_lambda = @embedFile("filled/file-lambda.tvg");
-pub const file_minus = @embedFile("filled/file-minus.tvg");
-pub const file_music = @embedFile("filled/file-music.tvg");
-pub const file_neutral = @embedFile("filled/file-neutral.tvg");
-pub const file_pencil = @embedFile("filled/file-pencil.tvg");
-pub const file_percent = @embedFile("filled/file-percent.tvg");
-pub const file_phone = @embedFile("filled/file-phone.tvg");
-pub const file_power = @embedFile("filled/file-power.tvg");
-pub const file_rss = @embedFile("filled/file-rss.tvg");
-pub const file_sad = @embedFile("filled/file-sad.tvg");
-pub const file_scissors = @embedFile("filled/file-scissors.tvg");
-pub const file_settings = @embedFile("filled/file-settings.tvg");
-pub const file_signal = @embedFile("filled/file-signal.tvg");
-pub const file_smile = @embedFile("filled/file-smile.tvg");
-pub const file_star = @embedFile("filled/file-star.tvg");
-pub const file_text = @embedFile("filled/file-text.tvg");
-pub const file_time = @embedFile("filled/file-time.tvg");
-pub const file_typography = @embedFile("filled/file-typography.tvg");
-pub const file_unknown = @embedFile("filled/file-unknown.tvg");
-pub const file_upload = @embedFile("filled/file-upload.tvg");
-pub const file_vector = @embedFile("filled/file-vector.tvg");
-pub const file_x = @embedFile("filled/file-x.tvg");
-pub const files = @embedFile("filled/files.tvg");
-pub const filter = @embedFile("filled/filter.tvg");
-pub const filters = @embedFile("filled/filters.tvg");
-pub const fish_bone = @embedFile("filled/fish-bone.tvg");
-pub const flag = @embedFile("filled/flag.tvg");
-pub const flag_2 = @embedFile("filled/flag-2.tvg");
-pub const flag_3 = @embedFile("filled/flag-3.tvg");
-pub const flame = @embedFile("filled/flame.tvg");
-pub const flare = @embedFile("filled/flare.tvg");
-pub const flask = @embedFile("filled/flask.tvg");
-pub const flask_2 = @embedFile("filled/flask-2.tvg");
-pub const flower = @embedFile("filled/flower.tvg");
-pub const folder = @embedFile("filled/folder.tvg");
-pub const folder_open = @embedFile("filled/folder-open.tvg");
-pub const folders = @embedFile("filled/folders.tvg");
-pub const forbid = @embedFile("filled/forbid.tvg");
-pub const forbid_2 = @embedFile("filled/forbid-2.tvg");
-pub const fountain = @embedFile("filled/fountain.tvg");
-pub const function = @embedFile("filled/function.tvg");
-pub const garden_cart = @embedFile("filled/garden-cart.tvg");
-pub const gas_station = @embedFile("filled/gas-station.tvg");
-pub const gauge = @embedFile("filled/gauge.tvg");
-pub const ghost = @embedFile("filled/ghost.tvg");
-pub const ghost_2 = @embedFile("filled/ghost-2.tvg");
-pub const ghost_3 = @embedFile("filled/ghost-3.tvg");
-pub const gift = @embedFile("filled/gift.tvg");
-pub const gift_card = @embedFile("filled/gift-card.tvg");
-pub const glass = @embedFile("filled/glass.tvg");
-pub const glass_full = @embedFile("filled/glass-full.tvg");
-pub const globe = @embedFile("filled/globe.tvg");
-pub const golf = @embedFile("filled/golf.tvg");
-pub const gps = @embedFile("filled/gps.tvg");
-pub const graph = @embedFile("filled/graph.tvg");
-pub const grid_pattern = @embedFile("filled/grid-pattern.tvg");
-pub const guitar_pick = @embedFile("filled/guitar-pick.tvg");
-pub const hanger_2 = @embedFile("filled/hanger-2.tvg");
-pub const headphones = @embedFile("filled/headphones.tvg");
-pub const headset = @embedFile("filled/headset.tvg");
-pub const heart = @embedFile("filled/heart.tvg");
-pub const heart_broken = @embedFile("filled/heart-broken.tvg");
-pub const helicopter = @embedFile("filled/helicopter.tvg");
-pub const helicopter_landing = @embedFile("filled/helicopter-landing.tvg");
-pub const help = @embedFile("filled/help.tvg");
-pub const help_circle = @embedFile("filled/help-circle.tvg");
-pub const help_hexagon = @embedFile("filled/help-hexagon.tvg");
-pub const help_octagon = @embedFile("filled/help-octagon.tvg");
-pub const help_square = @embedFile("filled/help-square.tvg");
-pub const help_square_rounded = @embedFile("filled/help-square-rounded.tvg");
-pub const help_triangle = @embedFile("filled/help-triangle.tvg");
-pub const hexagon = @embedFile("filled/hexagon.tvg");
-pub const hexagon_letter_a = @embedFile("filled/hexagon-letter-a.tvg");
-pub const hexagon_letter_b = @embedFile("filled/hexagon-letter-b.tvg");
-pub const hexagon_letter_c = @embedFile("filled/hexagon-letter-c.tvg");
-pub const hexagon_letter_d = @embedFile("filled/hexagon-letter-d.tvg");
-pub const hexagon_letter_e = @embedFile("filled/hexagon-letter-e.tvg");
-pub const hexagon_letter_f = @embedFile("filled/hexagon-letter-f.tvg");
-pub const hexagon_letter_g = @embedFile("filled/hexagon-letter-g.tvg");
-pub const hexagon_letter_h = @embedFile("filled/hexagon-letter-h.tvg");
-pub const hexagon_letter_i = @embedFile("filled/hexagon-letter-i.tvg");
-pub const hexagon_letter_j = @embedFile("filled/hexagon-letter-j.tvg");
-pub const hexagon_letter_k = @embedFile("filled/hexagon-letter-k.tvg");
-pub const hexagon_letter_l = @embedFile("filled/hexagon-letter-l.tvg");
-pub const hexagon_letter_m = @embedFile("filled/hexagon-letter-m.tvg");
-pub const hexagon_letter_n = @embedFile("filled/hexagon-letter-n.tvg");
-pub const hexagon_letter_o = @embedFile("filled/hexagon-letter-o.tvg");
-pub const hexagon_letter_p = @embedFile("filled/hexagon-letter-p.tvg");
-pub const hexagon_letter_q = @embedFile("filled/hexagon-letter-q.tvg");
-pub const hexagon_letter_r = @embedFile("filled/hexagon-letter-r.tvg");
-pub const hexagon_letter_s = @embedFile("filled/hexagon-letter-s.tvg");
-pub const hexagon_letter_t = @embedFile("filled/hexagon-letter-t.tvg");
-pub const hexagon_letter_u = @embedFile("filled/hexagon-letter-u.tvg");
-pub const hexagon_letter_v = @embedFile("filled/hexagon-letter-v.tvg");
-pub const hexagon_letter_w = @embedFile("filled/hexagon-letter-w.tvg");
-pub const hexagon_letter_x = @embedFile("filled/hexagon-letter-x.tvg");
-pub const hexagon_letter_y = @embedFile("filled/hexagon-letter-y.tvg");
-pub const hexagon_letter_z = @embedFile("filled/hexagon-letter-z.tvg");
-pub const hexagon_minus = @embedFile("filled/hexagon-minus.tvg");
-pub const hexagon_number_0 = @embedFile("filled/hexagon-number-0.tvg");
-pub const hexagon_number_1 = @embedFile("filled/hexagon-number-1.tvg");
-pub const hexagon_number_2 = @embedFile("filled/hexagon-number-2.tvg");
-pub const hexagon_number_3 = @embedFile("filled/hexagon-number-3.tvg");
-pub const hexagon_number_4 = @embedFile("filled/hexagon-number-4.tvg");
-pub const hexagon_number_5 = @embedFile("filled/hexagon-number-5.tvg");
-pub const hexagon_number_6 = @embedFile("filled/hexagon-number-6.tvg");
-pub const hexagon_number_7 = @embedFile("filled/hexagon-number-7.tvg");
-pub const hexagon_number_8 = @embedFile("filled/hexagon-number-8.tvg");
-pub const hexagon_number_9 = @embedFile("filled/hexagon-number-9.tvg");
-pub const hexagon_plus = @embedFile("filled/hexagon-plus.tvg");
-pub const home = @embedFile("filled/home.tvg");
-pub const home_2 = @embedFile("filled/home-2.tvg");
-pub const hospital_circle = @embedFile("filled/hospital-circle.tvg");
-pub const hourglass = @embedFile("filled/hourglass.tvg");
-pub const icons = @embedFile("filled/icons.tvg");
-pub const id = @embedFile("filled/id.tvg");
-pub const info_circle = @embedFile("filled/info-circle.tvg");
-pub const info_hexagon = @embedFile("filled/info-hexagon.tvg");
-pub const info_octagon = @embedFile("filled/info-octagon.tvg");
-pub const info_square = @embedFile("filled/info-square.tvg");
-pub const info_square_rounded = @embedFile("filled/info-square-rounded.tvg");
-pub const info_triangle = @embedFile("filled/info-triangle.tvg");
-pub const inner_shadow_bottom = @embedFile("filled/inner-shadow-bottom.tvg");
-pub const inner_shadow_bottom_left = @embedFile("filled/inner-shadow-bottom-left.tvg");
-pub const inner_shadow_bottom_right = @embedFile("filled/inner-shadow-bottom-right.tvg");
-pub const inner_shadow_left = @embedFile("filled/inner-shadow-left.tvg");
-pub const inner_shadow_right = @embedFile("filled/inner-shadow-right.tvg");
-pub const inner_shadow_top = @embedFile("filled/inner-shadow-top.tvg");
-pub const inner_shadow_top_left = @embedFile("filled/inner-shadow-top-left.tvg");
-pub const inner_shadow_top_right = @embedFile("filled/inner-shadow-top-right.tvg");
-pub const ironing = @embedFile("filled/ironing.tvg");
-pub const ironing_1 = @embedFile("filled/ironing-1.tvg");
-pub const ironing_2 = @embedFile("filled/ironing-2.tvg");
-pub const ironing_3 = @embedFile("filled/ironing-3.tvg");
-pub const ironing_steam = @embedFile("filled/ironing-steam.tvg");
-pub const jetpack = @embedFile("filled/jetpack.tvg");
-pub const jewish_star = @embedFile("filled/jewish-star.tvg");
-pub const key = @embedFile("filled/key.tvg");
-pub const keyboard = @embedFile("filled/keyboard.tvg");
-pub const keyframe = @embedFile("filled/keyframe.tvg");
-pub const keyframe_align_center = @embedFile("filled/keyframe-align-center.tvg");
-pub const keyframe_align_horizontal = @embedFile("filled/keyframe-align-horizontal.tvg");
-pub const keyframe_align_vertical = @embedFile("filled/keyframe-align-vertical.tvg");
-pub const keyframes = @embedFile("filled/keyframes.tvg");
-pub const label = @embedFile("filled/label.tvg");
-pub const label_important = @embedFile("filled/label-important.tvg");
-pub const lasso_polygon = @embedFile("filled/lasso-polygon.tvg");
-pub const laurel_wreath = @embedFile("filled/laurel-wreath.tvg");
-pub const laurel_wreath_1 = @embedFile("filled/laurel-wreath-1.tvg");
-pub const laurel_wreath_2 = @embedFile("filled/laurel-wreath-2.tvg");
-pub const laurel_wreath_3 = @embedFile("filled/laurel-wreath-3.tvg");
-pub const layout = @embedFile("filled/layout.tvg");
-pub const layout_2 = @embedFile("filled/layout-2.tvg");
-pub const layout_align_bottom = @embedFile("filled/layout-align-bottom.tvg");
-pub const layout_align_center = @embedFile("filled/layout-align-center.tvg");
-pub const layout_align_left = @embedFile("filled/layout-align-left.tvg");
-pub const layout_align_middle = @embedFile("filled/layout-align-middle.tvg");
-pub const layout_align_right = @embedFile("filled/layout-align-right.tvg");
-pub const layout_align_top = @embedFile("filled/layout-align-top.tvg");
-pub const layout_board = @embedFile("filled/layout-board.tvg");
-pub const layout_board_split = @embedFile("filled/layout-board-split.tvg");
-pub const layout_bottombar = @embedFile("filled/layout-bottombar.tvg");
-pub const layout_bottombar_collapse = @embedFile("filled/layout-bottombar-collapse.tvg");
-pub const layout_bottombar_expand = @embedFile("filled/layout-bottombar-expand.tvg");
-pub const layout_cards = @embedFile("filled/layout-cards.tvg");
-pub const layout_dashboard = @embedFile("filled/layout-dashboard.tvg");
-pub const layout_distribute_horizontal = @embedFile("filled/layout-distribute-horizontal.tvg");
-pub const layout_distribute_vertical = @embedFile("filled/layout-distribute-vertical.tvg");
-pub const layout_grid = @embedFile("filled/layout-grid.tvg");
-pub const layout_kanban = @embedFile("filled/layout-kanban.tvg");
-pub const layout_list = @embedFile("filled/layout-list.tvg");
-pub const layout_navbar = @embedFile("filled/layout-navbar.tvg");
-pub const layout_navbar_collapse = @embedFile("filled/layout-navbar-collapse.tvg");
-pub const layout_navbar_expand = @embedFile("filled/layout-navbar-expand.tvg");
-pub const layout_sidebar = @embedFile("filled/layout-sidebar.tvg");
-pub const layout_sidebar_left_collapse = @embedFile("filled/layout-sidebar-left-collapse.tvg");
-pub const layout_sidebar_left_expand = @embedFile("filled/layout-sidebar-left-expand.tvg");
-pub const layout_sidebar_right = @embedFile("filled/layout-sidebar-right.tvg");
-pub const layout_sidebar_right_collapse = @embedFile("filled/layout-sidebar-right-collapse.tvg");
-pub const layout_sidebar_right_expand = @embedFile("filled/layout-sidebar-right-expand.tvg");
-pub const leaf = @embedFile("filled/leaf.tvg");
-pub const lego = @embedFile("filled/lego.tvg");
-pub const lemon_2 = @embedFile("filled/lemon-2.tvg");
-pub const library = @embedFile("filled/library.tvg");
-pub const library_plus = @embedFile("filled/library-plus.tvg");
-pub const lifebuoy = @embedFile("filled/lifebuoy.tvg");
-pub const link = @embedFile("filled/link.tvg");
-pub const list = @embedFile("filled/list.tvg");
-pub const list_check = @embedFile("filled/list-check.tvg");
-pub const list_details = @embedFile("filled/list-details.tvg");
-pub const live_photo = @embedFile("filled/live-photo.tvg");
-pub const live_view = @embedFile("filled/live-view.tvg");
-pub const location = @embedFile("filled/location.tvg");
-pub const lock = @embedFile("filled/lock.tvg");
-pub const lock_square_rounded = @embedFile("filled/lock-square-rounded.tvg");
-pub const lungs = @embedFile("filled/lungs.tvg");
-pub const macro = @embedFile("filled/macro.tvg");
-pub const magnet = @embedFile("filled/magnet.tvg");
-pub const mail = @embedFile("filled/mail.tvg");
-pub const mail_opened = @embedFile("filled/mail-opened.tvg");
-pub const man = @embedFile("filled/man.tvg");
-pub const manual_gearbox = @embedFile("filled/manual-gearbox.tvg");
-pub const map_pin = @embedFile("filled/map-pin.tvg");
-pub const medical_cross = @embedFile("filled/medical-cross.tvg");
-pub const meeple = @embedFile("filled/meeple.tvg");
-pub const melon = @embedFile("filled/melon.tvg");
-pub const menu_2 = @embedFile("filled/menu-2.tvg");
-pub const message = @embedFile("filled/message.tvg");
-pub const message_2 = @embedFile("filled/message-2.tvg");
-pub const message_chatbot = @embedFile("filled/message-chatbot.tvg");
-pub const message_circle = @embedFile("filled/message-circle.tvg");
-pub const message_report = @embedFile("filled/message-report.tvg");
-pub const messages = @embedFile("filled/messages.tvg");
-pub const meteor = @embedFile("filled/meteor.tvg");
-pub const michelin_star = @embedFile("filled/michelin-star.tvg");
-pub const mickey = @embedFile("filled/mickey.tvg");
-pub const microphone = @embedFile("filled/microphone.tvg");
-pub const microscope = @embedFile("filled/microscope.tvg");
-pub const microwave = @embedFile("filled/microwave.tvg");
-pub const military_rank = @embedFile("filled/military-rank.tvg");
-pub const milk = @embedFile("filled/milk.tvg");
-pub const mood_angry = @embedFile("filled/mood-angry.tvg");
-pub const mood_confused = @embedFile("filled/mood-confused.tvg");
-pub const mood_crazy_happy = @embedFile("filled/mood-crazy-happy.tvg");
-pub const mood_empty = @embedFile("filled/mood-empty.tvg");
-pub const mood_happy = @embedFile("filled/mood-happy.tvg");
-pub const mood_kid = @embedFile("filled/mood-kid.tvg");
-pub const mood_neutral = @embedFile("filled/mood-neutral.tvg");
-pub const mood_sad = @embedFile("filled/mood-sad.tvg");
-pub const mood_smile = @embedFile("filled/mood-smile.tvg");
-pub const mood_wrrr = @embedFile("filled/mood-wrrr.tvg");
-pub const moon = @embedFile("filled/moon.tvg");
-pub const motorbike = @embedFile("filled/motorbike.tvg");
-pub const mountain = @embedFile("filled/mountain.tvg");
-pub const mouse = @embedFile("filled/mouse.tvg");
-pub const mug = @embedFile("filled/mug.tvg");
-pub const mushroom = @embedFile("filled/mushroom.tvg");
-pub const navigation = @embedFile("filled/navigation.tvg");
-pub const nurse = @embedFile("filled/nurse.tvg");
-pub const octagon = @embedFile("filled/octagon.tvg");
-pub const octagon_minus = @embedFile("filled/octagon-minus.tvg");
-pub const octagon_plus = @embedFile("filled/octagon-plus.tvg");
-pub const oval = @embedFile("filled/oval.tvg");
-pub const oval_vertical = @embedFile("filled/oval-vertical.tvg");
-pub const pacman = @embedFile("filled/pacman.tvg");
-pub const paint = @embedFile("filled/paint.tvg");
-pub const palette = @embedFile("filled/palette.tvg");
-pub const panorama_horizontal = @embedFile("filled/panorama-horizontal.tvg");
-pub const panorama_vertical = @embedFile("filled/panorama-vertical.tvg");
-pub const parking_circle = @embedFile("filled/parking-circle.tvg");
-pub const paw = @embedFile("filled/paw.tvg");
-pub const pencil = @embedFile("filled/pencil.tvg");
-pub const pennant = @embedFile("filled/pennant.tvg");
-pub const pennant_2 = @embedFile("filled/pennant-2.tvg");
-pub const pentagon = @embedFile("filled/pentagon.tvg");
-pub const phone = @embedFile("filled/phone.tvg");
-pub const phone_call = @embedFile("filled/phone-call.tvg");
-pub const phone_calling = @embedFile("filled/phone-calling.tvg");
-pub const phone_check = @embedFile("filled/phone-check.tvg");
-pub const phone_x = @embedFile("filled/phone-x.tvg");
-pub const photo = @embedFile("filled/photo.tvg");
-pub const picture_in_picture = @embedFile("filled/picture-in-picture.tvg");
-pub const picture_in_picture_top = @embedFile("filled/picture-in-picture-top.tvg");
-pub const pig = @embedFile("filled/pig.tvg");
-pub const pill = @embedFile("filled/pill.tvg");
-pub const pin = @embedFile("filled/pin.tvg");
-pub const pinned = @embedFile("filled/pinned.tvg");
-pub const pizza = @embedFile("filled/pizza.tvg");
-pub const plane = @embedFile("filled/plane.tvg");
-pub const plane_arrival = @embedFile("filled/plane-arrival.tvg");
-pub const plane_departure = @embedFile("filled/plane-departure.tvg");
-pub const plane_tilt = @embedFile("filled/plane-tilt.tvg");
-pub const play_card = @embedFile("filled/play-card.tvg");
-pub const play_card_1 = @embedFile("filled/play-card-1.tvg");
-pub const play_card_10 = @embedFile("filled/play-card-10.tvg");
-pub const play_card_2 = @embedFile("filled/play-card-2.tvg");
-pub const play_card_3 = @embedFile("filled/play-card-3.tvg");
-pub const play_card_4 = @embedFile("filled/play-card-4.tvg");
-pub const play_card_5 = @embedFile("filled/play-card-5.tvg");
-pub const play_card_6 = @embedFile("filled/play-card-6.tvg");
-pub const play_card_7 = @embedFile("filled/play-card-7.tvg");
-pub const play_card_8 = @embedFile("filled/play-card-8.tvg");
-pub const play_card_9 = @embedFile("filled/play-card-9.tvg");
-pub const play_card_a = @embedFile("filled/play-card-a.tvg");
-pub const play_card_j = @embedFile("filled/play-card-j.tvg");
-pub const play_card_k = @embedFile("filled/play-card-k.tvg");
-pub const play_card_q = @embedFile("filled/play-card-q.tvg");
-pub const play_card_star = @embedFile("filled/play-card-star.tvg");
-pub const player_eject = @embedFile("filled/player-eject.tvg");
-pub const player_pause = @embedFile("filled/player-pause.tvg");
-pub const player_play = @embedFile("filled/player-play.tvg");
-pub const player_record = @embedFile("filled/player-record.tvg");
-pub const player_skip_back = @embedFile("filled/player-skip-back.tvg");
-pub const player_skip_forward = @embedFile("filled/player-skip-forward.tvg");
-pub const player_stop = @embedFile("filled/player-stop.tvg");
-pub const player_track_next = @embedFile("filled/player-track-next.tvg");
-pub const player_track_prev = @embedFile("filled/player-track-prev.tvg");
-pub const playlist = @embedFile("filled/playlist.tvg");
-pub const plus = @embedFile("filled/plus.tvg");
-pub const point = @embedFile("filled/point.tvg");
-pub const pointer = @embedFile("filled/pointer.tvg");
-pub const polaroid = @embedFile("filled/polaroid.tvg");
-pub const poo = @embedFile("filled/poo.tvg");
-pub const presentation = @embedFile("filled/presentation.tvg");
-pub const presentation_analytics = @embedFile("filled/presentation-analytics.tvg");
-pub const puzzle = @embedFile("filled/puzzle.tvg");
-pub const quote = @embedFile("filled/quote.tvg");
-pub const radar = @embedFile("filled/radar.tvg");
-pub const radioactive = @embedFile("filled/radioactive.tvg");
-pub const receipt = @embedFile("filled/receipt.tvg");
-pub const receipt_dollar = @embedFile("filled/receipt-dollar.tvg");
-pub const receipt_euro = @embedFile("filled/receipt-euro.tvg");
-pub const receipt_pound = @embedFile("filled/receipt-pound.tvg");
-pub const receipt_rupee = @embedFile("filled/receipt-rupee.tvg");
-pub const receipt_yen = @embedFile("filled/receipt-yen.tvg");
-pub const receipt_yuan = @embedFile("filled/receipt-yuan.tvg");
-pub const rectangle = @embedFile("filled/rectangle.tvg");
-pub const rectangle_vertical = @embedFile("filled/rectangle-vertical.tvg");
-pub const registered = @embedFile("filled/registered.tvg");
-pub const relation_many_to_many = @embedFile("filled/relation-many-to-many.tvg");
-pub const relation_one_to_many = @embedFile("filled/relation-one-to-many.tvg");
-pub const relation_one_to_one = @embedFile("filled/relation-one-to-one.tvg");
-pub const replace = @embedFile("filled/replace.tvg");
-pub const report_analytics = @embedFile("filled/report-analytics.tvg");
-pub const report_money = @embedFile("filled/report-money.tvg");
-pub const rollercoaster = @embedFile("filled/rollercoaster.tvg");
-pub const rosette = @embedFile("filled/rosette.tvg");
-pub const rosette_discount = @embedFile("filled/rosette-discount.tvg");
-pub const rosette_discount_check = @embedFile("filled/rosette-discount-check.tvg");
-pub const salad = @embedFile("filled/salad.tvg");
-pub const satellite = @embedFile("filled/satellite.tvg");
-pub const scale = @embedFile("filled/scale.tvg");
-pub const school = @embedFile("filled/school.tvg");
-pub const scuba_diving_tank = @embedFile("filled/scuba-diving-tank.tvg");
-pub const search = @embedFile("filled/search.tvg");
-pub const section = @embedFile("filled/section.tvg");
-pub const seedling = @embedFile("filled/seedling.tvg");
-pub const send = @embedFile("filled/send.tvg");
-pub const settings = @embedFile("filled/settings.tvg");
-pub const shield = @embedFile("filled/shield.tvg");
-pub const shield_check = @embedFile("filled/shield-check.tvg");
-pub const shield_checkered = @embedFile("filled/shield-checkered.tvg");
-pub const shield_half = @embedFile("filled/shield-half.tvg");
-pub const shield_lock = @embedFile("filled/shield-lock.tvg");
-pub const shirt = @embedFile("filled/shirt.tvg");
-pub const shopping_cart = @embedFile("filled/shopping-cart.tvg");
-pub const sign_left = @embedFile("filled/sign-left.tvg");
-pub const sign_right = @embedFile("filled/sign-right.tvg");
-pub const sitemap = @embedFile("filled/sitemap.tvg");
-pub const sort_ascending_2 = @embedFile("filled/sort-ascending-2.tvg");
-pub const sort_ascending_shapes = @embedFile("filled/sort-ascending-shapes.tvg");
-pub const sort_descending_2 = @embedFile("filled/sort-descending-2.tvg");
-pub const sort_descending_shapes = @embedFile("filled/sort-descending-shapes.tvg");
-pub const soup = @embedFile("filled/soup.tvg");
-pub const spade = @embedFile("filled/spade.tvg");
-pub const sparkles = @embedFile("filled/sparkles.tvg");
-pub const sparkles_2 = @embedFile("filled/sparkles-2.tvg");
-pub const speedboat = @embedFile("filled/speedboat.tvg");
-pub const spider = @embedFile("filled/spider.tvg");
-pub const square = @embedFile("filled/square.tvg");
-pub const square_arrow_down = @embedFile("filled/square-arrow-down.tvg");
-pub const square_arrow_left = @embedFile("filled/square-arrow-left.tvg");
-pub const square_arrow_right = @embedFile("filled/square-arrow-right.tvg");
-pub const square_arrow_up = @embedFile("filled/square-arrow-up.tvg");
-pub const square_asterisk = @embedFile("filled/square-asterisk.tvg");
-pub const square_check = @embedFile("filled/square-check.tvg");
-pub const square_chevron_down = @embedFile("filled/square-chevron-down.tvg");
-pub const square_chevron_left = @embedFile("filled/square-chevron-left.tvg");
-pub const square_chevron_right = @embedFile("filled/square-chevron-right.tvg");
-pub const square_chevron_up = @embedFile("filled/square-chevron-up.tvg");
-pub const square_chevrons_down = @embedFile("filled/square-chevrons-down.tvg");
-pub const square_chevrons_left = @embedFile("filled/square-chevrons-left.tvg");
-pub const square_chevrons_right = @embedFile("filled/square-chevrons-right.tvg");
-pub const square_chevrons_up = @embedFile("filled/square-chevrons-up.tvg");
-pub const square_dot = @embedFile("filled/square-dot.tvg");
-pub const square_f0 = @embedFile("filled/square-f0.tvg");
-pub const square_f1 = @embedFile("filled/square-f1.tvg");
-pub const square_f2 = @embedFile("filled/square-f2.tvg");
-pub const square_f3 = @embedFile("filled/square-f3.tvg");
-pub const square_f4 = @embedFile("filled/square-f4.tvg");
-pub const square_f5 = @embedFile("filled/square-f5.tvg");
-pub const square_f6 = @embedFile("filled/square-f6.tvg");
-pub const square_f7 = @embedFile("filled/square-f7.tvg");
-pub const square_f8 = @embedFile("filled/square-f8.tvg");
-pub const square_f9 = @embedFile("filled/square-f9.tvg");
-pub const square_letter_a = @embedFile("filled/square-letter-a.tvg");
-pub const square_letter_b = @embedFile("filled/square-letter-b.tvg");
-pub const square_letter_c = @embedFile("filled/square-letter-c.tvg");
-pub const square_letter_d = @embedFile("filled/square-letter-d.tvg");
-pub const square_letter_e = @embedFile("filled/square-letter-e.tvg");
-pub const square_letter_f = @embedFile("filled/square-letter-f.tvg");
-pub const square_letter_g = @embedFile("filled/square-letter-g.tvg");
-pub const square_letter_h = @embedFile("filled/square-letter-h.tvg");
-pub const square_letter_i = @embedFile("filled/square-letter-i.tvg");
-pub const square_letter_j = @embedFile("filled/square-letter-j.tvg");
-pub const square_letter_k = @embedFile("filled/square-letter-k.tvg");
-pub const square_letter_l = @embedFile("filled/square-letter-l.tvg");
-pub const square_letter_m = @embedFile("filled/square-letter-m.tvg");
-pub const square_letter_n = @embedFile("filled/square-letter-n.tvg");
-pub const square_letter_o = @embedFile("filled/square-letter-o.tvg");
-pub const square_letter_p = @embedFile("filled/square-letter-p.tvg");
-pub const square_letter_q = @embedFile("filled/square-letter-q.tvg");
-pub const square_letter_r = @embedFile("filled/square-letter-r.tvg");
-pub const square_letter_s = @embedFile("filled/square-letter-s.tvg");
-pub const square_letter_t = @embedFile("filled/square-letter-t.tvg");
-pub const square_letter_u = @embedFile("filled/square-letter-u.tvg");
-pub const square_letter_v = @embedFile("filled/square-letter-v.tvg");
-pub const square_letter_w = @embedFile("filled/square-letter-w.tvg");
-pub const square_letter_x = @embedFile("filled/square-letter-x.tvg");
-pub const square_letter_y = @embedFile("filled/square-letter-y.tvg");
-pub const square_letter_z = @embedFile("filled/square-letter-z.tvg");
-pub const square_minus = @embedFile("filled/square-minus.tvg");
-pub const square_number_0 = @embedFile("filled/square-number-0.tvg");
-pub const square_number_1 = @embedFile("filled/square-number-1.tvg");
-pub const square_number_2 = @embedFile("filled/square-number-2.tvg");
-pub const square_number_3 = @embedFile("filled/square-number-3.tvg");
-pub const square_number_4 = @embedFile("filled/square-number-4.tvg");
-pub const square_number_5 = @embedFile("filled/square-number-5.tvg");
-pub const square_number_6 = @embedFile("filled/square-number-6.tvg");
-pub const square_number_7 = @embedFile("filled/square-number-7.tvg");
-pub const square_number_8 = @embedFile("filled/square-number-8.tvg");
-pub const square_number_9 = @embedFile("filled/square-number-9.tvg");
-pub const square_rotated = @embedFile("filled/square-rotated.tvg");
-pub const square_rounded = @embedFile("filled/square-rounded.tvg");
-pub const square_rounded_arrow_down = @embedFile("filled/square-rounded-arrow-down.tvg");
-pub const square_rounded_arrow_left = @embedFile("filled/square-rounded-arrow-left.tvg");
-pub const square_rounded_arrow_right = @embedFile("filled/square-rounded-arrow-right.tvg");
-pub const square_rounded_arrow_up = @embedFile("filled/square-rounded-arrow-up.tvg");
-pub const square_rounded_check = @embedFile("filled/square-rounded-check.tvg");
-pub const square_rounded_chevron_down = @embedFile("filled/square-rounded-chevron-down.tvg");
-pub const square_rounded_chevron_left = @embedFile("filled/square-rounded-chevron-left.tvg");
-pub const square_rounded_chevron_right = @embedFile("filled/square-rounded-chevron-right.tvg");
-pub const square_rounded_chevron_up = @embedFile("filled/square-rounded-chevron-up.tvg");
-pub const square_rounded_chevrons_down = @embedFile("filled/square-rounded-chevrons-down.tvg");
-pub const square_rounded_chevrons_left = @embedFile("filled/square-rounded-chevrons-left.tvg");
-pub const square_rounded_chevrons_right = @embedFile("filled/square-rounded-chevrons-right.tvg");
-pub const square_rounded_chevrons_up = @embedFile("filled/square-rounded-chevrons-up.tvg");
-pub const square_rounded_letter_a = @embedFile("filled/square-rounded-letter-a.tvg");
-pub const square_rounded_letter_b = @embedFile("filled/square-rounded-letter-b.tvg");
-pub const square_rounded_letter_c = @embedFile("filled/square-rounded-letter-c.tvg");
-pub const square_rounded_letter_d = @embedFile("filled/square-rounded-letter-d.tvg");
-pub const square_rounded_letter_e = @embedFile("filled/square-rounded-letter-e.tvg");
-pub const square_rounded_letter_f = @embedFile("filled/square-rounded-letter-f.tvg");
-pub const square_rounded_letter_g = @embedFile("filled/square-rounded-letter-g.tvg");
-pub const square_rounded_letter_h = @embedFile("filled/square-rounded-letter-h.tvg");
-pub const square_rounded_letter_i = @embedFile("filled/square-rounded-letter-i.tvg");
-pub const square_rounded_letter_j = @embedFile("filled/square-rounded-letter-j.tvg");
-pub const square_rounded_letter_k = @embedFile("filled/square-rounded-letter-k.tvg");
-pub const square_rounded_letter_l = @embedFile("filled/square-rounded-letter-l.tvg");
-pub const square_rounded_letter_m = @embedFile("filled/square-rounded-letter-m.tvg");
-pub const square_rounded_letter_n = @embedFile("filled/square-rounded-letter-n.tvg");
-pub const square_rounded_letter_o = @embedFile("filled/square-rounded-letter-o.tvg");
-pub const square_rounded_letter_p = @embedFile("filled/square-rounded-letter-p.tvg");
-pub const square_rounded_letter_q = @embedFile("filled/square-rounded-letter-q.tvg");
-pub const square_rounded_letter_r = @embedFile("filled/square-rounded-letter-r.tvg");
-pub const square_rounded_letter_s = @embedFile("filled/square-rounded-letter-s.tvg");
-pub const square_rounded_letter_t = @embedFile("filled/square-rounded-letter-t.tvg");
-pub const square_rounded_letter_u = @embedFile("filled/square-rounded-letter-u.tvg");
-pub const square_rounded_letter_v = @embedFile("filled/square-rounded-letter-v.tvg");
-pub const square_rounded_letter_w = @embedFile("filled/square-rounded-letter-w.tvg");
-pub const square_rounded_letter_x = @embedFile("filled/square-rounded-letter-x.tvg");
-pub const square_rounded_letter_y = @embedFile("filled/square-rounded-letter-y.tvg");
-pub const square_rounded_letter_z = @embedFile("filled/square-rounded-letter-z.tvg");
-pub const square_rounded_minus = @embedFile("filled/square-rounded-minus.tvg");
-pub const square_rounded_number_0 = @embedFile("filled/square-rounded-number-0.tvg");
-pub const square_rounded_number_1 = @embedFile("filled/square-rounded-number-1.tvg");
-pub const square_rounded_number_2 = @embedFile("filled/square-rounded-number-2.tvg");
-pub const square_rounded_number_3 = @embedFile("filled/square-rounded-number-3.tvg");
-pub const square_rounded_number_4 = @embedFile("filled/square-rounded-number-4.tvg");
-pub const square_rounded_number_5 = @embedFile("filled/square-rounded-number-5.tvg");
-pub const square_rounded_number_6 = @embedFile("filled/square-rounded-number-6.tvg");
-pub const square_rounded_number_7 = @embedFile("filled/square-rounded-number-7.tvg");
-pub const square_rounded_number_8 = @embedFile("filled/square-rounded-number-8.tvg");
-pub const square_rounded_number_9 = @embedFile("filled/square-rounded-number-9.tvg");
-pub const square_rounded_plus = @embedFile("filled/square-rounded-plus.tvg");
-pub const square_rounded_x = @embedFile("filled/square-rounded-x.tvg");
-pub const square_x = @embedFile("filled/square-x.tvg");
-pub const squares = @embedFile("filled/squares.tvg");
-pub const stack = @embedFile("filled/stack.tvg");
-pub const stack_2 = @embedFile("filled/stack-2.tvg");
-pub const stack_3 = @embedFile("filled/stack-3.tvg");
-pub const star = @embedFile("filled/star.tvg");
-pub const star_half = @embedFile("filled/star-half.tvg");
-pub const stars = @embedFile("filled/stars.tvg");
-pub const steering_wheel = @embedFile("filled/steering-wheel.tvg");
-pub const sun = @embedFile("filled/sun.tvg");
-pub const sun_high = @embedFile("filled/sun-high.tvg");
-pub const sun_low = @embedFile("filled/sun-low.tvg");
-pub const sunglasses = @embedFile("filled/sunglasses.tvg");
-pub const sunrise = @embedFile("filled/sunrise.tvg");
-pub const sunset = @embedFile("filled/sunset.tvg");
-pub const sunset_2 = @embedFile("filled/sunset-2.tvg");
-pub const swipe_down = @embedFile("filled/swipe-down.tvg");
-pub const swipe_left = @embedFile("filled/swipe-left.tvg");
-pub const swipe_right = @embedFile("filled/swipe-right.tvg");
-pub const swipe_up = @embedFile("filled/swipe-up.tvg");
-pub const table = @embedFile("filled/table.tvg");
-pub const tag = @embedFile("filled/tag.tvg");
-pub const tags = @embedFile("filled/tags.tvg");
-pub const temperature_minus = @embedFile("filled/temperature-minus.tvg");
-pub const temperature_plus = @embedFile("filled/temperature-plus.tvg");
-pub const template = @embedFile("filled/template.tvg");
-pub const test_pipe_2 = @embedFile("filled/test-pipe-2.tvg");
-pub const thumb_down = @embedFile("filled/thumb-down.tvg");
-pub const thumb_up = @embedFile("filled/thumb-up.tvg");
-pub const ticket = @embedFile("filled/ticket.tvg");
-pub const tilt_shift = @embedFile("filled/tilt-shift.tvg");
-pub const timeline_event = @embedFile("filled/timeline-event.tvg");
-pub const toggle_left = @embedFile("filled/toggle-left.tvg");
-pub const toggle_right = @embedFile("filled/toggle-right.tvg");
-pub const tools_kitchen_2 = @embedFile("filled/tools-kitchen-2.tvg");
-pub const train = @embedFile("filled/train.tvg");
-pub const transform = @embedFile("filled/transform.tvg");
-pub const transition_bottom = @embedFile("filled/transition-bottom.tvg");
-pub const transition_left = @embedFile("filled/transition-left.tvg");
-pub const transition_right = @embedFile("filled/transition-right.tvg");
-pub const transition_top = @embedFile("filled/transition-top.tvg");
-pub const trash = @embedFile("filled/trash.tvg");
-pub const trash_x = @embedFile("filled/trash-x.tvg");
-pub const triangle = @embedFile("filled/triangle.tvg");
-pub const triangle_inverted = @embedFile("filled/triangle-inverted.tvg");
-pub const triangle_square_circle = @embedFile("filled/triangle-square-circle.tvg");
-pub const trolley = @embedFile("filled/trolley.tvg");
-pub const trophy = @embedFile("filled/trophy.tvg");
-pub const truck = @embedFile("filled/truck.tvg");
-pub const ufo = @embedFile("filled/ufo.tvg");
-pub const umbrella = @embedFile("filled/umbrella.tvg");
-pub const user = @embedFile("filled/user.tvg");
-pub const versions = @embedFile("filled/versions.tvg");
-pub const video = @embedFile("filled/video.tvg");
-pub const video_minus = @embedFile("filled/video-minus.tvg");
-pub const video_plus = @embedFile("filled/video-plus.tvg");
-pub const windmill = @embedFile("filled/windmill.tvg");
-pub const windsock = @embedFile("filled/windsock.tvg");
-pub const woman = @embedFile("filled/woman.tvg");
-pub const world = @embedFile("filled/world.tvg");
-pub const writing = @embedFile("filled/writing.tvg");
-pub const writing_sign = @embedFile("filled/writing-sign.tvg");
-pub const x = @embedFile("filled/x.tvg");
-pub const xbox_a = @embedFile("filled/xbox-a.tvg");
-pub const xbox_b = @embedFile("filled/xbox-b.tvg");
-pub const xbox_x = @embedFile("filled/xbox-x.tvg");
-pub const xbox_y = @embedFile("filled/xbox-y.tvg");
-pub const yin_yang = @embedFile("filled/yin-yang.tvg");
-pub const zeppelin = @embedFile("filled/zeppelin.tvg");
-pub const zoom = @embedFile("filled/zoom.tvg");
-pub const zoom_cancel = @embedFile("filled/zoom-cancel.tvg");
-pub const zoom_check = @embedFile("filled/zoom-check.tvg");
-pub const zoom_code = @embedFile("filled/zoom-code.tvg");
-pub const zoom_exclamation = @embedFile("filled/zoom-exclamation.tvg");
-pub const zoom_in = @embedFile("filled/zoom-in.tvg");
-pub const zoom_in_area = @embedFile("filled/zoom-in-area.tvg");
-pub const zoom_money = @embedFile("filled/zoom-money.tvg");
-pub const zoom_out = @embedFile("filled/zoom-out.tvg");
-pub const zoom_out_area = @embedFile("filled/zoom-out-area.tvg");
-pub const zoom_pan = @embedFile("filled/zoom-pan.tvg");
-pub const zoom_question = @embedFile("filled/zoom-question.tvg");
-pub const zoom_scan = @embedFile("filled/zoom-scan.tvg");
+/// SVG source for `icon`, embedded at compile time.
+/// Only icons you reference end up in your binary (`icon` is comptime).
+fn svg(comptime icon: Filled) []const u8 {
+    return switch (icon) {
+        .accessible => @embedFile("filled/accessible.svg"),
+        .ad => @embedFile("filled/ad.svg"),
+        .ad_circle => @embedFile("filled/ad-circle.svg"),
+        .adjustments => @embedFile("filled/adjustments.svg"),
+        .adjustments_horizontal => @embedFile("filled/adjustments-horizontal.svg"),
+        .aerial_lift => @embedFile("filled/aerial-lift.svg"),
+        .affiliate => @embedFile("filled/affiliate.svg"),
+        .air_balloon => @embedFile("filled/air-balloon.svg"),
+        .alarm => @embedFile("filled/alarm.svg"),
+        .alarm_minus => @embedFile("filled/alarm-minus.svg"),
+        .alarm_plus => @embedFile("filled/alarm-plus.svg"),
+        .alarm_snooze => @embedFile("filled/alarm-snooze.svg"),
+        .alert_circle => @embedFile("filled/alert-circle.svg"),
+        .alert_hexagon => @embedFile("filled/alert-hexagon.svg"),
+        .alert_octagon => @embedFile("filled/alert-octagon.svg"),
+        .alert_square => @embedFile("filled/alert-square.svg"),
+        .alert_square_rounded => @embedFile("filled/alert-square-rounded.svg"),
+        .alert_triangle => @embedFile("filled/alert-triangle.svg"),
+        .alien => @embedFile("filled/alien.svg"),
+        .align_box_bottom_center => @embedFile("filled/align-box-bottom-center.svg"),
+        .align_box_bottom_left => @embedFile("filled/align-box-bottom-left.svg"),
+        .align_box_bottom_right => @embedFile("filled/align-box-bottom-right.svg"),
+        .align_box_center_middle => @embedFile("filled/align-box-center-middle.svg"),
+        .align_box_left_bottom => @embedFile("filled/align-box-left-bottom.svg"),
+        .align_box_left_middle => @embedFile("filled/align-box-left-middle.svg"),
+        .align_box_left_top => @embedFile("filled/align-box-left-top.svg"),
+        .align_box_right_bottom => @embedFile("filled/align-box-right-bottom.svg"),
+        .align_box_right_middle => @embedFile("filled/align-box-right-middle.svg"),
+        .align_box_right_top => @embedFile("filled/align-box-right-top.svg"),
+        .align_box_top_center => @embedFile("filled/align-box-top-center.svg"),
+        .align_box_top_left => @embedFile("filled/align-box-top-left.svg"),
+        .align_box_top_right => @embedFile("filled/align-box-top-right.svg"),
+        .analyze => @embedFile("filled/analyze.svg"),
+        .app_window => @embedFile("filled/app-window.svg"),
+        .apple => @embedFile("filled/apple.svg"),
+        .apps => @embedFile("filled/apps.svg"),
+        .archive => @embedFile("filled/archive.svg"),
+        .arrow_autofit_content => @embedFile("filled/arrow-autofit-content.svg"),
+        .arrow_autofit_down => @embedFile("filled/arrow-autofit-down.svg"),
+        .arrow_autofit_height => @embedFile("filled/arrow-autofit-height.svg"),
+        .arrow_autofit_left => @embedFile("filled/arrow-autofit-left.svg"),
+        .arrow_autofit_right => @embedFile("filled/arrow-autofit-right.svg"),
+        .arrow_autofit_up => @embedFile("filled/arrow-autofit-up.svg"),
+        .arrow_autofit_width => @embedFile("filled/arrow-autofit-width.svg"),
+        .arrow_badge_down => @embedFile("filled/arrow-badge-down.svg"),
+        .arrow_badge_left => @embedFile("filled/arrow-badge-left.svg"),
+        .arrow_badge_right => @embedFile("filled/arrow-badge-right.svg"),
+        .arrow_badge_up => @embedFile("filled/arrow-badge-up.svg"),
+        .arrow_big_down => @embedFile("filled/arrow-big-down.svg"),
+        .arrow_big_down_line => @embedFile("filled/arrow-big-down-line.svg"),
+        .arrow_big_down_lines => @embedFile("filled/arrow-big-down-lines.svg"),
+        .arrow_big_left => @embedFile("filled/arrow-big-left.svg"),
+        .arrow_big_left_line => @embedFile("filled/arrow-big-left-line.svg"),
+        .arrow_big_left_lines => @embedFile("filled/arrow-big-left-lines.svg"),
+        .arrow_big_right => @embedFile("filled/arrow-big-right.svg"),
+        .arrow_big_right_line => @embedFile("filled/arrow-big-right-line.svg"),
+        .arrow_big_right_lines => @embedFile("filled/arrow-big-right-lines.svg"),
+        .arrow_big_up => @embedFile("filled/arrow-big-up.svg"),
+        .arrow_big_up_line => @embedFile("filled/arrow-big-up-line.svg"),
+        .arrow_big_up_lines => @embedFile("filled/arrow-big-up-lines.svg"),
+        .arrow_down_circle => @embedFile("filled/arrow-down-circle.svg"),
+        .arrow_down_rhombus => @embedFile("filled/arrow-down-rhombus.svg"),
+        .arrow_down_square => @embedFile("filled/arrow-down-square.svg"),
+        .arrow_guide => @embedFile("filled/arrow-guide.svg"),
+        .arrow_left_circle => @embedFile("filled/arrow-left-circle.svg"),
+        .arrow_left_rhombus => @embedFile("filled/arrow-left-rhombus.svg"),
+        .arrow_left_square => @embedFile("filled/arrow-left-square.svg"),
+        .arrow_move_down => @embedFile("filled/arrow-move-down.svg"),
+        .arrow_move_left => @embedFile("filled/arrow-move-left.svg"),
+        .arrow_move_right => @embedFile("filled/arrow-move-right.svg"),
+        .arrow_move_up => @embedFile("filled/arrow-move-up.svg"),
+        .arrow_right_circle => @embedFile("filled/arrow-right-circle.svg"),
+        .arrow_right_rhombus => @embedFile("filled/arrow-right-rhombus.svg"),
+        .arrow_right_square => @embedFile("filled/arrow-right-square.svg"),
+        .arrow_up_circle => @embedFile("filled/arrow-up-circle.svg"),
+        .arrow_up_rhombus => @embedFile("filled/arrow-up-rhombus.svg"),
+        .arrow_up_square => @embedFile("filled/arrow-up-square.svg"),
+        .artboard => @embedFile("filled/artboard.svg"),
+        .article => @embedFile("filled/article.svg"),
+        .aspect_ratio => @embedFile("filled/aspect-ratio.svg"),
+        .assembly => @embedFile("filled/assembly.svg"),
+        .asset => @embedFile("filled/asset.svg"),
+        .atom_2 => @embedFile("filled/atom-2.svg"),
+        .automatic_gearbox => @embedFile("filled/automatic-gearbox.svg"),
+        .award => @embedFile("filled/award.svg"),
+        .baby_carriage => @embedFile("filled/baby-carriage.svg"),
+        .backspace => @embedFile("filled/backspace.svg"),
+        .badge => @embedFile("filled/badge.svg"),
+        .badge_3d => @embedFile("filled/badge-3d.svg"),
+        .badge_4k => @embedFile("filled/badge-4k.svg"),
+        .badge_8k => @embedFile("filled/badge-8k.svg"),
+        .badge_ad => @embedFile("filled/badge-ad.svg"),
+        .badge_ar => @embedFile("filled/badge-ar.svg"),
+        .badge_cc => @embedFile("filled/badge-cc.svg"),
+        .badge_hd => @embedFile("filled/badge-hd.svg"),
+        .badge_sd => @embedFile("filled/badge-sd.svg"),
+        .badge_tm => @embedFile("filled/badge-tm.svg"),
+        .badge_vo => @embedFile("filled/badge-vo.svg"),
+        .badge_vr => @embedFile("filled/badge-vr.svg"),
+        .badge_wc => @embedFile("filled/badge-wc.svg"),
+        .badges => @embedFile("filled/badges.svg"),
+        .ball_bowling => @embedFile("filled/ball-bowling.svg"),
+        .balloon => @embedFile("filled/balloon.svg"),
+        .ballpen => @embedFile("filled/ballpen.svg"),
+        .bandage => @embedFile("filled/bandage.svg"),
+        .barbell => @embedFile("filled/barbell.svg"),
+        .barrier_block => @embedFile("filled/barrier-block.svg"),
+        .basket => @embedFile("filled/basket.svg"),
+        .bath => @embedFile("filled/bath.svg"),
+        .battery => @embedFile("filled/battery.svg"),
+        .battery_1 => @embedFile("filled/battery-1.svg"),
+        .battery_2 => @embedFile("filled/battery-2.svg"),
+        .battery_3 => @embedFile("filled/battery-3.svg"),
+        .battery_4 => @embedFile("filled/battery-4.svg"),
+        .battery_automotive => @embedFile("filled/battery-automotive.svg"),
+        .battery_vertical => @embedFile("filled/battery-vertical.svg"),
+        .battery_vertical_1 => @embedFile("filled/battery-vertical-1.svg"),
+        .battery_vertical_2 => @embedFile("filled/battery-vertical-2.svg"),
+        .battery_vertical_3 => @embedFile("filled/battery-vertical-3.svg"),
+        .battery_vertical_4 => @embedFile("filled/battery-vertical-4.svg"),
+        .bed => @embedFile("filled/bed.svg"),
+        .bed_flat => @embedFile("filled/bed-flat.svg"),
+        .beer => @embedFile("filled/beer.svg"),
+        .bell => @embedFile("filled/bell.svg"),
+        .bell_minus => @embedFile("filled/bell-minus.svg"),
+        .bell_plus => @embedFile("filled/bell-plus.svg"),
+        .bell_ringing => @embedFile("filled/bell-ringing.svg"),
+        .bell_ringing_2 => @embedFile("filled/bell-ringing-2.svg"),
+        .bell_x => @embedFile("filled/bell-x.svg"),
+        .bell_z => @embedFile("filled/bell-z.svg"),
+        .bike => @embedFile("filled/bike.svg"),
+        .binary_tree => @embedFile("filled/binary-tree.svg"),
+        .binary_tree_2 => @embedFile("filled/binary-tree-2.svg"),
+        .binoculars => @embedFile("filled/binoculars.svg"),
+        .biohazard => @embedFile("filled/biohazard.svg"),
+        .blade => @embedFile("filled/blade.svg"),
+        .blender => @embedFile("filled/blender.svg"),
+        .blob => @embedFile("filled/blob.svg"),
+        .bolt => @embedFile("filled/bolt.svg"),
+        .bomb => @embedFile("filled/bomb.svg"),
+        .bone => @embedFile("filled/bone.svg"),
+        .bong => @embedFile("filled/bong.svg"),
+        .book => @embedFile("filled/book.svg"),
+        .bookmark => @embedFile("filled/bookmark.svg"),
+        .bookmarks => @embedFile("filled/bookmarks.svg"),
+        .boom => @embedFile("filled/boom.svg"),
+        .bottle => @embedFile("filled/bottle.svg"),
+        .bounce_left => @embedFile("filled/bounce-left.svg"),
+        .bounce_right => @embedFile("filled/bounce-right.svg"),
+        .bow => @embedFile("filled/bow.svg"),
+        .bowl => @embedFile("filled/bowl.svg"),
+        .bowl_chopsticks => @embedFile("filled/bowl-chopsticks.svg"),
+        .bowl_spoon => @embedFile("filled/bowl-spoon.svg"),
+        .box_align_bottom => @embedFile("filled/box-align-bottom.svg"),
+        .box_align_bottom_left => @embedFile("filled/box-align-bottom-left.svg"),
+        .box_align_bottom_right => @embedFile("filled/box-align-bottom-right.svg"),
+        .box_align_left => @embedFile("filled/box-align-left.svg"),
+        .box_align_right => @embedFile("filled/box-align-right.svg"),
+        .box_align_top => @embedFile("filled/box-align-top.svg"),
+        .box_align_top_left => @embedFile("filled/box-align-top-left.svg"),
+        .box_align_top_right => @embedFile("filled/box-align-top-right.svg"),
+        .box_multiple => @embedFile("filled/box-multiple.svg"),
+        .brand_angular => @embedFile("filled/brand-angular.svg"),
+        .brand_apple => @embedFile("filled/brand-apple.svg"),
+        .brand_bitbucket => @embedFile("filled/brand-bitbucket.svg"),
+        .brand_discord => @embedFile("filled/brand-discord.svg"),
+        .brand_dribbble => @embedFile("filled/brand-dribbble.svg"),
+        .brand_facebook => @embedFile("filled/brand-facebook.svg"),
+        .brand_github => @embedFile("filled/brand-github.svg"),
+        .brand_google => @embedFile("filled/brand-google.svg"),
+        .brand_instagram => @embedFile("filled/brand-instagram.svg"),
+        .brand_kick => @embedFile("filled/brand-kick.svg"),
+        .brand_linkedin => @embedFile("filled/brand-linkedin.svg"),
+        .brand_messenger => @embedFile("filled/brand-messenger.svg"),
+        .brand_open_source => @embedFile("filled/brand-open-source.svg"),
+        .brand_opera => @embedFile("filled/brand-opera.svg"),
+        .brand_patreon => @embedFile("filled/brand-patreon.svg"),
+        .brand_paypal => @embedFile("filled/brand-paypal.svg"),
+        .brand_pinterest => @embedFile("filled/brand-pinterest.svg"),
+        .brand_signal => @embedFile("filled/brand-signal.svg"),
+        .brand_sketch => @embedFile("filled/brand-sketch.svg"),
+        .brand_snapchat => @embedFile("filled/brand-snapchat.svg"),
+        .brand_spotify => @embedFile("filled/brand-spotify.svg"),
+        .brand_steam => @embedFile("filled/brand-steam.svg"),
+        .brand_stripe => @embedFile("filled/brand-stripe.svg"),
+        .brand_tabler => @embedFile("filled/brand-tabler.svg"),
+        .brand_tiktok => @embedFile("filled/brand-tiktok.svg"),
+        .brand_tinder => @embedFile("filled/brand-tinder.svg"),
+        .brand_tumblr => @embedFile("filled/brand-tumblr.svg"),
+        .brand_twitter => @embedFile("filled/brand-twitter.svg"),
+        .brand_vercel => @embedFile("filled/brand-vercel.svg"),
+        .brand_vimeo => @embedFile("filled/brand-vimeo.svg"),
+        .brand_weibo => @embedFile("filled/brand-weibo.svg"),
+        .brand_whatsapp => @embedFile("filled/brand-whatsapp.svg"),
+        .brand_windows => @embedFile("filled/brand-windows.svg"),
+        .brand_x => @embedFile("filled/brand-x.svg"),
+        .brand_youtube => @embedFile("filled/brand-youtube.svg"),
+        .bread => @embedFile("filled/bread.svg"),
+        .briefcase => @embedFile("filled/briefcase.svg"),
+        .briefcase_2 => @embedFile("filled/briefcase-2.svg"),
+        .brightness => @embedFile("filled/brightness.svg"),
+        .brightness_auto => @embedFile("filled/brightness-auto.svg"),
+        .brightness_down => @embedFile("filled/brightness-down.svg"),
+        .brightness_up => @embedFile("filled/brightness-up.svg"),
+        .bubble => @embedFile("filled/bubble.svg"),
+        .bubble_text => @embedFile("filled/bubble-text.svg"),
+        .bug => @embedFile("filled/bug.svg"),
+        .building_bridge_2 => @embedFile("filled/building-bridge-2.svg"),
+        .building_broadcast_tower => @embedFile("filled/building-broadcast-tower.svg"),
+        .bulb => @embedFile("filled/bulb.svg"),
+        .bus => @embedFile("filled/bus.svg"),
+        .butterfly => @embedFile("filled/butterfly.svg"),
+        .cactus => @embedFile("filled/cactus.svg"),
+        .calculator => @embedFile("filled/calculator.svg"),
+        .calendar => @embedFile("filled/calendar.svg"),
+        .calendar_event => @embedFile("filled/calendar-event.svg"),
+        .calendar_month => @embedFile("filled/calendar-month.svg"),
+        .calendar_week => @embedFile("filled/calendar-week.svg"),
+        .camera => @embedFile("filled/camera.svg"),
+        .campfire => @embedFile("filled/campfire.svg"),
+        .candle => @embedFile("filled/candle.svg"),
+        .cannabis => @embedFile("filled/cannabis.svg"),
+        .capsule => @embedFile("filled/capsule.svg"),
+        .capsule_horizontal => @embedFile("filled/capsule-horizontal.svg"),
+        .capture => @embedFile("filled/capture.svg"),
+        .car => @embedFile("filled/car.svg"),
+        .car_4wd => @embedFile("filled/car-4wd.svg"),
+        .car_crane => @embedFile("filled/car-crane.svg"),
+        .car_fan => @embedFile("filled/car-fan.svg"),
+        .car_suv => @embedFile("filled/car-suv.svg"),
+        .carambola => @embedFile("filled/carambola.svg"),
+        .caravan => @embedFile("filled/caravan.svg"),
+        .cardboards => @embedFile("filled/cardboards.svg"),
+        .cards => @embedFile("filled/cards.svg"),
+        .caret_down => @embedFile("filled/caret-down.svg"),
+        .caret_left => @embedFile("filled/caret-left.svg"),
+        .caret_left_right => @embedFile("filled/caret-left-right.svg"),
+        .caret_right => @embedFile("filled/caret-right.svg"),
+        .caret_up => @embedFile("filled/caret-up.svg"),
+        .caret_up_down => @embedFile("filled/caret-up-down.svg"),
+        .carousel_horizontal => @embedFile("filled/carousel-horizontal.svg"),
+        .carousel_vertical => @embedFile("filled/carousel-vertical.svg"),
+        .cash_banknote => @embedFile("filled/cash-banknote.svg"),
+        .category => @embedFile("filled/category.svg"),
+        .charging_pile => @embedFile("filled/charging-pile.svg"),
+        .chart_area => @embedFile("filled/chart-area.svg"),
+        .chart_area_line => @embedFile("filled/chart-area-line.svg"),
+        .chart_bubble => @embedFile("filled/chart-bubble.svg"),
+        .chart_candle => @embedFile("filled/chart-candle.svg"),
+        .chart_donut => @embedFile("filled/chart-donut.svg"),
+        .chart_dots => @embedFile("filled/chart-dots.svg"),
+        .chart_dots_2 => @embedFile("filled/chart-dots-2.svg"),
+        .chart_dots_3 => @embedFile("filled/chart-dots-3.svg"),
+        .chart_funnel => @embedFile("filled/chart-funnel.svg"),
+        .chart_grid_dots => @embedFile("filled/chart-grid-dots.svg"),
+        .chart_pie => @embedFile("filled/chart-pie.svg"),
+        .chart_pie_2 => @embedFile("filled/chart-pie-2.svg"),
+        .chart_pie_3 => @embedFile("filled/chart-pie-3.svg"),
+        .chart_pie_4 => @embedFile("filled/chart-pie-4.svg"),
+        .check => @embedFile("filled/check.svg"),
+        .chef_hat => @embedFile("filled/chef-hat.svg"),
+        .cherry => @embedFile("filled/cherry.svg"),
+        .chess => @embedFile("filled/chess.svg"),
+        .chess_bishop => @embedFile("filled/chess-bishop.svg"),
+        .chess_king => @embedFile("filled/chess-king.svg"),
+        .chess_knight => @embedFile("filled/chess-knight.svg"),
+        .chess_queen => @embedFile("filled/chess-queen.svg"),
+        .chess_rook => @embedFile("filled/chess-rook.svg"),
+        .chevron_down => @embedFile("filled/chevron-down.svg"),
+        .chevron_right => @embedFile("filled/chevron-right.svg"),
+        .christmas_tree => @embedFile("filled/christmas-tree.svg"),
+        .circle => @embedFile("filled/circle.svg"),
+        .circle_arrow_down => @embedFile("filled/circle-arrow-down.svg"),
+        .circle_arrow_down_left => @embedFile("filled/circle-arrow-down-left.svg"),
+        .circle_arrow_down_right => @embedFile("filled/circle-arrow-down-right.svg"),
+        .circle_arrow_left => @embedFile("filled/circle-arrow-left.svg"),
+        .circle_arrow_right => @embedFile("filled/circle-arrow-right.svg"),
+        .circle_arrow_up => @embedFile("filled/circle-arrow-up.svg"),
+        .circle_arrow_up_left => @embedFile("filled/circle-arrow-up-left.svg"),
+        .circle_arrow_up_right => @embedFile("filled/circle-arrow-up-right.svg"),
+        .circle_caret_down => @embedFile("filled/circle-caret-down.svg"),
+        .circle_caret_left => @embedFile("filled/circle-caret-left.svg"),
+        .circle_caret_right => @embedFile("filled/circle-caret-right.svg"),
+        .circle_caret_up => @embedFile("filled/circle-caret-up.svg"),
+        .circle_check => @embedFile("filled/circle-check.svg"),
+        .circle_chevron_down => @embedFile("filled/circle-chevron-down.svg"),
+        .circle_chevron_left => @embedFile("filled/circle-chevron-left.svg"),
+        .circle_chevron_right => @embedFile("filled/circle-chevron-right.svg"),
+        .circle_chevron_up => @embedFile("filled/circle-chevron-up.svg"),
+        .circle_chevrons_down => @embedFile("filled/circle-chevrons-down.svg"),
+        .circle_chevrons_left => @embedFile("filled/circle-chevrons-left.svg"),
+        .circle_chevrons_right => @embedFile("filled/circle-chevrons-right.svg"),
+        .circle_chevrons_up => @embedFile("filled/circle-chevrons-up.svg"),
+        .circle_dot => @embedFile("filled/circle-dot.svg"),
+        .circle_key => @embedFile("filled/circle-key.svg"),
+        .circle_letter_a => @embedFile("filled/circle-letter-a.svg"),
+        .circle_letter_b => @embedFile("filled/circle-letter-b.svg"),
+        .circle_letter_c => @embedFile("filled/circle-letter-c.svg"),
+        .circle_letter_d => @embedFile("filled/circle-letter-d.svg"),
+        .circle_letter_e => @embedFile("filled/circle-letter-e.svg"),
+        .circle_letter_f => @embedFile("filled/circle-letter-f.svg"),
+        .circle_letter_g => @embedFile("filled/circle-letter-g.svg"),
+        .circle_letter_h => @embedFile("filled/circle-letter-h.svg"),
+        .circle_letter_i => @embedFile("filled/circle-letter-i.svg"),
+        .circle_letter_j => @embedFile("filled/circle-letter-j.svg"),
+        .circle_letter_k => @embedFile("filled/circle-letter-k.svg"),
+        .circle_letter_l => @embedFile("filled/circle-letter-l.svg"),
+        .circle_letter_m => @embedFile("filled/circle-letter-m.svg"),
+        .circle_letter_n => @embedFile("filled/circle-letter-n.svg"),
+        .circle_letter_o => @embedFile("filled/circle-letter-o.svg"),
+        .circle_letter_p => @embedFile("filled/circle-letter-p.svg"),
+        .circle_letter_q => @embedFile("filled/circle-letter-q.svg"),
+        .circle_letter_r => @embedFile("filled/circle-letter-r.svg"),
+        .circle_letter_s => @embedFile("filled/circle-letter-s.svg"),
+        .circle_letter_t => @embedFile("filled/circle-letter-t.svg"),
+        .circle_letter_u => @embedFile("filled/circle-letter-u.svg"),
+        .circle_letter_v => @embedFile("filled/circle-letter-v.svg"),
+        .circle_letter_w => @embedFile("filled/circle-letter-w.svg"),
+        .circle_letter_x => @embedFile("filled/circle-letter-x.svg"),
+        .circle_letter_y => @embedFile("filled/circle-letter-y.svg"),
+        .circle_letter_z => @embedFile("filled/circle-letter-z.svg"),
+        .circle_number_0 => @embedFile("filled/circle-number-0.svg"),
+        .circle_number_1 => @embedFile("filled/circle-number-1.svg"),
+        .circle_number_2 => @embedFile("filled/circle-number-2.svg"),
+        .circle_number_3 => @embedFile("filled/circle-number-3.svg"),
+        .circle_number_4 => @embedFile("filled/circle-number-4.svg"),
+        .circle_number_5 => @embedFile("filled/circle-number-5.svg"),
+        .circle_number_6 => @embedFile("filled/circle-number-6.svg"),
+        .circle_number_7 => @embedFile("filled/circle-number-7.svg"),
+        .circle_number_8 => @embedFile("filled/circle-number-8.svg"),
+        .circle_number_9 => @embedFile("filled/circle-number-9.svg"),
+        .circle_percentage => @embedFile("filled/circle-percentage.svg"),
+        .circle_plus => @embedFile("filled/circle-plus.svg"),
+        .circle_rectangle => @embedFile("filled/circle-rectangle.svg"),
+        .circle_x => @embedFile("filled/circle-x.svg"),
+        .circles => @embedFile("filled/circles.svg"),
+        .click => @embedFile("filled/click.svg"),
+        .clipboard => @embedFile("filled/clipboard.svg"),
+        .clipboard_check => @embedFile("filled/clipboard-check.svg"),
+        .clipboard_data => @embedFile("filled/clipboard-data.svg"),
+        .clipboard_list => @embedFile("filled/clipboard-list.svg"),
+        .clipboard_plus => @embedFile("filled/clipboard-plus.svg"),
+        .clipboard_smile => @embedFile("filled/clipboard-smile.svg"),
+        .clipboard_text => @embedFile("filled/clipboard-text.svg"),
+        .clipboard_typography => @embedFile("filled/clipboard-typography.svg"),
+        .clipboard_x => @embedFile("filled/clipboard-x.svg"),
+        .clock => @embedFile("filled/clock.svg"),
+        .clock_hour_1 => @embedFile("filled/clock-hour-1.svg"),
+        .clock_hour_10 => @embedFile("filled/clock-hour-10.svg"),
+        .clock_hour_11 => @embedFile("filled/clock-hour-11.svg"),
+        .clock_hour_12 => @embedFile("filled/clock-hour-12.svg"),
+        .clock_hour_2 => @embedFile("filled/clock-hour-2.svg"),
+        .clock_hour_3 => @embedFile("filled/clock-hour-3.svg"),
+        .clock_hour_4 => @embedFile("filled/clock-hour-4.svg"),
+        .clock_hour_5 => @embedFile("filled/clock-hour-5.svg"),
+        .clock_hour_6 => @embedFile("filled/clock-hour-6.svg"),
+        .clock_hour_7 => @embedFile("filled/clock-hour-7.svg"),
+        .clock_hour_8 => @embedFile("filled/clock-hour-8.svg"),
+        .clock_hour_9 => @embedFile("filled/clock-hour-9.svg"),
+        .cloud => @embedFile("filled/cloud.svg"),
+        .cloud_computing => @embedFile("filled/cloud-computing.svg"),
+        .cloud_data_connection => @embedFile("filled/cloud-data-connection.svg"),
+        .clover => @embedFile("filled/clover.svg"),
+        .clubs => @embedFile("filled/clubs.svg"),
+        .code_circle => @embedFile("filled/code-circle.svg"),
+        .code_circle_2 => @embedFile("filled/code-circle-2.svg"),
+        .coin => @embedFile("filled/coin.svg"),
+        .coin_bitcoin => @embedFile("filled/coin-bitcoin.svg"),
+        .coin_euro => @embedFile("filled/coin-euro.svg"),
+        .coin_monero => @embedFile("filled/coin-monero.svg"),
+        .coin_pound => @embedFile("filled/coin-pound.svg"),
+        .coin_rupee => @embedFile("filled/coin-rupee.svg"),
+        .coin_taka => @embedFile("filled/coin-taka.svg"),
+        .coin_yen => @embedFile("filled/coin-yen.svg"),
+        .coin_yuan => @embedFile("filled/coin-yuan.svg"),
+        .columns_1 => @embedFile("filled/columns-1.svg"),
+        .columns_2 => @embedFile("filled/columns-2.svg"),
+        .columns_3 => @embedFile("filled/columns-3.svg"),
+        .compass => @embedFile("filled/compass.svg"),
+        .cone => @embedFile("filled/cone.svg"),
+        .cone_2 => @embedFile("filled/cone-2.svg"),
+        .confetti => @embedFile("filled/confetti.svg"),
+        .container => @embedFile("filled/container.svg"),
+        .contrast => @embedFile("filled/contrast.svg"),
+        .contrast_2 => @embedFile("filled/contrast-2.svg"),
+        .cookie => @embedFile("filled/cookie.svg"),
+        .cookie_man => @embedFile("filled/cookie-man.svg"),
+        .copy => @embedFile("filled/copy.svg"),
+        .copy_check => @embedFile("filled/copy-check.svg"),
+        .copy_minus => @embedFile("filled/copy-minus.svg"),
+        .copy_plus => @embedFile("filled/copy-plus.svg"),
+        .copy_x => @embedFile("filled/copy-x.svg"),
+        .copyleft => @embedFile("filled/copyleft.svg"),
+        .copyright => @embedFile("filled/copyright.svg"),
+        .credit_card => @embedFile("filled/credit-card.svg"),
+        .crop_16_9 => @embedFile("filled/crop-16-9.svg"),
+        .crop_1_1 => @embedFile("filled/crop-1-1.svg"),
+        .crop_3_2 => @embedFile("filled/crop-3-2.svg"),
+        .crop_5_4 => @embedFile("filled/crop-5-4.svg"),
+        .crop_7_5 => @embedFile("filled/crop-7-5.svg"),
+        .crop_landscape => @embedFile("filled/crop-landscape.svg"),
+        .crop_portrait => @embedFile("filled/crop-portrait.svg"),
+        .cross => @embedFile("filled/cross.svg"),
+        .crown => @embedFile("filled/crown.svg"),
+        .current_location => @embedFile("filled/current-location.svg"),
+        .dashboard => @embedFile("filled/dashboard.svg"),
+        .database => @embedFile("filled/database.svg"),
+        .device_cctv => @embedFile("filled/device-cctv.svg"),
+        .device_desktop => @embedFile("filled/device-desktop.svg"),
+        .device_floppy => @embedFile("filled/device-floppy.svg"),
+        .device_gamepad => @embedFile("filled/device-gamepad.svg"),
+        .device_gamepad_2 => @embedFile("filled/device-gamepad-2.svg"),
+        .device_gamepad_3 => @embedFile("filled/device-gamepad-3.svg"),
+        .device_heart_monitor => @embedFile("filled/device-heart-monitor.svg"),
+        .device_imac => @embedFile("filled/device-imac.svg"),
+        .device_ipad => @embedFile("filled/device-ipad.svg"),
+        .device_mobile => @embedFile("filled/device-mobile.svg"),
+        .device_remote => @embedFile("filled/device-remote.svg"),
+        .device_speaker => @embedFile("filled/device-speaker.svg"),
+        .device_tablet => @embedFile("filled/device-tablet.svg"),
+        .device_tv => @embedFile("filled/device-tv.svg"),
+        .device_tv_old => @embedFile("filled/device-tv-old.svg"),
+        .device_unknown => @embedFile("filled/device-unknown.svg"),
+        .device_usb => @embedFile("filled/device-usb.svg"),
+        .device_vision_pro => @embedFile("filled/device-vision-pro.svg"),
+        .device_watch => @embedFile("filled/device-watch.svg"),
+        .dialpad => @embedFile("filled/dialpad.svg"),
+        .diamond => @embedFile("filled/diamond.svg"),
+        .diamonds => @embedFile("filled/diamonds.svg"),
+        .dice => @embedFile("filled/dice.svg"),
+        .dice_1 => @embedFile("filled/dice-1.svg"),
+        .dice_2 => @embedFile("filled/dice-2.svg"),
+        .dice_3 => @embedFile("filled/dice-3.svg"),
+        .dice_4 => @embedFile("filled/dice-4.svg"),
+        .dice_5 => @embedFile("filled/dice-5.svg"),
+        .dice_6 => @embedFile("filled/dice-6.svg"),
+        .direction_arrows => @embedFile("filled/direction-arrows.svg"),
+        .direction_sign => @embedFile("filled/direction-sign.svg"),
+        .directions => @embedFile("filled/directions.svg"),
+        .disc => @embedFile("filled/disc.svg"),
+        .discount => @embedFile("filled/discount.svg"),
+        .dots => @embedFile("filled/dots.svg"),
+        .dots_vertical => @embedFile("filled/dots-vertical.svg"),
+        .download => @embedFile("filled/download.svg"),
+        .drop_circle => @embedFile("filled/drop-circle.svg"),
+        .droplet => @embedFile("filled/droplet.svg"),
+        .droplet_half => @embedFile("filled/droplet-half.svg"),
+        .droplet_half_2 => @embedFile("filled/droplet-half-2.svg"),
+        .droplets => @embedFile("filled/droplets.svg"),
+        .dual_screen => @embedFile("filled/dual-screen.svg"),
+        .dumpling => @embedFile("filled/dumpling.svg"),
+        .ease_in_control_point => @embedFile("filled/ease-in-control-point.svg"),
+        .ease_in_out_control_points => @embedFile("filled/ease-in-out-control-points.svg"),
+        .ease_out_control_point => @embedFile("filled/ease-out-control-point.svg"),
+        .edit => @embedFile("filled/edit.svg"),
+        .egg => @embedFile("filled/egg.svg"),
+        .egg_cracked => @embedFile("filled/egg-cracked.svg"),
+        .egg_fried => @embedFile("filled/egg-fried.svg"),
+        .elevator => @embedFile("filled/elevator.svg"),
+        .engine => @embedFile("filled/engine.svg"),
+        .escalator => @embedFile("filled/escalator.svg"),
+        .escalator_down => @embedFile("filled/escalator-down.svg"),
+        .escalator_up => @embedFile("filled/escalator-up.svg"),
+        .exchange => @embedFile("filled/exchange.svg"),
+        .exclamation_circle => @embedFile("filled/exclamation-circle.svg"),
+        .explicit => @embedFile("filled/explicit.svg"),
+        .exposure => @embedFile("filled/exposure.svg"),
+        .external_link => @embedFile("filled/external-link.svg"),
+        .eye => @embedFile("filled/eye.svg"),
+        .eye_table => @embedFile("filled/eye-table.svg"),
+        .eyeglass => @embedFile("filled/eyeglass.svg"),
+        .eyeglass_2 => @embedFile("filled/eyeglass-2.svg"),
+        .face_mask => @embedFile("filled/face-mask.svg"),
+        .favicon => @embedFile("filled/favicon.svg"),
+        .feather => @embedFile("filled/feather.svg"),
+        .fence => @embedFile("filled/fence.svg"),
+        .ferry => @embedFile("filled/ferry.svg"),
+        .fidget_spinner => @embedFile("filled/fidget-spinner.svg"),
+        .file => @embedFile("filled/file.svg"),
+        .file_analytics => @embedFile("filled/file-analytics.svg"),
+        .file_check => @embedFile("filled/file-check.svg"),
+        .file_code => @embedFile("filled/file-code.svg"),
+        .file_code_2 => @embedFile("filled/file-code-2.svg"),
+        .file_cv => @embedFile("filled/file-cv.svg"),
+        .file_delta => @embedFile("filled/file-delta.svg"),
+        .file_description => @embedFile("filled/file-description.svg"),
+        .file_diff => @embedFile("filled/file-diff.svg"),
+        .file_digit => @embedFile("filled/file-digit.svg"),
+        .file_dollar => @embedFile("filled/file-dollar.svg"),
+        .file_dots => @embedFile("filled/file-dots.svg"),
+        .file_download => @embedFile("filled/file-download.svg"),
+        .file_euro => @embedFile("filled/file-euro.svg"),
+        .file_function => @embedFile("filled/file-function.svg"),
+        .file_horizontal => @embedFile("filled/file-horizontal.svg"),
+        .file_info => @embedFile("filled/file-info.svg"),
+        .file_invoice => @embedFile("filled/file-invoice.svg"),
+        .file_lambda => @embedFile("filled/file-lambda.svg"),
+        .file_minus => @embedFile("filled/file-minus.svg"),
+        .file_music => @embedFile("filled/file-music.svg"),
+        .file_neutral => @embedFile("filled/file-neutral.svg"),
+        .file_pencil => @embedFile("filled/file-pencil.svg"),
+        .file_percent => @embedFile("filled/file-percent.svg"),
+        .file_phone => @embedFile("filled/file-phone.svg"),
+        .file_power => @embedFile("filled/file-power.svg"),
+        .file_rss => @embedFile("filled/file-rss.svg"),
+        .file_sad => @embedFile("filled/file-sad.svg"),
+        .file_scissors => @embedFile("filled/file-scissors.svg"),
+        .file_settings => @embedFile("filled/file-settings.svg"),
+        .file_signal => @embedFile("filled/file-signal.svg"),
+        .file_smile => @embedFile("filled/file-smile.svg"),
+        .file_star => @embedFile("filled/file-star.svg"),
+        .file_text => @embedFile("filled/file-text.svg"),
+        .file_time => @embedFile("filled/file-time.svg"),
+        .file_typography => @embedFile("filled/file-typography.svg"),
+        .file_unknown => @embedFile("filled/file-unknown.svg"),
+        .file_upload => @embedFile("filled/file-upload.svg"),
+        .file_vector => @embedFile("filled/file-vector.svg"),
+        .file_x => @embedFile("filled/file-x.svg"),
+        .files => @embedFile("filled/files.svg"),
+        .filter => @embedFile("filled/filter.svg"),
+        .filters => @embedFile("filled/filters.svg"),
+        .fish_bone => @embedFile("filled/fish-bone.svg"),
+        .flag => @embedFile("filled/flag.svg"),
+        .flag_2 => @embedFile("filled/flag-2.svg"),
+        .flag_3 => @embedFile("filled/flag-3.svg"),
+        .flame => @embedFile("filled/flame.svg"),
+        .flare => @embedFile("filled/flare.svg"),
+        .flask => @embedFile("filled/flask.svg"),
+        .flask_2 => @embedFile("filled/flask-2.svg"),
+        .flower => @embedFile("filled/flower.svg"),
+        .folder => @embedFile("filled/folder.svg"),
+        .folder_open => @embedFile("filled/folder-open.svg"),
+        .folders => @embedFile("filled/folders.svg"),
+        .forbid => @embedFile("filled/forbid.svg"),
+        .forbid_2 => @embedFile("filled/forbid-2.svg"),
+        .fountain => @embedFile("filled/fountain.svg"),
+        .function => @embedFile("filled/function.svg"),
+        .garden_cart => @embedFile("filled/garden-cart.svg"),
+        .gas_station => @embedFile("filled/gas-station.svg"),
+        .gauge => @embedFile("filled/gauge.svg"),
+        .ghost => @embedFile("filled/ghost.svg"),
+        .ghost_2 => @embedFile("filled/ghost-2.svg"),
+        .ghost_3 => @embedFile("filled/ghost-3.svg"),
+        .gift => @embedFile("filled/gift.svg"),
+        .gift_card => @embedFile("filled/gift-card.svg"),
+        .glass => @embedFile("filled/glass.svg"),
+        .glass_full => @embedFile("filled/glass-full.svg"),
+        .globe => @embedFile("filled/globe.svg"),
+        .golf => @embedFile("filled/golf.svg"),
+        .gps => @embedFile("filled/gps.svg"),
+        .graph => @embedFile("filled/graph.svg"),
+        .grid_pattern => @embedFile("filled/grid-pattern.svg"),
+        .guitar_pick => @embedFile("filled/guitar-pick.svg"),
+        .hanger_2 => @embedFile("filled/hanger-2.svg"),
+        .headphones => @embedFile("filled/headphones.svg"),
+        .headset => @embedFile("filled/headset.svg"),
+        .heart => @embedFile("filled/heart.svg"),
+        .heart_broken => @embedFile("filled/heart-broken.svg"),
+        .helicopter => @embedFile("filled/helicopter.svg"),
+        .helicopter_landing => @embedFile("filled/helicopter-landing.svg"),
+        .help => @embedFile("filled/help.svg"),
+        .help_circle => @embedFile("filled/help-circle.svg"),
+        .help_hexagon => @embedFile("filled/help-hexagon.svg"),
+        .help_octagon => @embedFile("filled/help-octagon.svg"),
+        .help_square => @embedFile("filled/help-square.svg"),
+        .help_square_rounded => @embedFile("filled/help-square-rounded.svg"),
+        .help_triangle => @embedFile("filled/help-triangle.svg"),
+        .hexagon => @embedFile("filled/hexagon.svg"),
+        .hexagon_letter_a => @embedFile("filled/hexagon-letter-a.svg"),
+        .hexagon_letter_b => @embedFile("filled/hexagon-letter-b.svg"),
+        .hexagon_letter_c => @embedFile("filled/hexagon-letter-c.svg"),
+        .hexagon_letter_d => @embedFile("filled/hexagon-letter-d.svg"),
+        .hexagon_letter_e => @embedFile("filled/hexagon-letter-e.svg"),
+        .hexagon_letter_f => @embedFile("filled/hexagon-letter-f.svg"),
+        .hexagon_letter_g => @embedFile("filled/hexagon-letter-g.svg"),
+        .hexagon_letter_h => @embedFile("filled/hexagon-letter-h.svg"),
+        .hexagon_letter_i => @embedFile("filled/hexagon-letter-i.svg"),
+        .hexagon_letter_j => @embedFile("filled/hexagon-letter-j.svg"),
+        .hexagon_letter_k => @embedFile("filled/hexagon-letter-k.svg"),
+        .hexagon_letter_l => @embedFile("filled/hexagon-letter-l.svg"),
+        .hexagon_letter_m => @embedFile("filled/hexagon-letter-m.svg"),
+        .hexagon_letter_n => @embedFile("filled/hexagon-letter-n.svg"),
+        .hexagon_letter_o => @embedFile("filled/hexagon-letter-o.svg"),
+        .hexagon_letter_p => @embedFile("filled/hexagon-letter-p.svg"),
+        .hexagon_letter_q => @embedFile("filled/hexagon-letter-q.svg"),
+        .hexagon_letter_r => @embedFile("filled/hexagon-letter-r.svg"),
+        .hexagon_letter_s => @embedFile("filled/hexagon-letter-s.svg"),
+        .hexagon_letter_t => @embedFile("filled/hexagon-letter-t.svg"),
+        .hexagon_letter_u => @embedFile("filled/hexagon-letter-u.svg"),
+        .hexagon_letter_v => @embedFile("filled/hexagon-letter-v.svg"),
+        .hexagon_letter_w => @embedFile("filled/hexagon-letter-w.svg"),
+        .hexagon_letter_x => @embedFile("filled/hexagon-letter-x.svg"),
+        .hexagon_letter_y => @embedFile("filled/hexagon-letter-y.svg"),
+        .hexagon_letter_z => @embedFile("filled/hexagon-letter-z.svg"),
+        .hexagon_minus => @embedFile("filled/hexagon-minus.svg"),
+        .hexagon_number_0 => @embedFile("filled/hexagon-number-0.svg"),
+        .hexagon_number_1 => @embedFile("filled/hexagon-number-1.svg"),
+        .hexagon_number_2 => @embedFile("filled/hexagon-number-2.svg"),
+        .hexagon_number_3 => @embedFile("filled/hexagon-number-3.svg"),
+        .hexagon_number_4 => @embedFile("filled/hexagon-number-4.svg"),
+        .hexagon_number_5 => @embedFile("filled/hexagon-number-5.svg"),
+        .hexagon_number_6 => @embedFile("filled/hexagon-number-6.svg"),
+        .hexagon_number_7 => @embedFile("filled/hexagon-number-7.svg"),
+        .hexagon_number_8 => @embedFile("filled/hexagon-number-8.svg"),
+        .hexagon_number_9 => @embedFile("filled/hexagon-number-9.svg"),
+        .hexagon_plus => @embedFile("filled/hexagon-plus.svg"),
+        .home => @embedFile("filled/home.svg"),
+        .home_2 => @embedFile("filled/home-2.svg"),
+        .hospital_circle => @embedFile("filled/hospital-circle.svg"),
+        .hourglass => @embedFile("filled/hourglass.svg"),
+        .icons => @embedFile("filled/icons.svg"),
+        .id => @embedFile("filled/id.svg"),
+        .info_circle => @embedFile("filled/info-circle.svg"),
+        .info_hexagon => @embedFile("filled/info-hexagon.svg"),
+        .info_octagon => @embedFile("filled/info-octagon.svg"),
+        .info_square => @embedFile("filled/info-square.svg"),
+        .info_square_rounded => @embedFile("filled/info-square-rounded.svg"),
+        .info_triangle => @embedFile("filled/info-triangle.svg"),
+        .inner_shadow_bottom => @embedFile("filled/inner-shadow-bottom.svg"),
+        .inner_shadow_bottom_left => @embedFile("filled/inner-shadow-bottom-left.svg"),
+        .inner_shadow_bottom_right => @embedFile("filled/inner-shadow-bottom-right.svg"),
+        .inner_shadow_left => @embedFile("filled/inner-shadow-left.svg"),
+        .inner_shadow_right => @embedFile("filled/inner-shadow-right.svg"),
+        .inner_shadow_top => @embedFile("filled/inner-shadow-top.svg"),
+        .inner_shadow_top_left => @embedFile("filled/inner-shadow-top-left.svg"),
+        .inner_shadow_top_right => @embedFile("filled/inner-shadow-top-right.svg"),
+        .ironing => @embedFile("filled/ironing.svg"),
+        .ironing_1 => @embedFile("filled/ironing-1.svg"),
+        .ironing_2 => @embedFile("filled/ironing-2.svg"),
+        .ironing_3 => @embedFile("filled/ironing-3.svg"),
+        .ironing_steam => @embedFile("filled/ironing-steam.svg"),
+        .jetpack => @embedFile("filled/jetpack.svg"),
+        .jewish_star => @embedFile("filled/jewish-star.svg"),
+        .key => @embedFile("filled/key.svg"),
+        .keyboard => @embedFile("filled/keyboard.svg"),
+        .keyframe => @embedFile("filled/keyframe.svg"),
+        .keyframe_align_center => @embedFile("filled/keyframe-align-center.svg"),
+        .keyframe_align_horizontal => @embedFile("filled/keyframe-align-horizontal.svg"),
+        .keyframe_align_vertical => @embedFile("filled/keyframe-align-vertical.svg"),
+        .keyframes => @embedFile("filled/keyframes.svg"),
+        .label => @embedFile("filled/label.svg"),
+        .label_important => @embedFile("filled/label-important.svg"),
+        .lasso_polygon => @embedFile("filled/lasso-polygon.svg"),
+        .laurel_wreath => @embedFile("filled/laurel-wreath.svg"),
+        .laurel_wreath_1 => @embedFile("filled/laurel-wreath-1.svg"),
+        .laurel_wreath_2 => @embedFile("filled/laurel-wreath-2.svg"),
+        .laurel_wreath_3 => @embedFile("filled/laurel-wreath-3.svg"),
+        .layout => @embedFile("filled/layout.svg"),
+        .layout_2 => @embedFile("filled/layout-2.svg"),
+        .layout_align_bottom => @embedFile("filled/layout-align-bottom.svg"),
+        .layout_align_center => @embedFile("filled/layout-align-center.svg"),
+        .layout_align_left => @embedFile("filled/layout-align-left.svg"),
+        .layout_align_middle => @embedFile("filled/layout-align-middle.svg"),
+        .layout_align_right => @embedFile("filled/layout-align-right.svg"),
+        .layout_align_top => @embedFile("filled/layout-align-top.svg"),
+        .layout_board => @embedFile("filled/layout-board.svg"),
+        .layout_board_split => @embedFile("filled/layout-board-split.svg"),
+        .layout_bottombar => @embedFile("filled/layout-bottombar.svg"),
+        .layout_bottombar_collapse => @embedFile("filled/layout-bottombar-collapse.svg"),
+        .layout_bottombar_expand => @embedFile("filled/layout-bottombar-expand.svg"),
+        .layout_cards => @embedFile("filled/layout-cards.svg"),
+        .layout_dashboard => @embedFile("filled/layout-dashboard.svg"),
+        .layout_distribute_horizontal => @embedFile("filled/layout-distribute-horizontal.svg"),
+        .layout_distribute_vertical => @embedFile("filled/layout-distribute-vertical.svg"),
+        .layout_grid => @embedFile("filled/layout-grid.svg"),
+        .layout_kanban => @embedFile("filled/layout-kanban.svg"),
+        .layout_list => @embedFile("filled/layout-list.svg"),
+        .layout_navbar => @embedFile("filled/layout-navbar.svg"),
+        .layout_navbar_collapse => @embedFile("filled/layout-navbar-collapse.svg"),
+        .layout_navbar_expand => @embedFile("filled/layout-navbar-expand.svg"),
+        .layout_sidebar => @embedFile("filled/layout-sidebar.svg"),
+        .layout_sidebar_left_collapse => @embedFile("filled/layout-sidebar-left-collapse.svg"),
+        .layout_sidebar_left_expand => @embedFile("filled/layout-sidebar-left-expand.svg"),
+        .layout_sidebar_right => @embedFile("filled/layout-sidebar-right.svg"),
+        .layout_sidebar_right_collapse => @embedFile("filled/layout-sidebar-right-collapse.svg"),
+        .layout_sidebar_right_expand => @embedFile("filled/layout-sidebar-right-expand.svg"),
+        .leaf => @embedFile("filled/leaf.svg"),
+        .lego => @embedFile("filled/lego.svg"),
+        .lemon_2 => @embedFile("filled/lemon-2.svg"),
+        .library => @embedFile("filled/library.svg"),
+        .library_plus => @embedFile("filled/library-plus.svg"),
+        .lifebuoy => @embedFile("filled/lifebuoy.svg"),
+        .link => @embedFile("filled/link.svg"),
+        .list => @embedFile("filled/list.svg"),
+        .list_check => @embedFile("filled/list-check.svg"),
+        .list_details => @embedFile("filled/list-details.svg"),
+        .live_photo => @embedFile("filled/live-photo.svg"),
+        .live_view => @embedFile("filled/live-view.svg"),
+        .location => @embedFile("filled/location.svg"),
+        .lock => @embedFile("filled/lock.svg"),
+        .lock_square_rounded => @embedFile("filled/lock-square-rounded.svg"),
+        .lungs => @embedFile("filled/lungs.svg"),
+        .macro => @embedFile("filled/macro.svg"),
+        .magnet => @embedFile("filled/magnet.svg"),
+        .mail => @embedFile("filled/mail.svg"),
+        .mail_opened => @embedFile("filled/mail-opened.svg"),
+        .man => @embedFile("filled/man.svg"),
+        .manual_gearbox => @embedFile("filled/manual-gearbox.svg"),
+        .map_pin => @embedFile("filled/map-pin.svg"),
+        .medical_cross => @embedFile("filled/medical-cross.svg"),
+        .meeple => @embedFile("filled/meeple.svg"),
+        .melon => @embedFile("filled/melon.svg"),
+        .menu_2 => @embedFile("filled/menu-2.svg"),
+        .message => @embedFile("filled/message.svg"),
+        .message_2 => @embedFile("filled/message-2.svg"),
+        .message_chatbot => @embedFile("filled/message-chatbot.svg"),
+        .message_circle => @embedFile("filled/message-circle.svg"),
+        .message_report => @embedFile("filled/message-report.svg"),
+        .messages => @embedFile("filled/messages.svg"),
+        .meteor => @embedFile("filled/meteor.svg"),
+        .michelin_star => @embedFile("filled/michelin-star.svg"),
+        .mickey => @embedFile("filled/mickey.svg"),
+        .microphone => @embedFile("filled/microphone.svg"),
+        .microscope => @embedFile("filled/microscope.svg"),
+        .microwave => @embedFile("filled/microwave.svg"),
+        .military_rank => @embedFile("filled/military-rank.svg"),
+        .milk => @embedFile("filled/milk.svg"),
+        .mood_angry => @embedFile("filled/mood-angry.svg"),
+        .mood_confused => @embedFile("filled/mood-confused.svg"),
+        .mood_crazy_happy => @embedFile("filled/mood-crazy-happy.svg"),
+        .mood_empty => @embedFile("filled/mood-empty.svg"),
+        .mood_happy => @embedFile("filled/mood-happy.svg"),
+        .mood_kid => @embedFile("filled/mood-kid.svg"),
+        .mood_neutral => @embedFile("filled/mood-neutral.svg"),
+        .mood_sad => @embedFile("filled/mood-sad.svg"),
+        .mood_smile => @embedFile("filled/mood-smile.svg"),
+        .mood_wrrr => @embedFile("filled/mood-wrrr.svg"),
+        .moon => @embedFile("filled/moon.svg"),
+        .motorbike => @embedFile("filled/motorbike.svg"),
+        .mountain => @embedFile("filled/mountain.svg"),
+        .mouse => @embedFile("filled/mouse.svg"),
+        .mug => @embedFile("filled/mug.svg"),
+        .mushroom => @embedFile("filled/mushroom.svg"),
+        .navigation => @embedFile("filled/navigation.svg"),
+        .nurse => @embedFile("filled/nurse.svg"),
+        .octagon => @embedFile("filled/octagon.svg"),
+        .octagon_minus => @embedFile("filled/octagon-minus.svg"),
+        .octagon_plus => @embedFile("filled/octagon-plus.svg"),
+        .oval => @embedFile("filled/oval.svg"),
+        .oval_vertical => @embedFile("filled/oval-vertical.svg"),
+        .pacman => @embedFile("filled/pacman.svg"),
+        .paint => @embedFile("filled/paint.svg"),
+        .palette => @embedFile("filled/palette.svg"),
+        .panorama_horizontal => @embedFile("filled/panorama-horizontal.svg"),
+        .panorama_vertical => @embedFile("filled/panorama-vertical.svg"),
+        .parking_circle => @embedFile("filled/parking-circle.svg"),
+        .paw => @embedFile("filled/paw.svg"),
+        .pencil => @embedFile("filled/pencil.svg"),
+        .pennant => @embedFile("filled/pennant.svg"),
+        .pennant_2 => @embedFile("filled/pennant-2.svg"),
+        .pentagon => @embedFile("filled/pentagon.svg"),
+        .phone => @embedFile("filled/phone.svg"),
+        .phone_call => @embedFile("filled/phone-call.svg"),
+        .phone_calling => @embedFile("filled/phone-calling.svg"),
+        .phone_check => @embedFile("filled/phone-check.svg"),
+        .phone_x => @embedFile("filled/phone-x.svg"),
+        .photo => @embedFile("filled/photo.svg"),
+        .picture_in_picture => @embedFile("filled/picture-in-picture.svg"),
+        .picture_in_picture_top => @embedFile("filled/picture-in-picture-top.svg"),
+        .pig => @embedFile("filled/pig.svg"),
+        .pill => @embedFile("filled/pill.svg"),
+        .pin => @embedFile("filled/pin.svg"),
+        .pinned => @embedFile("filled/pinned.svg"),
+        .pizza => @embedFile("filled/pizza.svg"),
+        .plane => @embedFile("filled/plane.svg"),
+        .plane_arrival => @embedFile("filled/plane-arrival.svg"),
+        .plane_departure => @embedFile("filled/plane-departure.svg"),
+        .plane_tilt => @embedFile("filled/plane-tilt.svg"),
+        .play_card => @embedFile("filled/play-card.svg"),
+        .play_card_1 => @embedFile("filled/play-card-1.svg"),
+        .play_card_10 => @embedFile("filled/play-card-10.svg"),
+        .play_card_2 => @embedFile("filled/play-card-2.svg"),
+        .play_card_3 => @embedFile("filled/play-card-3.svg"),
+        .play_card_4 => @embedFile("filled/play-card-4.svg"),
+        .play_card_5 => @embedFile("filled/play-card-5.svg"),
+        .play_card_6 => @embedFile("filled/play-card-6.svg"),
+        .play_card_7 => @embedFile("filled/play-card-7.svg"),
+        .play_card_8 => @embedFile("filled/play-card-8.svg"),
+        .play_card_9 => @embedFile("filled/play-card-9.svg"),
+        .play_card_a => @embedFile("filled/play-card-a.svg"),
+        .play_card_j => @embedFile("filled/play-card-j.svg"),
+        .play_card_k => @embedFile("filled/play-card-k.svg"),
+        .play_card_q => @embedFile("filled/play-card-q.svg"),
+        .play_card_star => @embedFile("filled/play-card-star.svg"),
+        .player_eject => @embedFile("filled/player-eject.svg"),
+        .player_pause => @embedFile("filled/player-pause.svg"),
+        .player_play => @embedFile("filled/player-play.svg"),
+        .player_record => @embedFile("filled/player-record.svg"),
+        .player_skip_back => @embedFile("filled/player-skip-back.svg"),
+        .player_skip_forward => @embedFile("filled/player-skip-forward.svg"),
+        .player_stop => @embedFile("filled/player-stop.svg"),
+        .player_track_next => @embedFile("filled/player-track-next.svg"),
+        .player_track_prev => @embedFile("filled/player-track-prev.svg"),
+        .playlist => @embedFile("filled/playlist.svg"),
+        .plus => @embedFile("filled/plus.svg"),
+        .point => @embedFile("filled/point.svg"),
+        .pointer => @embedFile("filled/pointer.svg"),
+        .polaroid => @embedFile("filled/polaroid.svg"),
+        .poo => @embedFile("filled/poo.svg"),
+        .presentation => @embedFile("filled/presentation.svg"),
+        .presentation_analytics => @embedFile("filled/presentation-analytics.svg"),
+        .puzzle => @embedFile("filled/puzzle.svg"),
+        .quote => @embedFile("filled/quote.svg"),
+        .radar => @embedFile("filled/radar.svg"),
+        .radioactive => @embedFile("filled/radioactive.svg"),
+        .receipt => @embedFile("filled/receipt.svg"),
+        .receipt_dollar => @embedFile("filled/receipt-dollar.svg"),
+        .receipt_euro => @embedFile("filled/receipt-euro.svg"),
+        .receipt_pound => @embedFile("filled/receipt-pound.svg"),
+        .receipt_rupee => @embedFile("filled/receipt-rupee.svg"),
+        .receipt_yen => @embedFile("filled/receipt-yen.svg"),
+        .receipt_yuan => @embedFile("filled/receipt-yuan.svg"),
+        .rectangle => @embedFile("filled/rectangle.svg"),
+        .rectangle_vertical => @embedFile("filled/rectangle-vertical.svg"),
+        .registered => @embedFile("filled/registered.svg"),
+        .relation_many_to_many => @embedFile("filled/relation-many-to-many.svg"),
+        .relation_one_to_many => @embedFile("filled/relation-one-to-many.svg"),
+        .relation_one_to_one => @embedFile("filled/relation-one-to-one.svg"),
+        .replace => @embedFile("filled/replace.svg"),
+        .report_analytics => @embedFile("filled/report-analytics.svg"),
+        .report_money => @embedFile("filled/report-money.svg"),
+        .rollercoaster => @embedFile("filled/rollercoaster.svg"),
+        .rosette => @embedFile("filled/rosette.svg"),
+        .rosette_discount => @embedFile("filled/rosette-discount.svg"),
+        .rosette_discount_check => @embedFile("filled/rosette-discount-check.svg"),
+        .salad => @embedFile("filled/salad.svg"),
+        .satellite => @embedFile("filled/satellite.svg"),
+        .scale => @embedFile("filled/scale.svg"),
+        .school => @embedFile("filled/school.svg"),
+        .scuba_diving_tank => @embedFile("filled/scuba-diving-tank.svg"),
+        .search => @embedFile("filled/search.svg"),
+        .section => @embedFile("filled/section.svg"),
+        .seedling => @embedFile("filled/seedling.svg"),
+        .send => @embedFile("filled/send.svg"),
+        .settings => @embedFile("filled/settings.svg"),
+        .shield => @embedFile("filled/shield.svg"),
+        .shield_check => @embedFile("filled/shield-check.svg"),
+        .shield_checkered => @embedFile("filled/shield-checkered.svg"),
+        .shield_half => @embedFile("filled/shield-half.svg"),
+        .shield_lock => @embedFile("filled/shield-lock.svg"),
+        .shirt => @embedFile("filled/shirt.svg"),
+        .shopping_cart => @embedFile("filled/shopping-cart.svg"),
+        .sign_left => @embedFile("filled/sign-left.svg"),
+        .sign_right => @embedFile("filled/sign-right.svg"),
+        .sitemap => @embedFile("filled/sitemap.svg"),
+        .sort_ascending_2 => @embedFile("filled/sort-ascending-2.svg"),
+        .sort_ascending_shapes => @embedFile("filled/sort-ascending-shapes.svg"),
+        .sort_descending_2 => @embedFile("filled/sort-descending-2.svg"),
+        .sort_descending_shapes => @embedFile("filled/sort-descending-shapes.svg"),
+        .soup => @embedFile("filled/soup.svg"),
+        .spade => @embedFile("filled/spade.svg"),
+        .sparkles => @embedFile("filled/sparkles.svg"),
+        .sparkles_2 => @embedFile("filled/sparkles-2.svg"),
+        .speedboat => @embedFile("filled/speedboat.svg"),
+        .spider => @embedFile("filled/spider.svg"),
+        .square => @embedFile("filled/square.svg"),
+        .square_arrow_down => @embedFile("filled/square-arrow-down.svg"),
+        .square_arrow_left => @embedFile("filled/square-arrow-left.svg"),
+        .square_arrow_right => @embedFile("filled/square-arrow-right.svg"),
+        .square_arrow_up => @embedFile("filled/square-arrow-up.svg"),
+        .square_asterisk => @embedFile("filled/square-asterisk.svg"),
+        .square_check => @embedFile("filled/square-check.svg"),
+        .square_chevron_down => @embedFile("filled/square-chevron-down.svg"),
+        .square_chevron_left => @embedFile("filled/square-chevron-left.svg"),
+        .square_chevron_right => @embedFile("filled/square-chevron-right.svg"),
+        .square_chevron_up => @embedFile("filled/square-chevron-up.svg"),
+        .square_chevrons_down => @embedFile("filled/square-chevrons-down.svg"),
+        .square_chevrons_left => @embedFile("filled/square-chevrons-left.svg"),
+        .square_chevrons_right => @embedFile("filled/square-chevrons-right.svg"),
+        .square_chevrons_up => @embedFile("filled/square-chevrons-up.svg"),
+        .square_dot => @embedFile("filled/square-dot.svg"),
+        .square_f0 => @embedFile("filled/square-f0.svg"),
+        .square_f1 => @embedFile("filled/square-f1.svg"),
+        .square_f2 => @embedFile("filled/square-f2.svg"),
+        .square_f3 => @embedFile("filled/square-f3.svg"),
+        .square_f4 => @embedFile("filled/square-f4.svg"),
+        .square_f5 => @embedFile("filled/square-f5.svg"),
+        .square_f6 => @embedFile("filled/square-f6.svg"),
+        .square_f7 => @embedFile("filled/square-f7.svg"),
+        .square_f8 => @embedFile("filled/square-f8.svg"),
+        .square_f9 => @embedFile("filled/square-f9.svg"),
+        .square_letter_a => @embedFile("filled/square-letter-a.svg"),
+        .square_letter_b => @embedFile("filled/square-letter-b.svg"),
+        .square_letter_c => @embedFile("filled/square-letter-c.svg"),
+        .square_letter_d => @embedFile("filled/square-letter-d.svg"),
+        .square_letter_e => @embedFile("filled/square-letter-e.svg"),
+        .square_letter_f => @embedFile("filled/square-letter-f.svg"),
+        .square_letter_g => @embedFile("filled/square-letter-g.svg"),
+        .square_letter_h => @embedFile("filled/square-letter-h.svg"),
+        .square_letter_i => @embedFile("filled/square-letter-i.svg"),
+        .square_letter_j => @embedFile("filled/square-letter-j.svg"),
+        .square_letter_k => @embedFile("filled/square-letter-k.svg"),
+        .square_letter_l => @embedFile("filled/square-letter-l.svg"),
+        .square_letter_m => @embedFile("filled/square-letter-m.svg"),
+        .square_letter_n => @embedFile("filled/square-letter-n.svg"),
+        .square_letter_o => @embedFile("filled/square-letter-o.svg"),
+        .square_letter_p => @embedFile("filled/square-letter-p.svg"),
+        .square_letter_q => @embedFile("filled/square-letter-q.svg"),
+        .square_letter_r => @embedFile("filled/square-letter-r.svg"),
+        .square_letter_s => @embedFile("filled/square-letter-s.svg"),
+        .square_letter_t => @embedFile("filled/square-letter-t.svg"),
+        .square_letter_u => @embedFile("filled/square-letter-u.svg"),
+        .square_letter_v => @embedFile("filled/square-letter-v.svg"),
+        .square_letter_w => @embedFile("filled/square-letter-w.svg"),
+        .square_letter_x => @embedFile("filled/square-letter-x.svg"),
+        .square_letter_y => @embedFile("filled/square-letter-y.svg"),
+        .square_letter_z => @embedFile("filled/square-letter-z.svg"),
+        .square_minus => @embedFile("filled/square-minus.svg"),
+        .square_number_0 => @embedFile("filled/square-number-0.svg"),
+        .square_number_1 => @embedFile("filled/square-number-1.svg"),
+        .square_number_2 => @embedFile("filled/square-number-2.svg"),
+        .square_number_3 => @embedFile("filled/square-number-3.svg"),
+        .square_number_4 => @embedFile("filled/square-number-4.svg"),
+        .square_number_5 => @embedFile("filled/square-number-5.svg"),
+        .square_number_6 => @embedFile("filled/square-number-6.svg"),
+        .square_number_7 => @embedFile("filled/square-number-7.svg"),
+        .square_number_8 => @embedFile("filled/square-number-8.svg"),
+        .square_number_9 => @embedFile("filled/square-number-9.svg"),
+        .square_rotated => @embedFile("filled/square-rotated.svg"),
+        .square_rounded => @embedFile("filled/square-rounded.svg"),
+        .square_rounded_arrow_down => @embedFile("filled/square-rounded-arrow-down.svg"),
+        .square_rounded_arrow_left => @embedFile("filled/square-rounded-arrow-left.svg"),
+        .square_rounded_arrow_right => @embedFile("filled/square-rounded-arrow-right.svg"),
+        .square_rounded_arrow_up => @embedFile("filled/square-rounded-arrow-up.svg"),
+        .square_rounded_check => @embedFile("filled/square-rounded-check.svg"),
+        .square_rounded_chevron_down => @embedFile("filled/square-rounded-chevron-down.svg"),
+        .square_rounded_chevron_left => @embedFile("filled/square-rounded-chevron-left.svg"),
+        .square_rounded_chevron_right => @embedFile("filled/square-rounded-chevron-right.svg"),
+        .square_rounded_chevron_up => @embedFile("filled/square-rounded-chevron-up.svg"),
+        .square_rounded_chevrons_down => @embedFile("filled/square-rounded-chevrons-down.svg"),
+        .square_rounded_chevrons_left => @embedFile("filled/square-rounded-chevrons-left.svg"),
+        .square_rounded_chevrons_right => @embedFile("filled/square-rounded-chevrons-right.svg"),
+        .square_rounded_chevrons_up => @embedFile("filled/square-rounded-chevrons-up.svg"),
+        .square_rounded_letter_a => @embedFile("filled/square-rounded-letter-a.svg"),
+        .square_rounded_letter_b => @embedFile("filled/square-rounded-letter-b.svg"),
+        .square_rounded_letter_c => @embedFile("filled/square-rounded-letter-c.svg"),
+        .square_rounded_letter_d => @embedFile("filled/square-rounded-letter-d.svg"),
+        .square_rounded_letter_e => @embedFile("filled/square-rounded-letter-e.svg"),
+        .square_rounded_letter_f => @embedFile("filled/square-rounded-letter-f.svg"),
+        .square_rounded_letter_g => @embedFile("filled/square-rounded-letter-g.svg"),
+        .square_rounded_letter_h => @embedFile("filled/square-rounded-letter-h.svg"),
+        .square_rounded_letter_i => @embedFile("filled/square-rounded-letter-i.svg"),
+        .square_rounded_letter_j => @embedFile("filled/square-rounded-letter-j.svg"),
+        .square_rounded_letter_k => @embedFile("filled/square-rounded-letter-k.svg"),
+        .square_rounded_letter_l => @embedFile("filled/square-rounded-letter-l.svg"),
+        .square_rounded_letter_m => @embedFile("filled/square-rounded-letter-m.svg"),
+        .square_rounded_letter_n => @embedFile("filled/square-rounded-letter-n.svg"),
+        .square_rounded_letter_o => @embedFile("filled/square-rounded-letter-o.svg"),
+        .square_rounded_letter_p => @embedFile("filled/square-rounded-letter-p.svg"),
+        .square_rounded_letter_q => @embedFile("filled/square-rounded-letter-q.svg"),
+        .square_rounded_letter_r => @embedFile("filled/square-rounded-letter-r.svg"),
+        .square_rounded_letter_s => @embedFile("filled/square-rounded-letter-s.svg"),
+        .square_rounded_letter_t => @embedFile("filled/square-rounded-letter-t.svg"),
+        .square_rounded_letter_u => @embedFile("filled/square-rounded-letter-u.svg"),
+        .square_rounded_letter_v => @embedFile("filled/square-rounded-letter-v.svg"),
+        .square_rounded_letter_w => @embedFile("filled/square-rounded-letter-w.svg"),
+        .square_rounded_letter_x => @embedFile("filled/square-rounded-letter-x.svg"),
+        .square_rounded_letter_y => @embedFile("filled/square-rounded-letter-y.svg"),
+        .square_rounded_letter_z => @embedFile("filled/square-rounded-letter-z.svg"),
+        .square_rounded_minus => @embedFile("filled/square-rounded-minus.svg"),
+        .square_rounded_number_0 => @embedFile("filled/square-rounded-number-0.svg"),
+        .square_rounded_number_1 => @embedFile("filled/square-rounded-number-1.svg"),
+        .square_rounded_number_2 => @embedFile("filled/square-rounded-number-2.svg"),
+        .square_rounded_number_3 => @embedFile("filled/square-rounded-number-3.svg"),
+        .square_rounded_number_4 => @embedFile("filled/square-rounded-number-4.svg"),
+        .square_rounded_number_5 => @embedFile("filled/square-rounded-number-5.svg"),
+        .square_rounded_number_6 => @embedFile("filled/square-rounded-number-6.svg"),
+        .square_rounded_number_7 => @embedFile("filled/square-rounded-number-7.svg"),
+        .square_rounded_number_8 => @embedFile("filled/square-rounded-number-8.svg"),
+        .square_rounded_number_9 => @embedFile("filled/square-rounded-number-9.svg"),
+        .square_rounded_plus => @embedFile("filled/square-rounded-plus.svg"),
+        .square_rounded_x => @embedFile("filled/square-rounded-x.svg"),
+        .square_x => @embedFile("filled/square-x.svg"),
+        .squares => @embedFile("filled/squares.svg"),
+        .stack => @embedFile("filled/stack.svg"),
+        .stack_2 => @embedFile("filled/stack-2.svg"),
+        .stack_3 => @embedFile("filled/stack-3.svg"),
+        .star => @embedFile("filled/star.svg"),
+        .star_half => @embedFile("filled/star-half.svg"),
+        .stars => @embedFile("filled/stars.svg"),
+        .steering_wheel => @embedFile("filled/steering-wheel.svg"),
+        .sun => @embedFile("filled/sun.svg"),
+        .sun_high => @embedFile("filled/sun-high.svg"),
+        .sun_low => @embedFile("filled/sun-low.svg"),
+        .sunglasses => @embedFile("filled/sunglasses.svg"),
+        .sunrise => @embedFile("filled/sunrise.svg"),
+        .sunset => @embedFile("filled/sunset.svg"),
+        .sunset_2 => @embedFile("filled/sunset-2.svg"),
+        .swipe_down => @embedFile("filled/swipe-down.svg"),
+        .swipe_left => @embedFile("filled/swipe-left.svg"),
+        .swipe_right => @embedFile("filled/swipe-right.svg"),
+        .swipe_up => @embedFile("filled/swipe-up.svg"),
+        .table => @embedFile("filled/table.svg"),
+        .tag => @embedFile("filled/tag.svg"),
+        .tags => @embedFile("filled/tags.svg"),
+        .temperature_minus => @embedFile("filled/temperature-minus.svg"),
+        .temperature_plus => @embedFile("filled/temperature-plus.svg"),
+        .template => @embedFile("filled/template.svg"),
+        .test_pipe_2 => @embedFile("filled/test-pipe-2.svg"),
+        .thumb_down => @embedFile("filled/thumb-down.svg"),
+        .thumb_up => @embedFile("filled/thumb-up.svg"),
+        .ticket => @embedFile("filled/ticket.svg"),
+        .tilt_shift => @embedFile("filled/tilt-shift.svg"),
+        .timeline_event => @embedFile("filled/timeline-event.svg"),
+        .toggle_left => @embedFile("filled/toggle-left.svg"),
+        .toggle_right => @embedFile("filled/toggle-right.svg"),
+        .tools_kitchen_2 => @embedFile("filled/tools-kitchen-2.svg"),
+        .train => @embedFile("filled/train.svg"),
+        .transform => @embedFile("filled/transform.svg"),
+        .transition_bottom => @embedFile("filled/transition-bottom.svg"),
+        .transition_left => @embedFile("filled/transition-left.svg"),
+        .transition_right => @embedFile("filled/transition-right.svg"),
+        .transition_top => @embedFile("filled/transition-top.svg"),
+        .trash => @embedFile("filled/trash.svg"),
+        .trash_x => @embedFile("filled/trash-x.svg"),
+        .triangle => @embedFile("filled/triangle.svg"),
+        .triangle_inverted => @embedFile("filled/triangle-inverted.svg"),
+        .triangle_square_circle => @embedFile("filled/triangle-square-circle.svg"),
+        .trolley => @embedFile("filled/trolley.svg"),
+        .trophy => @embedFile("filled/trophy.svg"),
+        .truck => @embedFile("filled/truck.svg"),
+        .ufo => @embedFile("filled/ufo.svg"),
+        .umbrella => @embedFile("filled/umbrella.svg"),
+        .user => @embedFile("filled/user.svg"),
+        .versions => @embedFile("filled/versions.svg"),
+        .video => @embedFile("filled/video.svg"),
+        .video_minus => @embedFile("filled/video-minus.svg"),
+        .video_plus => @embedFile("filled/video-plus.svg"),
+        .windmill => @embedFile("filled/windmill.svg"),
+        .windsock => @embedFile("filled/windsock.svg"),
+        .woman => @embedFile("filled/woman.svg"),
+        .world => @embedFile("filled/world.svg"),
+        .writing => @embedFile("filled/writing.svg"),
+        .writing_sign => @embedFile("filled/writing-sign.svg"),
+        .x => @embedFile("filled/x.svg"),
+        .xbox_a => @embedFile("filled/xbox-a.svg"),
+        .xbox_b => @embedFile("filled/xbox-b.svg"),
+        .xbox_x => @embedFile("filled/xbox-x.svg"),
+        .xbox_y => @embedFile("filled/xbox-y.svg"),
+        .yin_yang => @embedFile("filled/yin-yang.svg"),
+        .zeppelin => @embedFile("filled/zeppelin.svg"),
+        .zoom => @embedFile("filled/zoom.svg"),
+        .zoom_cancel => @embedFile("filled/zoom-cancel.svg"),
+        .zoom_check => @embedFile("filled/zoom-check.svg"),
+        .zoom_code => @embedFile("filled/zoom-code.svg"),
+        .zoom_exclamation => @embedFile("filled/zoom-exclamation.svg"),
+        .zoom_in => @embedFile("filled/zoom-in.svg"),
+        .zoom_in_area => @embedFile("filled/zoom-in-area.svg"),
+        .zoom_money => @embedFile("filled/zoom-money.svg"),
+        .zoom_out => @embedFile("filled/zoom-out.svg"),
+        .zoom_out_area => @embedFile("filled/zoom-out-area.svg"),
+        .zoom_pan => @embedFile("filled/zoom-pan.svg"),
+        .zoom_question => @embedFile("filled/zoom-question.svg"),
+        .zoom_scan => @embedFile("filled/zoom-scan.svg"),
+    };
+}
 
+/// Convert `icon` to TVG bytes sized for `size`, cached per window so
+/// repeat calls are free after the first conversion.
+///
+/// The TVG is resolution-independent; `size` selects the cache entry and
+/// is the size you should display it at (e.g. `min_size_content`). dvui
+/// renders TVG icons anti-aliased (1px feather, round joins/caps for
+/// strokes) and caches the rasterized mesh per display size itself.
+///
+/// Only valid between `Window.begin` and `Window.end`. The returned
+/// slice is owned by dvui's per-window data store; do not free it.
+pub fn filled(comptime icon: Filled, size: dvui.Size) ![]const u8 {
+    const tag = @tagName(icon);
+    var key_buf: [256]u8 = undefined;
+    const key = std.fmt.bufPrint(&key_buf, "tabler-filled-{s}-{d}x{d}", .{ tag, size.w, size.h }) catch unreachable;
+    const id = dvui.Id.zero.update("tabler-filled");
+    if (dvui.dataGetSlice(null, id, key, []u8)) |tvg| return tvg;
+    const arena = dvui.currentWindow().arena();
+    const tvg = try dvui.svgToTvg(arena, svg(icon));
+    defer arena.free(tvg);
+    dvui.dataSetSlice(null, id, key, tvg);
+    return dvui.dataGetSlice(null, id, key, []u8).?;
+}
+///
+/// Same conversion without the cache. Needs no window; the caller owns
+/// the returned slice and must free it with `allocator`.
+pub fn filledUncached(comptime icon: Filled, size: dvui.Size, allocator: std.mem.Allocator) ![]const u8 {
+    // TVG is resolution-independent, so the bytes don't depend on size;
+    // it is kept for symmetry with `filled` (and the size you display at).
+    _ = size;
+    return try dvui.svgToTvg(allocator, svg(icon));
+}
+// Smoke-test a few icons through the uncached path (needs no window).
 test {
-    // Thousands of icons exceed the default comptime branch quota.
-    @setEvalBranchQuota(20000);
-    @import("std").testing.refAllDecls(@This());
+    const size = dvui.Size.all(16);
+    inline for (.{
+        Filled.accessible,
+        Filled.ad,
+        Filled.ad_circle,
+        Filled.adjustments,
+    }) |icon| {
+        const tvg = try filledUncached(icon, size, std.testing.allocator);
+        defer std.testing.allocator.free(tvg);
+        try std.testing.expect(tvg.len > 2);
+        try std.testing.expectEqualStrings("rV", tvg[0..2]);
+    }
 }
