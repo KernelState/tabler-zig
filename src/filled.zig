@@ -5,6 +5,7 @@
 const std = @import("std");
 const dvui = @import("dvui");
 const raster = @import("raster.zig");
+const widget = @import("widget.zig");
 ///
 /// Every icon, as an enum variant (`arrow-big-right` -> `arrow_big_right`).
 pub const Filled = enum {
@@ -2189,4 +2190,22 @@ pub fn filledRaster(comptime icon: Filled, size: dvui.Size, tint: dvui.Color) !r
 pub fn filledRasterUncached(comptime icon: Filled, size: dvui.Size, tint: dvui.Color, allocator: std.mem.Allocator) !raster.Raster {
     const r = try raster.uncached(svg(icon), size, tint, allocator);
     return r;
+}
+///
+/// Show `icon` as a layout-driven widget (like `dvui.icon`): no
+/// developer-chosen size. The widget derives its size from
+/// `opts.min_size_content` (falling back to the text height),
+/// converts the SVG to TVG for whatever size layout assigns, and
+/// caches it per window — a new layout size just selects another
+/// cache entry, repeat frames are free. Never fails; conversion
+/// errors are logged and the layout slot is kept.
+pub fn filledIcon(src: std.builtin.SourceLocation, comptime icon: Filled, icon_opts: dvui.IconRenderOptions, opts: dvui.Options) void {
+    widget.iconWidget(src, .filled, @tagName(icon), svg(icon), icon_opts, opts);
+}
+///
+/// Show `icon` as a dvui button (like `dvui.buttonIcon`): no
+/// developer-chosen size, SVG -> TVG conversion cached per window.
+/// Returns true on click. `opts.min_size_content` sizes the icon.
+pub fn filledIconButton(src: std.builtin.SourceLocation, comptime icon: Filled, init_opts: dvui.ButtonWidget.InitOptions, icon_opts: dvui.IconRenderOptions, opts: dvui.Options) bool {
+    return widget.iconButtonWidget(src, .filled, @tagName(icon), svg(icon), init_opts, icon_opts, opts);
 }
