@@ -4,9 +4,9 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    // Library module: pure compile-time `@embedFile` TVG bytes, zero dependencies.
-    // Unreferenced icons are dropped from the final binary, just like dvui.entypo.
-    _ = b.addModule("tabler", .{
+    // Library module: icon enums + SVG->TVG functions. `icon` is comptime
+    // so unreferenced icons are dropped from the final binary.
+    const tabler_mod = b.addModule("tabler", .{
         .root_source_file = b.path("src/tabler.zig"),
         .target = target,
         .optimize = optimize,
@@ -28,12 +28,21 @@ pub fn build(b: *std.Build) void {
 
     // Backend-less core module only (no windowing/backend deps needed for
     // SVG -> TVG conversion); dvui wires its own svg2tvg dependency itself.
+    // Disable with -Dwire_dvui=false to inject your own dvui module instead:
+    //   const tabler_mod = tabler_dep.module("tabler");
+    //   tabler_mod.addImport("dvui", your_dvui_mod);
+    // which guarantees a single dvui instance (types, window state) downstream.
+    const wire_dvui = b.option(bool, "wire_dvui", "Wire the tabler module to a backend-less dvui instance") orelse true;
     const dvui_dep = b.dependency("dvui", .{
         .target = tool_target,
         .optimize = optimize,
         .backend = .custom,
         .libc = true,
     });
+    const dvui_mod = dvui_dep.module("dvui");
+    if (wire_dvui) {
+        tabler_mod.addImport("dvui", dvui_mod);
+    }
 
     // Regenerate the committed TVG assets + Zig bindings from the
     // tabler-icons submodule, using dvui's own SVG -> TVG converter.
@@ -44,7 +53,7 @@ pub fn build(b: *std.Build) void {
             .target = tool_target,
             .optimize = optimize,
             .imports = &.{
-                .{ .name = "dvui", .module = dvui_dep.module("dvui") },
+                .{ .name = "dvui", .module = dvui_mod },
             },
         }),
     });
@@ -56,11 +65,16 @@ pub fn build(b: *std.Build) void {
     const generate_step = b.step("generate", "Regenerate TVG assets and Zig bindings from the tabler-icons submodule");
     generate_step.dependOn(&run_generate.step);
 
+    // Tests link libc via dvui, so build them for the same pinned host
+    // target as the codegen tool (see above).
     const lib_unit_tests = b.addTest(.{
         .root_module = b.createModule(.{
             .root_source_file = b.path("src/tabler.zig"),
-            .target = target,
+            .target = tool_target,
             .optimize = optimize,
+            .imports = if (wire_dvui) &.{
+                .{ .name = "dvui", .module = dvui_mod },
+            } else &.{},
         }),
     });
     const run_lib_unit_tests = b.addRunArtifact(lib_unit_tests);
