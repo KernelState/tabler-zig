@@ -4,6 +4,7 @@
 /// Do not edit by hand.
 const std = @import("std");
 const dvui = @import("dvui");
+const raster = @import("raster.zig");
 ///
 /// Every icon, as an enum variant (`arrow-big-right` -> `arrow_big_right`).
 pub const Outline = enum {
@@ -10321,4 +10322,23 @@ test {
         try std.testing.expect(tvg.len > 2);
         try std.testing.expectEqualStrings("rV", tvg[0..2]);
     }
+}
+///
+/// Supersampled raster of `icon` at `size`, tinted with `tint`,
+/// cached per window. True 4x SSAA: the dvui mesh is built at 4x
+/// size, rasterized on the CPU and box-downsampled. Display with
+/// `dvui.image` via `dvui.ImageSource.pixels`.
+///
+/// Only valid between `Window.begin` and `Window.end`. The returned
+/// slice is owned by dvui's per-window data store; do not free it.
+pub fn outlineRaster(comptime icon: Outline, size: dvui.Size, tint: dvui.Color) !raster.Raster {
+    return raster.cached("outline", @tagName(icon), svg(icon), size, tint);
+}
+///
+/// Same raster without the cache. Needs a window for mesh building
+/// (clip state) but the caller owns the result (`raster.rgba`) and
+/// frees it with `allocator`.
+pub fn outlineRasterUncached(comptime icon: Outline, size: dvui.Size, tint: dvui.Color, allocator: std.mem.Allocator) !raster.Raster {
+    const r = try raster.uncached(svg(icon), size, tint, allocator);
+    return r;
 }
