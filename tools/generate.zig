@@ -101,6 +101,7 @@ fn generateVariant(
         \\/// Do not edit by hand.
         \\const std = @import("std");
         \\const dvui = @import("dvui");
+        \\const raster = @import("raster.zig");
         \\///
         \\/// Every icon, as an enum variant (`arrow-big-right` -> `arrow_big_right`).
         \\pub const {s} = enum {{
@@ -170,8 +171,27 @@ fn generateVariant(
         \\        try std.testing.expectEqualStrings("rV", tvg[0..2]);
         \\    }}
         \\}}
+        \\///
+        \\/// Supersampled raster of `icon` at `size`, tinted with `tint`,
+        \\/// cached per window. True 4x SSAA: the dvui mesh is built at 4x
+        \\/// size, rasterized on the CPU and box-downsampled. Display with
+        \\/// `dvui.image` via `dvui.ImageSource.pixels`.
+        \\///
+        \\/// Only valid between `Window.begin` and `Window.end`. The returned
+        \\/// slice is owned by dvui's per-window data store; do not free it.
+        \\pub fn {s}Raster(comptime icon: {s}, size: dvui.Size, tint: dvui.Color) !raster.Raster {{
+        \\    return raster.cached("{s}", @tagName(icon), svg(icon), size, tint);
+        \\}}
+        \\///
+        \\/// Same raster without the cache. Needs a window for mesh building
+        \\/// (clip state) but the caller owns the result (`raster.rgba`) and
+        \\/// frees it with `allocator`.
+        \\pub fn {s}RasterUncached(comptime icon: {s}, size: dvui.Size, tint: dvui.Color, allocator: std.mem.Allocator) !raster.Raster {{
+        \\    const r = try raster.uncached(svg(icon), size, tint, allocator);
+        \\    return r;
+        \\}}
         \\
-    , .{variant.fn_name});
+    , .{ variant.fn_name, variant.fn_name, variant.type_name, variant.name, variant.fn_name, variant.type_name });
 
     const zig_file_name = try std.mem.concat(gpa, u8, &.{ variant.name, ".zig" });
     try writeFile(io, src_dir, zig_file_name, aw.written());

@@ -22,9 +22,34 @@ defer arena.free(tvg2);
   kebab-case names in snake_case (`arrow-big-right` -> `.arrow_big_right`).
 - `icon` is comptime, so only icons you reference are embedded.
 - Sizing/anti-aliasing: TVG is resolution-independent; `size` selects the
-  cache entry and is the size you should display at. dvui renders TVG
-  icons anti-aliased (1px feather, round joins/caps for strokes) and
-  caches the rasterized mesh per display size itself.
+  cache entry and is the size you should display at.
+
+## Crisp icons (supersampled raster)
+
+dvui renders TVG strokes with a fixed 1px feather, which undersamples
+thin outlines at small sizes. For pixel-clean small icons, rasterize
+with true 4x SSAA instead — the dvui mesh is built at 4x size,
+rasterized on the CPU and box-downsampled:
+
+```zig
+const tabler = @import("tabler");
+
+// Cached per window (repeat calls are free); do not free the result.
+const r = try tabler.outlineRaster(.home, dvui.Size.all(16), dvui.Color.white);
+dvui.image(@src(), .{ .source = .{ .pixels = .{
+    .rgba = r.rgba, .width = r.w, .height = r.h,
+} } }, .{ .min_size_content = .{ .h = 16 } });
+
+// Uncached: needs a window for mesh building, caller frees r.rgba.
+const r2 = try tabler.filledRasterUncached(.home, size, tint, arena);
+defer arena.free(r2.rgba);
+```
+
+- `tint` is baked in at raster time (and part of the cache key), because
+  `dvui.image` has no tint stage — pass your text color for themed icons.
+- `r.w` / `r.h` are `ceil(size)`; `r.rgba` is non-premultiplied RGBA.
+- Rule of thumb: TVG functions for large/vector use, raster functions
+  for small UI icons where edge quality matters.
 - The only dependency is `dvui` itself.
 
 ## Adding it to your project

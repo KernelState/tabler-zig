@@ -25,14 +25,20 @@
 
 const outline_mod = @import("outline.zig");
 const filled_mod = @import("filled.zig");
+const raster_mod = @import("raster.zig");
 
 pub const Outline = outline_mod.Outline;
 pub const Filled = filled_mod.Filled;
+pub const Raster = raster_mod.Raster;
 
 pub const outline = outline_mod.outline;
 pub const outlineUncached = outline_mod.outlineUncached;
+pub const outlineRaster = outline_mod.outlineRaster;
+pub const outlineRasterUncached = outline_mod.outlineRasterUncached;
 pub const filled = filled_mod.filled;
 pub const filledUncached = filled_mod.filledUncached;
+pub const filledRaster = filled_mod.filledRaster;
+pub const filledRasterUncached = filled_mod.filledRasterUncached;
 
 test {
     @import("std").testing.refAllDecls(@This());
