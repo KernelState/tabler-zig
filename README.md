@@ -6,16 +6,6 @@ SVGs embedded at compile time, converted to TVG at runtime.
 ```zig
 const tabler = @import("tabler");
 
-// Layout-driven widget (preferred): size comes from dvui layout, the
-// SVG -> TVG conversion is cached per window. Never fails.
-tabler.outlineIcon(@src(), .home, .{}, .{});
-tabler.outlineIcon(@src(), .home, .{}, .{ .min_size_content = .{ .h = 16 } });
-
-// Icon button, same caching. Returns true on click.
-if (tabler.outlineIconButton(@src(), .settings, .{}, .{}, .{})) {
-    // clicked
-}
-
 // Cached per window; valid between Window.begin/end; do not free.
 const tvg = try tabler.outline(.home, dvui.Size.all(16));
 dvui.icon(@src(), "home", tvg, .{}, .{ .min_size_content = .{ .h = 16 } });
@@ -25,11 +15,6 @@ const tvg2 = try tabler.filledUncached(.home, dvui.Size.all(16), arena);
 defer arena.free(tvg2);
 ```
 
-- `tabler.outlineIcon(@src(), .name, .{}, opts)` /
-  `tabler.filledIcon(@src(), .name, .{}, opts)` — layout-driven widgets.
-- `tabler.outlineIconButton(@src(), .name, .{}, .{}, opts)` /
-  `tabler.filledIconButton(@src(), .name, .{}, .{}, opts)` — icon buttons,
-  same caching, return true on click.
 - `tabler.outline(.name, size)` / `tabler.filled(.name, size)` — cached TVG.
 - `tabler.outlineUncached(.name, size, allocator)` /
   `tabler.filledUncached(.name, size, allocator)` — uncached TVG.

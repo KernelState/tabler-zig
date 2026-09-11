@@ -11,10 +11,6 @@
 //!     (`arrow-big-right` -> `arrow_big_right`, keywords quoted),
 //!   - `outline()` / `filled()` returning runtime-converted TVG bytes,
 //!     cached per window (plus `outlineUncached()` / `filledUncached()`),
-//!   - `outlineIcon()` / `filledIcon()` layout-driven widgets that size
-//!     via dvui layout and cache the TVG per window (no `size` argument),
-//!   - `outlineIconButton()` / `filledIconButton()` icon buttons with the
-//!     same sizing and caching (return true on click),
 //!   - the `icon` parameter is `comptime`, so only icons you reference
 //!     are embedded in your binary.
 //!
@@ -106,7 +102,6 @@ fn generateVariant(
         \\const std = @import("std");
         \\const dvui = @import("dvui");
         \\const raster = @import("raster.zig");
-        \\const widget = @import("widget.zig");
         \\///
         \\/// Every icon, as an enum variant (`arrow-big-right` -> `arrow_big_right`).
         \\pub const {s} = enum {{
@@ -195,26 +190,8 @@ fn generateVariant(
         \\    const r = try raster.uncached(svg(icon), size, tint, allocator);
         \\    return r;
         \\}}
-        \\///
-        \\/// Show `icon` as a layout-driven widget (like `dvui.icon`): no
-        \\/// developer-chosen size. The widget derives its size from
-        \\/// `opts.min_size_content` (falling back to the text height),
-        \\/// converts the SVG to TVG for whatever size layout assigns, and
-        \\/// caches it per window — a new layout size just selects another
-        \\/// cache entry, repeat frames are free. Never fails; conversion
-        \\/// errors are logged and the layout slot is kept.
-        \\pub fn {s}Icon(src: std.builtin.SourceLocation, comptime icon: {s}, icon_opts: dvui.IconRenderOptions, opts: dvui.Options) void {{
-        \\    widget.iconWidget(src, .{s}, @tagName(icon), svg(icon), icon_opts, opts);
-        \\}}
-        \\///
-        \\/// Show `icon` as a dvui button (like `dvui.buttonIcon`): no
-        \\/// developer-chosen size, SVG -> TVG conversion cached per window.
-        \\/// Returns true on click. `opts.min_size_content` sizes the icon.
-        \\pub fn {s}IconButton(src: std.builtin.SourceLocation, comptime icon: {s}, init_opts: dvui.ButtonWidget.InitOptions, icon_opts: dvui.IconRenderOptions, opts: dvui.Options) bool {{
-        \\    return widget.iconButtonWidget(src, .{s}, @tagName(icon), svg(icon), init_opts, icon_opts, opts);
-        \\}}
         \\
-    , .{ variant.fn_name, variant.fn_name, variant.type_name, variant.name, variant.fn_name, variant.type_name, variant.fn_name, variant.type_name, variant.name, variant.fn_name, variant.type_name, variant.name });
+    , .{ variant.fn_name, variant.fn_name, variant.type_name, variant.name, variant.fn_name, variant.type_name });
 
     const zig_file_name = try std.mem.concat(gpa, u8, &.{ variant.name, ".zig" });
     try writeFile(io, src_dir, zig_file_name, aw.written());
