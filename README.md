@@ -34,7 +34,7 @@ In your `build.zig.zon`:
 ```zig
 .dependencies = .{
     .tabler_zig = .{
-        .url = "git+https://github.com/<you>/tabler-zig#<commit>",
+        .url = "git+https://github.com/KernelState/tabler-zig",
         .hash = "...",
     },
     // ... your dvui dependency (same version as tabler-zig uses)
